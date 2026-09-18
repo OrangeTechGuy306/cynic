@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Profile - Cynic Student Accommodation</title>
+  <meta name="description" content="Manage your Cynic agent accreditation profile, agency details, contact information, and security credentials.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-shell">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- App Sidebar Component -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span>CYNIC</span>
+            <span class="brand-tag">Agent Portal</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Main Navigation</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="dashboard.html">
+              <i class="ri-dashboard-3-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="listings.html">
+              <i class="ri-hotel-line"></i>
+              <span>Listings</span>
+              <span class="nav-badge" id="sidebarListingsBadge">12</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="add-listing.html">
+              <i class="ri-add-circle-line"></i>
+              <span>Add New Listing</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="interests.html">
+              <i class="ri-user-heart-line"></i>
+              <span>Student Interests</span>
+              <span class="nav-badge badge-green">34</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="messages.html">
+              <i class="ri-message-3-line"></i>
+              <span>Messages</span>
+              <span class="nav-badge badge-green">8</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="reports.html">
+              <i class="ri-alert-line"></i>
+              <span>Reports</span>
+              <span class="nav-badge badge-amber">3</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-section-title" style="margin-top: var(--space-4);">Account Settings</div>
+        <ul class="nav-list">
+          <li class="nav-item active">
+            <a href="profile.html">
+              <i class="ri-user-settings-line"></i>
+              <span>Agent Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html">
+              <i class="ri-global-line"></i>
+              <span>View Public Website</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="agent-mini-card">
+          <div class="agent-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent Avatar" class="agent-avatar-img">
+            <span class="online-dot"></span>
+          </div>
+          <div class="agent-meta">
+            <div class="agent-name agent-name-display">Tunde Balogun</div>
+            <div class="agent-role agent-agency-display">Prime Campus Properties</div>
+          </div>
+          <button type="button" class="btn-sidebar-logout" onclick="handleAgentLogout()" title="Logout">
+            <i class="ri-logout-box-r-line"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content-wrapper">
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" class="mobile-menu-btn" id="sidebarToggleBtn" aria-label="Open Sidebar Menu">
+            <i class="ri-menu-2-line"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Agent Profile</h1>
+            <div class="page-breadcrumb">
+              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <span>Account Settings &amp; Accreditation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <button type="button" class="btn btn-outline-danger btn-sm" onclick="handleAgentLogout()">
+            <i class="ri-logout-box-line"></i> Sign Out
+          </button>
+        </div>
+      </header>
+
+      <main class="page-body">
+        
+        <div class="form-card" style="max-width: 900px; margin: 0 auto;">
+          <div style="margin-bottom: var(--space-6); padding-bottom: var(--space-4); border-bottom: 1px solid var(--light-gray);">
+            <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--status-success-bg); color: var(--emerald-700); padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 600; margin-bottom: 8px;">
+              <i class="ri-shield-check-line"></i> Verified Agent Credentials
+            </div>
+            <h2>Manage Agent Profile</h2>
+            <p style="font-size: 0.92rem; color: var(--slate-500);">
+              Update your agency branding, contact phone number for student WhatsApp inquiries, and account password.
+            </p>
+          </div>
+
+          <form id="agentProfileForm" onsubmit="handleSaveProfile(event)">
+            
+            <!-- Wireframe 4.8: Profile Picture [Upload] -->
+            <div style="display: flex; align-items: center; gap: var(--space-6); margin-bottom: var(--space-8); padding: var(--space-5); background: var(--light-gray-50); border-radius: var(--radius-lg); border: 1px solid var(--light-gray);">
+              <div style="position: relative;">
+                <img id="profilePicturePreview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent Profile" style="width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid var(--emerald-500); box-shadow: var(--shadow-sm);">
+              </div>
+              <div>
+                <label class="form-label" style="margin-bottom: 4px;">Profile Picture: [Upload]</label>
+                <p style="font-size: 0.82rem; color: var(--slate-500); margin-bottom: 10px;">
+                  Upload a clear portrait to build trust with university students and guardians.
+                </p>
+                <div style="display: flex; gap: 10px;">
+                  <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('profilePicInput').click()">
+                    <i class="ri-upload-2-line"></i> Change Photo
+                  </button>
+                  <input type="file" id="profilePicInput" accept="image/*" style="display: none;" onchange="previewNewAvatar(event)">
+                </div>
+              </div>
+            </div>
+
+            <!-- Wireframe 4.8 Input Fields -->
+            <div class="form-grid">
+              
+              <!-- Name: [____________________] -->
+              <div class="form-group">
+                <label class="form-label" for="profileName">Agent Full Name <span class="required">*</span></label>
+                <input type="text" id="profileName" class="form-input" placeholder="e.g. Tunde Balogun" required>
+              </div>
+
+              <!-- Email: [___________________] -->
+              <div class="form-group">
+                <label class="form-label" for="profileEmail">Email Address <span class="required">*</span></label>
+                <input type="email" id="profileEmail" class="form-input" placeholder="e.g. tunde.balogun@cynichomes.ng" required>
+              </div>
+
+              <!-- Phone: [___________________] -->
+              <div class="form-group">
+                <label class="form-label" for="profilePhone">Phone Number (WhatsApp Active) <span class="required">*</span></label>
+                <div class="input-prefix-group">
+                  <span class="input-prefix" style="color: var(--slate-500); font-size: 0.88rem;">+234</span>
+                  <input type="tel" id="profilePhone" class="form-input" style="padding-left: 54px;" placeholder="8031234567" required>
+                </div>
+                <span style="font-size: 0.78rem; color: var(--slate-400);">Students will be routed to this WhatsApp line for direct inquiries.</span>
+              </div>
+
+              <!-- Agency: [__________________] -->
+              <div class="form-group">
+                <label class="form-label" for="profileAgency">Agency / Real Estate Firm <span class="required">*</span></label>
+                <input type="text" id="profileAgency" class="form-input" placeholder="e.g. Prime Campus Properties Ltd" required>
+              </div>
+
+            </div>
+
+            <!-- Change Password: [Fields] Section -->
+            <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--light-gray);">
+              <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Change Password</h3>
+              <p style="font-size: 0.85rem; color: var(--slate-500); margin-bottom: var(--space-5);">
+                Ensure your account is protected with a secure password containing at least 8 characters.
+              </p>
+
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="currentPassword">Current Password</label>
+                  <input type="password" id="currentPassword" class="form-input" placeholder="••••••••">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="newPassword">New Password</label>
+                  <input type="password" id="newPassword" class="form-input" placeholder="••••••••">
+                </div>
+
+                <div class="form-group col-span-2">
+                  <label class="form-label" for="confirmPassword">Confirm New Password</label>
+                  <input type="password" id="confirmPassword" class="form-input" placeholder="••••••••">
+                </div>
+              </div>
+            </div>
+
+            <!-- [ Save Changes ] Action Button -->
+            <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--light-gray); display: flex; justify-content: flex-end; gap: var(--space-3);">
+              <a href="dashboard.html" class="btn btn-secondary btn-lg">Cancel</a>
+              <button type="submit" id="btnSaveProfile" class="btn btn-primary btn-lg">
+                <i class="ri-check-line"></i>
+                <span>Save Changes</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProfileFields();
+    });
+
+    function loadProfileFields() {
+      const raw = localStorage.getItem('cynic_agent');
+      const agent = raw ? JSON.parse(raw) : CYNIC_DATA.agent;
+
+      document.getElementById('profileName').value = agent.name;
+      document.getElementById('profileEmail').value = agent.email;
+      
+      // Clean phone number
+      let phone = agent.phone.replace('+234', '');
+      if (phone.startsWith('0')) phone = phone.substring(1);
+      document.getElementById('profilePhone').value = phone;
+
+      document.getElementById('profileAgency').value = agent.agency;
+      if (agent.avatar) {
+        document.getElementById('profilePicturePreview').src = agent.avatar;
+      }
+    }
+
+    function previewNewAvatar(event) {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          document.getElementById('profilePicturePreview').src = e.target.result;
+          showToast('Profile photo selected');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function handleSaveProfile(e) {
+      e.preventDefault();
+      const saveBtn = document.getElementById('btnSaveProfile');
+      saveBtn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Saving...';
+      saveBtn.disabled = true;
+
+      const name = document.getElementById('profileName').value;
+      const email = document.getElementById('profileEmail').value;
+      let phone = document.getElementById('profilePhone').value;
+      if (!phone.startsWith('0')) phone = '0' + phone;
+      const agency = document.getElementById('profileAgency').value;
+      const avatarSrc = document.getElementById('profilePicturePreview').src;
+
+      const newPass = document.getElementById('newPassword').value;
+      const confirmPass = document.getElementById('confirmPassword').value;
+
+      if (newPass && newPass !== confirmPass) {
+        showToast('New passwords do not match!', 'warning');
+        saveBtn.innerHTML = '<i class="ri-check-line"></i> <span>Save Changes</span>';
+        saveBtn.disabled = false;
+        return;
+      }
+
+      const raw = localStorage.getItem('cynic_agent');
+      const agent = raw ? JSON.parse(raw) : CYNIC_DATA.agent;
+
+      agent.name = name;
+      agent.email = email;
+      agent.phone = phone;
+      agent.agency = agency;
+      agent.avatar = avatarSrc;
+
+      localStorage.setItem('cynic_agent', JSON.stringify(agent));
+
+      setTimeout(() => {
+        showToast('Profile and agency credentials updated successfully!');
+        syncAgentProfileUI();
+        saveBtn.innerHTML = '<i class="ri-check-line"></i> <span>Saved!</span>';
+        setTimeout(() => {
+          saveBtn.innerHTML = '<i class="ri-check-line"></i> <span>Save Changes</span>';
+          saveBtn.disabled = false;
+        }, 1500);
+      }, 500);
+    }
+  </script>
+</body>
+</html>

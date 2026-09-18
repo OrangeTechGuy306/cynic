@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Interests - Cynic Student Accommodation</title>
+  <meta name="description" content="View and respond to student accommodation requests and roommate match applications on Cynic.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-shell">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- App Sidebar Component -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span>CYNIC</span>
+            <span class="brand-tag">Agent Portal</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Main Navigation</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="dashboard.html">
+              <i class="ri-dashboard-3-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="listings.html">
+              <i class="ri-hotel-line"></i>
+              <span>Listings</span>
+              <span class="nav-badge" id="sidebarListingsBadge">12</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="add-listing.html">
+              <i class="ri-add-circle-line"></i>
+              <span>Add New Listing</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="interests.html">
+              <i class="ri-user-heart-line"></i>
+              <span>Student Interests</span>
+              <span class="nav-badge badge-green">34</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="messages.html">
+              <i class="ri-message-3-line"></i>
+              <span>Messages</span>
+              <span class="nav-badge badge-green">8</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="reports.html">
+              <i class="ri-alert-line"></i>
+              <span>Reports</span>
+              <span class="nav-badge badge-amber">3</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-section-title" style="margin-top: var(--space-4);">Account Settings</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="profile.html">
+              <i class="ri-user-settings-line"></i>
+              <span>Agent Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html">
+              <i class="ri-global-line"></i>
+              <span>View Public Website</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="agent-mini-card">
+          <div class="agent-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent Avatar" class="agent-avatar-img">
+            <span class="online-dot"></span>
+          </div>
+          <div class="agent-meta">
+            <div class="agent-name agent-name-display">Tunde Balogun</div>
+            <div class="agent-role agent-agency-display">Prime Campus Properties</div>
+          </div>
+          <button type="button" class="btn-sidebar-logout" onclick="handleAgentLogout()" title="Logout">
+            <i class="ri-logout-box-r-line"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content-wrapper">
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" class="mobile-menu-btn" id="sidebarToggleBtn" aria-label="Open Sidebar Menu">
+            <i class="ri-menu-2-line"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Student Interests</h1>
+            <div class="page-breadcrumb">
+              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <span>Accommodation Applications &amp; Matches</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="topbar-search">
+            <i class="ri-search-line"></i>
+            <input type="text" id="interestSearchInput" placeholder="Search student, property, school..." oninput="handleInterestSearch(this.value)">
+          </div>
+          <a href="profile.html" class="agent-profile-pill">
+            <div class="pill-avatar">TB</div>
+            <span class="pill-name agent-name-display">Tunde Balogun</span>
+          </a>
+        </div>
+      </header>
+
+      <main class="page-body">
+        
+        <!-- Filter Toolbar -->
+        <div class="card" style="padding: var(--space-4) var(--space-6); margin-bottom: var(--space-6);">
+          <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 16px;">
+            <div class="flex items-center gap-2" style="flex-wrap: wrap;">
+              <span style="font-size: 0.85rem; font-weight: 600; color: var(--slate-500); margin-right: 4px;">Filter:</span>
+              <button type="button" class="btn btn-sm btn-primary interest-filter-btn" onclick="filterInterests('all', this)">All (34)</button>
+              <button type="button" class="btn btn-sm btn-secondary interest-filter-btn" onclick="filterInterests('Fresher', this)">Freshers</button>
+              <button type="button" class="btn btn-sm btn-secondary interest-filter-btn" onclick="filterInterests('Returning', this)">Returning Students</button>
+              <button type="button" class="btn btn-sm btn-secondary interest-filter-btn" onclick="filterInterests('Me & 1 other', this)">Roommate Matches</button>
+            </div>
+
+            <div style="font-size: 0.85rem; color: var(--slate-500);">
+              <i class="ri-information-line text-green"></i> <span>Prompt responses increase booking confirmation by 70%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wireframe 4.5: Interests Grid -->
+        <div class="interests-grid" id="interestsContainer">
+          <!-- Rendered dynamically -->
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let interestFilter = 'all';
+    let interestSearch = '';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderInterests();
+    });
+
+    function getStoredInterests() {
+      const raw = localStorage.getItem('cynic_interests');
+      if (raw) {
+        try { return JSON.parse(raw); } catch (e) { console.error(e); }
+      }
+      return CYNIC_DATA.interests;
+    }
+
+    function renderInterests() {
+      const container = document.getElementById('interestsContainer');
+      if (!container) return;
+
+      let items = getStoredInterests();
+
+      if (interestFilter !== 'all') {
+        if (interestFilter === 'Me & 1 other') {
+          items = items.filter(i => i.matchStatus.includes('Me & 1 other'));
+        } else {
+          items = items.filter(i => i.studentStatus.toLowerCase().includes(interestFilter.toLowerCase()));
+        }
+      }
+
+      if (interestSearch.trim() !== '') {
+        const q = interestSearch.toLowerCase();
+        items = items.filter(i => 
+          i.user.toLowerCase().includes(q) ||
+          i.listingTitle.toLowerCase().includes(q) ||
+          i.notes.toLowerCase().includes(q)
+        );
+      }
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 48px; background: #fff; border-radius: 12px; border: 1px dashed var(--light-gray);">
+            <i class="ri-user-unfollow-line" style="font-size: 3rem; color: var(--slate-400);"></i>
+            <h3 style="margin-top: 12px; color: var(--dark-slate);">No student interest requests found</h3>
+            <p style="color: var(--slate-500); font-size: 0.9rem;">Try selecting another filter option.</p>
+          </div>
+        `;
+        return;
+      }
+
+      // Exact representation of Wireframe 4.5
+      container.innerHTML = items.map(item => `
+        <div class="interest-card" id="card-${item.id}">
+          <div class="interest-header">
+            <div class="interest-user-info">
+              <div class="user-avatar">${item.avatar || 'ST'}</div>
+              <div>
+                <div class="user-name">${item.user}</div>
+                <span class="student-status-badge">${item.studentStatus}</span>
+              </div>
+            </div>
+            <span style="font-size: 0.75rem; color: var(--slate-400); font-weight: 500;">
+              <i class="ri-calendar-line"></i> ${item.date}
+            </span>
+          </div>
+
+          <!-- Listing Reference -->
+          <div class="interest-property-ref">
+            <div class="property-ref-label">Listing Target</div>
+            <div class="property-ref-title">
+              <i class="ri-home-2-line text-green"></i> ${item.listingTitle}
+            </div>
+          </div>
+
+          <!-- Details List Matching Spec -->
+          <div class="interest-details-list">
+            <div class="detail-item">
+              <span class="detail-label">Match Status:</span>
+              <span class="detail-val" style="color: var(--emerald-700); background: var(--status-success-bg); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem;">
+                ${item.matchStatus}
+              </span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Gender:</span>
+              <span class="detail-val">${item.gender}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">WhatsApp:</span>
+              <a href="https://wa.me/${item.whatsappInternational.replace('+', '')}?text=${encodeURIComponent('Hello ' + item.user + ', I am agent Tunde from Cynic regarding your interest in ' + item.listingTitle)}" target="_blank" class="detail-val text-green" style="display: flex; align-items: center; gap: 4px;">
+                <i class="ri-whatsapp-line" style="color: #25D366; font-size: 1.1rem;"></i> ${item.whatsapp}
+              </a>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Contact Method:</span>
+              <span class="detail-val" style="font-weight: 600;">${item.contactMethod}</span>
+            </div>
+          </div>
+
+          <!-- Roommate Notes Box -->
+          <div class="interest-notes-box">
+            <i class="ri-double-quotes-l"></i>
+            <div>${item.notes}</div>
+          </div>
+
+          <!-- Action Buttons Matching Wireframe -->
+          <div class="interest-actions">
+            <a href="https://wa.me/${item.whatsappInternational.replace('+', '')}?text=${encodeURIComponent('Hello ' + item.user + ', this is agent Tunde from Cynic regarding ' + item.listingTitle)}" target="_blank" class="btn btn-secondary btn-sm" title="Contact via WhatsApp">
+              <i class="ri-whatsapp-fill" style="color: #25D366;"></i> WhatsApp
+            </a>
+            <a href="messages.html?user=${encodeURIComponent(item.user)}" class="btn btn-primary btn-sm">
+              <i class="ri-chat-1-line"></i> Open Chat
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterInterests(val, btn) {
+      interestFilter = val;
+      document.querySelectorAll('.interest-filter-btn').forEach(b => {
+        b.classList.remove('btn-primary');
+        b.classList.add('btn-secondary');
+      });
+      btn.classList.remove('btn-secondary');
+      btn.classList.add('btn-primary');
+      renderInterests();
+    }
+
+    function handleInterestSearch(q) {
+      interestSearch = q;
+      renderInterests();
+    }
+  </script>
+</body>
+</html>

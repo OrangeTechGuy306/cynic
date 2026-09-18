@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages &amp; Chat - Cynic Student Accommodation</title>
+  <meta name="description" content="Direct messaging system between verified accommodation agents and students on Cynic.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-shell">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- App Sidebar Component -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span>CYNIC</span>
+            <span class="brand-tag">Agent Portal</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Main Navigation</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="dashboard.html">
+              <i class="ri-dashboard-3-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="listings.html">
+              <i class="ri-hotel-line"></i>
+              <span>Listings</span>
+              <span class="nav-badge" id="sidebarListingsBadge">12</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="add-listing.html">
+              <i class="ri-add-circle-line"></i>
+              <span>Add New Listing</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="interests.html">
+              <i class="ri-user-heart-line"></i>
+              <span>Student Interests</span>
+              <span class="nav-badge badge-green">34</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="messages.html">
+              <i class="ri-message-3-line"></i>
+              <span>Messages</span>
+              <span class="nav-badge badge-green">8</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="reports.html">
+              <i class="ri-alert-line"></i>
+              <span>Reports</span>
+              <span class="nav-badge badge-amber">3</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-section-title" style="margin-top: var(--space-4);">Account Settings</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="profile.html">
+              <i class="ri-user-settings-line"></i>
+              <span>Agent Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html">
+              <i class="ri-global-line"></i>
+              <span>View Public Website</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="agent-mini-card">
+          <div class="agent-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent Avatar" class="agent-avatar-img">
+            <span class="online-dot"></span>
+          </div>
+          <div class="agent-meta">
+            <div class="agent-name agent-name-display">Tunde Balogun</div>
+            <div class="agent-role agent-agency-display">Prime Campus Properties</div>
+          </div>
+          <button type="button" class="btn-sidebar-logout" onclick="handleAgentLogout()" title="Logout">
+            <i class="ri-logout-box-r-line"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content-wrapper">
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" class="mobile-menu-btn" id="sidebarToggleBtn" aria-label="Open Sidebar Menu">
+            <i class="ri-menu-2-line"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Messages &amp; Chat</h1>
+            <div class="page-breadcrumb">
+              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <span>Direct Student Inquiries</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <a href="profile.html" class="agent-profile-pill">
+            <div class="pill-avatar">TB</div>
+            <span class="pill-name agent-name-display">Tunde Balogun</span>
+          </a>
+        </div>
+      </header>
+
+      <main class="page-body" style="padding-bottom: var(--space-4);">
+        
+        <!-- Wireframe 4.6: Messages (Chat System) Container -->
+        <div class="chat-app-container">
+          
+          <!-- Left Panel: Sidebar Chats -->
+          <div class="chat-sidebar">
+            <div class="chat-sidebar-header">
+              <div class="flex items-center justify-between" style="margin-bottom: var(--space-3);">
+                <h3 style="font-size: 1.1rem; color: var(--dark-slate);">Student Chats</h3>
+                <span style="font-size: 0.78rem; font-weight: 700; color: var(--emerald-600); background: var(--status-success-bg); padding: 2px 8px; border-radius: var(--radius-full);">
+                  8 Active
+                </span>
+              </div>
+              <div style="position: relative;">
+                <i class="ri-search-line" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--slate-400); font-size: 0.9rem;"></i>
+                <input type="text" class="chat-search-input" placeholder="Search chats by student name..." oninput="filterChatList(this.value)">
+              </div>
+            </div>
+
+            <!-- List of Chats -->
+            <ul class="chat-list" id="chatListContainer">
+              <!-- Rendered by chat.js -->
+            </ul>
+          </div>
+
+          <!-- Right Panel: Chat Window -->
+          <div class="chat-main">
+            <!-- Chat Window Header Matching Spec -->
+            <div class="chat-header">
+              <div class="flex items-center gap-3">
+                <button type="button" class="btn btn-secondary btn-sm btn-back-to-chats" onclick="backToChatList()" style="display: none; padding: 6px 10px;">
+                  <i class="ri-arrow-left-line"></i> Back
+                </button>
+                <div class="chat-recipient-info">
+                  <div class="chat-item-avatar" style="width: 38px; height: 38px; font-size: 0.95rem;">
+                    <span id="activeChatAvatar">JD</span>
+                  </div>
+                  <div>
+                    <h4 id="activeChatUser">John Doe</h4>
+                    <div id="activeChatStatus" style="font-size: 0.75rem;">
+                      <span style="color: var(--emerald-600);"><i class="ri-checkbox-blank-circle-fill" style="font-size: 7px;"></i> Online</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Listing Info Header Pill -->
+              <div class="chat-property-pill" title="Listing referenced in this chat">
+                <i class="ri-home-4-line"></i>
+                <span id="activeChatListing">Self-Contain at Ikeja</span>
+              </div>
+            </div>
+
+            <!-- Messages Thread Area -->
+            <div class="chat-messages-area" id="chatMessagesArea">
+              <!-- Rendered by chat.js -->
+            </div>
+
+            <!-- Chat Input Area with Quick Reply Templates -->
+            <div class="chat-input-area">
+              <div class="quick-replies-bar">
+                <span style="font-size: 0.75rem; font-weight: 600; color: var(--slate-400); align-self: center; margin-right: 4px;">Quick:</span>
+                <button type="button" class="quick-reply-chip" data-reply="Hello! The room is vacant and inspection is available this Saturday at 11:00 AM. Does that time work for you?">
+                  🗓️ Schedule Inspection
+                </button>
+                <button type="button" class="quick-reply-chip" data-reply="Here is the breakdown: Annual rent is ₦500,000, caution fee is ₦50,000, and legal/agency package is ₦100,000.">
+                  💰 Fee Breakdown
+                </button>
+                <button type="button" class="quick-reply-chip" data-reply="Water running 24/7 with dedicated borehole and prepaid electric meter installed. Very safe for students.">
+                  ⚡ Power &amp; Water Info
+                </button>
+              </div>
+
+              <form id="chatSendForm" class="chat-input-form">
+                <button type="button" class="icon-btn" title="Attach Inspection Video / Documents" onclick="showToast('File upload attached to message thread', 'info')" style="flex-shrink: 0;">
+                  <i class="ri-attachment-line"></i>
+                </button>
+                <input type="text" id="chatMessageInput" class="chat-text-input" placeholder="Type message here..." autocomplete="off" required>
+                <button type="submit" class="btn btn-primary" style="border-radius: var(--radius-full); padding: 10px 22px; flex-shrink: 0;">
+                  <span>Send</span>
+                  <i class="ri-send-plane-fill"></i>
+                </button>
+              </form>
+            </div>
+
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/chat.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      initChatSystem();
+    });
+
+    function filterChatList(query) {
+      const q = query.toLowerCase();
+      const items = document.querySelectorAll('#chatListContainer .chat-item');
+      items.forEach(item => {
+        const name = item.querySelector('.chat-item-name').textContent.toLowerCase();
+        const sub = item.querySelector('.chat-item-sub').textContent.toLowerCase();
+        if (name.includes(q) || sub.includes(q)) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>

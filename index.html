@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cynic - Explore Verified Student Listings in Nigeria</title>
+  <meta name="description" content="Find verified student accommodation hostels and roommates near UNILAG, LASU, YABATECH, LASUED, and top Nigerian universities with Cynic. Trust what you found!">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body style="background-color: var(--light-gray-50);">
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="public-drawer-overlay" id="publicDrawerOverlay" onclick="togglePublicMobileMenu()"></div>
+
+  <!-- Mobile Slide-out Menu -->
+  <aside class="public-mobile-drawer" id="publicMobileDrawer">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">
+          <i class="ri-home-wifi-fill"></i>
+        </div>
+        <div class="brand-name" style="font-size: 1.15rem;">
+          CYNIC
+        </div>
+      </a>
+      <button onclick="togglePublicMobileMenu()" style="background: none; border: none; font-size: 1.5rem; color: var(--slate-500); cursor: pointer;">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-8);">
+      <li><a href="index.html" class="public-nav-link active" style="font-size: 1.05rem;">Home</a></li>
+      <li><a href="public-listings.html" class="public-nav-link" style="font-size: 1.05rem;">Explore Listings</a></li>
+      <li><a href="services.html" class="public-nav-link" style="font-size: 1.05rem;">Our Services</a></li>
+      <li><a href="contact.html" class="public-nav-link" style="font-size: 1.05rem;">Contact Us</a></li>
+      <li><a href="register.html" class="public-nav-link" style="font-size: 1.05rem; color: var(--emerald-600); font-weight: 700;">Agent Registration</a></li>
+    </ul>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <a href="dashboard.html" class="btn btn-primary" style="width: 100%;">
+        <i class="ri-dashboard-line"></i> Agent Portal
+      </a>
+      <a href="login.html" class="btn btn-secondary" style="width: 100%;">
+        <i class="ri-login-box-line"></i> Agent Sign In
+      </a>
+    </div>
+  </aside>
+
+  <!-- Public Header (Screenshot 1) -->
+  <header class="public-header">
+    <div class="public-nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">
+          <i class="ri-home-wifi-fill"></i>
+        </div>
+        <div class="brand-name">
+          <span style="letter-spacing: -0.5px;">CYNIC</span>
+          <span class="brand-tag">Verified Homes</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <ul class="public-nav-menu">
+        <li><a href="index.html" class="public-nav-link active">Home</a></li>
+        <li><a href="public-listings.html" class="public-nav-link">Explore Listings</a></li>
+        <li><a href="services.html" class="public-nav-link">Our Services</a></li>
+        <li><a href="contact.html" class="public-nav-link">Contact Us</a></li>
+        <li><a href="register.html" class="public-nav-link" style="color: var(--emerald-600); font-weight: 700;">Agent Registration</a></li>
+      </ul>
+
+      <!-- Right Action Items (Screenshot 1) -->
+      <div class="public-nav-right">
+        <a href="dashboard.html" class="btn btn-outline-green btn-sm" style="display: none; @media(min-width: 900px){display: inline-flex;}">
+          <i class="ri-dashboard-3-line"></i> Agent Portal
+        </a>
+        <a href="profile.html" class="user-round-btn" title="Agent Profile / Account">
+          <i class="ri-user-line"></i>
+        </a>
+        <button class="hamburger-btn" onclick="togglePublicMobileMenu()" aria-label="Toggle menu">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section (Screenshot 1) -->
+  <section class="public-hero-section">
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h1 class="hero-main-title">
+        Explore Verified Listing With Cynic Today
+      </h1>
+      
+      <p class="hero-subtext">
+        Because students are often cynical and weary of scams or fake agents, Cynic came into existence to solve these problems. <strong>Trust what you found!</strong>
+      </p>
+
+      <!-- Search Bar Matching Screenshot 1 -->
+      <div class="hero-search-wrapper">
+        <form onsubmit="handleHeroSearch(event)" class="hero-search-bar">
+          <i class="ri-search-line search-icon"></i>
+          <input type="text" id="heroSearchInput" class="hero-search-input" placeholder="University, City, Address :" autocomplete="off">
+          <button type="submit" class="btn-find-out">
+            Find Out
+          </button>
+        </form>
+      </div>
+
+      <!-- Outline Campus Housing Architectural Illustration (Screenshot 1) -->
+      <div class="hero-illustration-wrapper">
+        <svg class="hero-houses-svg" viewBox="0 0 700 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- House 1 Left -->
+          <path d="M40 160 L140 70 L240 160 V238 H40 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M30 160 L140 60 L250 160" stroke="#00A85A" stroke-width="6" stroke-linecap="round"/>
+          <!-- Attic Round Window -->
+          <circle cx="140" cy="115" r="16" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+          <path d="M140 99 V131 M124 115 H156" stroke="#0f172a" stroke-width="3"/>
+          <!-- House 1 Windows & Door -->
+          <rect x="68" y="172" width="46" height="46" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+          <path d="M91 172 V218 M68 195 H114" stroke="#0f172a" stroke-width="2"/>
+          <rect x="166" y="172" width="46" height="46" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+          <path d="M189 172 V218 M166 195 H212" stroke="#0f172a" stroke-width="2"/>
+          <rect x="115" y="180" width="50" height="58" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
+          
+          <!-- Middle Connecting Hall -->
+          <rect x="240" y="140" width="160" height="98" fill="#ffffff" stroke="#0f172a" stroke-width="4"/>
+          <rect x="270" y="160" width="100" height="28" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+          <path d="M320 160 V188" stroke="#0f172a" stroke-width="2"/>
+          <rect x="295" y="195" width="50" height="43" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
+
+          <!-- House 2 Right -->
+          <path d="M400 160 L500 70 L600 160 V238 H400 Z" fill="#ffffff" stroke="#0f172a" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M390 160 L500 60 L610 160" stroke="#00A85A" stroke-width="6" stroke-linecap="round"/>
+          <!-- Attic Round Window -->
+          <circle cx="500" cy="115" r="16" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+          <path d="M500 99 V131 M484 115 H516" stroke="#0f172a" stroke-width="3"/>
+          <!-- House 2 Windows & Door -->
+          <rect x="428" y="172" width="46" height="46" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+          <path d="M451 172 V218 M428 195 H474" stroke="#0f172a" stroke-width="2"/>
+          <rect x="526" y="172" width="46" height="46" fill="#f8fafc" stroke="#0f172a" stroke-width="3"/>
+          <path d="M549 172 V218 M526 195 H572" stroke="#0f172a" stroke-width="2"/>
+          <rect x="475" y="180" width="50" height="58" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
+
+          <!-- Trees / Shrubbery -->
+          <path d="M15 238 C15 200 45 200 45 238" stroke="#0f172a" stroke-width="3" fill="#f8fafc"/>
+          <path d="M605 238 C605 200 645 200 645 238" stroke="#0f172a" stroke-width="3" fill="#f8fafc"/>
+          <!-- Base Baseline -->
+          <line x1="10" y1="238" x2="680" y2="238" stroke="#0f172a" stroke-width="4"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Top University Areas (Screenshot 1 & 2) -->
+  <section class="top-areas-section">
+    <h2 class="section-heading-public">Top University Areas</h2>
+    <p class="section-subheading-public">
+      Browse verified hostels directly around major Nigerian universities and tertiary institutions.
+    </p>
+
+    <div class="university-areas-grid" id="universityAreasContainer">
+      <!-- Rendered dynamically from data.js -->
+    </div>
+  </section>
+
+  <!-- "What We Do?" Section with Hexagonal Icons (Screenshot 2 & 3) -->
+  <section class="what-we-do-section">
+    <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+      <h2 class="section-heading-public">What We Do?</h2>
+      <p class="section-subheading-public">
+        We link you up with a verified agent based in the University/College area you are looking to find any kind of apartment at.
+      </p>
+
+      <div class="services-grid-public">
+        
+        <!-- Feature 1: Get In-touch With Hostels Agent -->
+        <div class="service-card-public">
+          <div class="hex-icon-wrapper">
+            <i class="ri-home-smile-line"></i>
+          </div>
+          <h3 class="service-card-title">Get In-touch With Hostels Agent</h3>
+          <p class="service-card-desc">
+            Directly connect with background-checked agents verified by Cynic to prevent advance fee fraud and agent impersonation.
+          </p>
+          <a href="services.html#agents" class="read-more-link">
+            <span>Read More</span> <i class="ri-arrow-right-s-line"></i>
+          </a>
+        </div>
+
+        <!-- Feature 2: Find Hostel Roommate For You -->
+        <div class="service-card-public">
+          <div class="hex-icon-wrapper">
+            <i class="ri-team-line"></i>
+          </div>
+          <h3 class="service-card-title">Find Hostel Roommate For You</h3>
+          <p class="service-card-desc">
+            Pair with compatible campus peers in your department or level to safely share rent, utilities, and spacious multi-room apartments.
+          </p>
+          <a href="services.html#roommates" class="read-more-link">
+            <span>Read More</span> <i class="ri-arrow-right-s-line"></i>
+          </a>
+        </div>
+
+        <!-- Feature 3: Get Schools Updated Blogs -->
+        <div class="service-card-public">
+          <div class="hex-icon-wrapper">
+            <i class="ri-article-line"></i>
+          </div>
+          <h3 class="service-card-title">Get Schools Updated Blogs</h3>
+          <p class="service-card-desc">
+            Stay ahead with official academic resumption dates, hostel security advisories, off-campus living tips, and campus news.
+          </p>
+          <a href="services.html#blogs" class="read-more-link">
+            <span>Read More</span> <i class="ri-arrow-right-s-line"></i>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Looking for Roommate Section (Inspired by User Screenshot Content, Styled to Cynic Brand) -->
+  <section class="roommate-showcase-section">
+    <div class="roommate-showcase-container">
+      <div class="roommate-showcase-header">
+        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(0, 168, 90, 0.1); color: #008748; padding: 4px 14px; border-radius: var(--radius-full); font-size: 0.82rem; font-weight: 700; margin-bottom: 10px;">
+          <i class="ri-team-fill"></i> CAMPUS ROOMMATE MATCHING
+        </div>
+        <h2 style="font-size: 2.3rem; color: #0f172a; margin-bottom: 8px;">
+          Looking for <span style="color: #00A85A;">roommate?</span>
+        </h2>
+        <p style="font-size: 1.05rem; color: #64748b; max-width: 650px; margin: 0 auto;">
+          See variety of verified listings also looking for roommates. Share accommodation, split renewal costs, and connect with serious campus peers.
+        </p>
+      </div>
+
+      <div class="roommate-cards-grid" id="roommatesCardsContainer">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div style="text-align: center;">
+        <a href="public-listings.html?filter=roommates" class="btn btn-primary btn-lg" style="padding: 14px 34px; font-size: 1.02rem; border-radius: var(--radius-full);">
+          <i class="ri-team-line"></i>
+          <span>View All Listings Looking For Roommate</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Listings Section (Screenshot 3, 4, 5) -->
+  <section class="featured-listings-section">
+    <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h2 class="section-heading-public" style="text-align: left; margin-bottom: 4px;">Featured Listings</h2>
+        <p class="section-subheading-public" style="text-align: left; margin: 0;">
+          Explore Cynic Featured Listings Today!- Make your apartment search easier and safe with Cynic.
+        </p>
+      </div>
+      <a href="public-listings.html" class="btn btn-outline-green">
+        <span>Browse All Accommodations</span>
+        <i class="ri-arrow-right-line"></i>
+      </a>
+    </div>
+
+    <!-- Featured Listings Cards matching Screenshot 4 & 5 -->
+    <div class="public-listings-grid" id="featuredListingsContainer">
+      <!-- Rendered dynamically -->
+    </div>
+  </section>
+
+  <!-- Milestone Counter Banner (Screenshot 5) -->
+  <section class="milestone-banner-section">
+    <div class="milestone-content">
+      <div class="milestone-grid">
+        <div class="milestone-stat-item">
+          <div class="milestone-number">1548+</div>
+          <div class="milestone-label">Properties Sell &amp; Rented</div>
+        </div>
+        <div class="milestone-stat-item">
+          <div class="milestone-number">25+</div>
+          <div class="milestone-label">Award Gained</div>
+        </div>
+        <div class="milestone-stat-item">
+          <div class="milestone-number">9+</div>
+          <div class="milestone-label">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Agent Callout Section -->
+  <section style="background: #ffffff; padding: 60px 20px; border-top: 1px solid var(--light-gray);">
+    <div style="max-width: 1100px; margin: 0 auto; background: var(--grad-primary); border-radius: var(--radius-xl); padding: var(--space-8); color: var(--white); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; box-shadow: var(--shadow-xl);">
+      <div>
+        <span style="background: rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">For Real Estate Agents</span>
+        <h3 style="color: #fff; font-size: 1.85rem; margin: 10px 0 6px;">Are you an accommodation agent on campus?</h3>
+        <p style="color: rgba(255,255,255,0.9); font-size: 1rem; max-width: 600px;">
+          Join Cynic to showcase verified listings to thousands of Nigerian university students and handle direct tenant inquiries safely.
+        </p>
+      </div>
+      <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+        <a href="register.html" class="btn btn-secondary btn-lg" style="color: var(--emerald-700); font-weight: 700;">
+          Register as Agent
+        </a>
+        <a href="dashboard.html" class="btn btn-outline-green btn-lg" style="color: #fff; border-color: rgba(255,255,255,0.6); background: rgba(0,0,0,0.15);">
+          Agent Portal
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Public Footer -->
+  <footer class="public-footer">
+    <div class="footer-content-grid">
+      <div class="footer-col">
+        <div class="brand-logo" style="margin-bottom: var(--space-4);">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span style="color: #fff;">CYNIC</span>
+            <span class="brand-tag">Student Accommodation</span>
+          </div>
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.6; max-width: 320px; margin-bottom: var(--space-4);">
+          Because students are often cynical and weary of scams or fake agents, Cynic solves student accommodation problems nationwide. Trust what you found!
+        </p>
+        <div style="display: flex; gap: 12px;">
+          <a href="#" style="color: #94a3b8; font-size: 1.25rem;"><i class="ri-facebook-fill"></i></a>
+          <a href="#" style="color: #94a3b8; font-size: 1.25rem;"><i class="ri-twitter-x-fill"></i></a>
+          <a href="#" style="color: #94a3b8; font-size: 1.25rem;"><i class="ri-instagram-fill"></i></a>
+          <a href="https://wa.me/2348031234567" target="_blank" style="color: #25D366; font-size: 1.25rem;"><i class="ri-whatsapp-fill"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Explore Campuses</h4>
+        <ul class="footer-links-list">
+          <li><a href="public-listings.html?school=UNILAG-Akoka">UNILAG Akoka</a></li>
+          <li><a href="public-listings.html?school=LASU-Ojo">LASU Ojo Campus</a></li>
+          <li><a href="public-listings.html?school=YABATECH">Yaba College of Tech</a></li>
+          <li><a href="public-listings.html?school=Lasued-Epe">LASUED Epe Hub</a></li>
+          <li><a href="public-listings.html?school=UI-Ibadan">UI Ibadan Axis</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-links-list">
+          <li><a href="public-listings.html">All Public Listings</a></li>
+          <li><a href="services.html">Services &amp; Roommates</a></li>
+          <li><a href="contact.html">Contact &amp; Helpdesk</a></li>
+          <li><a href="register.html">Agent Accreditation</a></li>
+          <li><a href="login.html">Agent Portal Sign In</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Stay Updated</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 12px;">Subscribe for new hostel releases and room inspection dates.</p>
+        <form onsubmit="event.preventDefault(); showToast('Subscribed to Cynic alerts!'); this.reset();" style="display: flex; gap: 6px;">
+          <input type="email" placeholder="Your student email" required style="padding: 10px 14px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: #fff; flex: 1; font-size: 0.88rem;">
+          <button type="submit" class="btn btn-primary" style="padding: 10px 16px;">
+            <i class="ri-send-plane-line"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div>&copy; 2026 Cynic Accommodation Technologies Ltd. All rights reserved. Lagos, Nigeria.</div>
+      <div style="display: flex; gap: 16px;">
+        <a href="services.html" style="color: #64748b;">Anti-Scam Guarantee</a>
+        <a href="contact.html" style="color: #64748b;">Privacy Policy</a>
+        <a href="contact.html" style="color: #64748b;">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Student Send Interest Modal -->
+  <div id="studentInterestModal" style="display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); z-index: 999; align-items: center; justify-content: center; padding: 16px;">
+    <div class="card" style="width: 100%; max-width: 480px; padding: 28px; position: relative; max-height: 90vh; overflow-y: auto;">
+      <button onclick="closeInterestModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.25rem; color: var(--slate-400); cursor: pointer;">
+        <i class="ri-close-line"></i>
+      </button>
+      
+      <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--status-success-bg); color: var(--emerald-700); padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 700; margin-bottom: 10px;">
+        <i class="ri-shield-check-fill"></i> ZERO SCAM GUARANTEE
+      </div>
+      
+      <h3 style="font-size: 1.35rem; margin-bottom: 4px;">Express Accommodation Interest</h3>
+      <p style="font-size: 0.88rem; color: var(--slate-500); margin-bottom: 16px;" id="modalTargetListing">
+        Target Property: Loading...
+      </p>
+
+      <form id="interestSubmitForm" onsubmit="handleModalInterestSubmit(event)">
+        <input type="hidden" id="modalListingId">
+        <input type="hidden" id="modalListingTitle">
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label">Full Name <span class="required">*</span></label>
+          <input type="text" id="interestStudentName" class="form-input" placeholder="e.g. Babatunde Adeleke" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label">Student Status <span class="required">*</span></label>
+          <select id="interestStudentStatus" class="form-select" required>
+            <option value="Fresher">Fresher (100 Level)</option>
+            <option value="Returning Student (200L/300L)">Returning Student (200L / 300L)</option>
+            <option value="Finalist (400L/500L)">Finalist (400L / 500L)</option>
+            <option value="Postgraduate / Masters">Postgraduate / Masters</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label">Roommate Match Status <span class="required">*</span></label>
+          <select id="interestMatchStatus" class="form-select" required>
+            <option value="Solo">Solo (Taking entire room alone)</option>
+            <option value="Me & 1 other">Me & 1 other (Looking for roommate)</option>
+            <option value="Group of 3">Group of 3</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label">Active WhatsApp Phone Number <span class="required">*</span></label>
+          <div class="input-prefix-group">
+            <span class="input-prefix" style="color: var(--slate-500); font-size: 0.88rem;">+234</span>
+            <input type="tel" id="interestStudentWhatsApp" class="form-input" style="padding-left: 54px;" placeholder="8123456789" required>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label">Notes &amp; Roommate Preferences</label>
+          <textarea id="interestStudentNotes" class="form-textarea" style="min-height: 80px;" placeholder="e.g. Studying Law, prefer quiet environment, available for inspection on Saturday."></textarea>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+          <button type="button" onclick="closeInterestModal()" class="btn btn-secondary" style="flex: 1;">Cancel</button>
+          <button type="submit" id="btnSubmitInterest" class="btn btn-primary" style="flex: 1.5;">
+            <span>Submit Interest</span> <i class="ri-send-plane-fill"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      renderUniversityAreas();
+      renderRoommateShowcase();
+      renderFeaturedPublicListings();
+    });
+
+    function togglePublicMobileMenu() {
+      const drawer = document.getElementById('publicMobileDrawer');
+      const overlay = document.getElementById('publicDrawerOverlay');
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+
+    function renderUniversityAreas() {
+      const container = document.getElementById('universityAreasContainer');
+      if (!container) return;
+
+      container.innerHTML = CYNIC_DATA.universityAreas.map(area => `
+        <a href="public-listings.html?school=${encodeURIComponent(area.name)}" class="area-card">
+          <img src="${area.image}" alt="${area.name}" class="area-image" loading="lazy">
+          <div class="area-info">
+            <h3 class="area-title">${area.name}</h3>
+            <div class="area-listings-count">Listings: ${area.listingsCount}</div>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    function renderRoommateShowcase() {
+      const container = document.getElementById('roommatesCardsContainer');
+      if (!container) return;
+
+      const raw = localStorage.getItem('cynic_listings');
+      const listings = raw ? JSON.parse(raw) : CYNIC_DATA.listings;
+      const roommateListings = listings.filter(l => l.isRoommateShared);
+
+      if (roommateListings.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: #fff; border-radius: 12px; border: 1px dashed #e2e8f0;">
+            <i class="ri-team-line" style="font-size: 2.5rem; color: #00A85A;"></i>
+            <p style="color: #64748b; margin-top: 8px;">No roommate-sharing listings currently available.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = roommateListings.map(item => {
+        const occ = (item.currentRoommates && item.currentRoommates.length > 0) 
+          ? item.currentRoommates[0] 
+          : { name: "Resident", tags: ["Verified Student"] };
+        const gotten = item.roommatesGotten || 1;
+        const needed = item.roommatesNeeded || 1;
+        const total = gotten + needed;
+        const fillPct = (gotten / total) * 100;
+        const neededPct = (needed / total) * 100;
+
+        return `
+          <div class="roommate-card" id="roommate-card-${item.id}">
+            <div class="roommate-card-top">
+              <div class="roommate-icon-bubble" title="Roommate Matching Space">
+                <i class="ri-team-fill"></i>
+                <div class="roommate-count-bubble" title="${needed} roommate(s) looking to join">${needed}</div>
+              </div>
+              <span class="roommate-allocation-badge">
+                <i class="ri-user-add-line"></i>
+                <span>${gotten} Gotten &bull; <span class="highlight-needed">${needed} Needed</span></span>
+              </span>
+            </div>
+
+            <h3 class="roommate-card-title">${item.title}</h3>
+            <div class="roommate-card-location">
+              <i class="ri-map-pin-2-fill text-green"></i>
+              <span>${item.town} &bull; ${item.schoolArea.split('(')[0]}</span>
+            </div>
+
+            <div class="roommate-card-occupant-box">
+              <div style="font-size: 0.8rem; font-weight: 700; color: #008748; margin-bottom: 6px;">
+                <i class="ri-shield-check-fill"></i> Roommates Available
+              </div>
+              <div class="roommate-profile-row" style="margin: 4px 0 10px;">
+                <div class="roommate-profile-avatar">${occ.name.slice(0, 1).toUpperCase()}</div>
+                <strong style="color: #0f172a; font-size: 0.95rem;">${occ.name}</strong>
+                ${occ.tags ? occ.tags.map(t => `<span class="roommate-tag-chip tag-green">${t}</span>`).join('') : ''}
+              </div>
+
+              <!-- Allocation Progress Gauge -->
+              <div class="roommate-progress-gauge">
+                <div class="roommate-gauge-fill" style="width: ${fillPct}%;"></div>
+                <div class="roommate-gauge-needed" style="width: ${neededPct}%;"></div>
+              </div>
+              <div class="roommate-gauge-labels">
+                <span>${gotten} Slot Filled</span>
+                <span><strong>${needed} Looking to Join</strong></span>
+              </div>
+            </div>
+
+            <div class="roommate-pricing-box">
+              <div class="roommate-pricing-col">
+                <span class="roommate-pricing-label">Annual Renewal</span>
+                <span class="roommate-pricing-val">${formatNaira(item.annualCharge || item.subsequentCharge)}</span>
+              </div>
+              <div class="roommate-pricing-col" style="text-align: right;">
+                <span class="roommate-pricing-label">${item.roommateSharePrice ? 'Per Roommate Share' : 'Total Package'}</span>
+                <span class="roommate-pricing-val">${formatNaira(item.roommateSharePrice || item.totalPackage)}</span>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 8px; margin-top: auto;">
+              <a href="public-listings.html?id=${item.id}" class="btn btn-secondary btn-sm" style="flex: 1; text-align: center;">
+                Details
+              </a>
+              <button type="button" class="btn btn-primary btn-sm" style="flex: 1.5;" onclick="openInterestModal('${item.id}', '${item.title.replace(/'/g, "\\'")}', true)">
+                <i class="ri-user-heart-line"></i> Apply to Join
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderFeaturedPublicListings() {
+      const container = document.getElementById('featuredListingsContainer');
+      if (!container) return;
+
+      const raw = localStorage.getItem('cynic_listings');
+      const listings = raw ? JSON.parse(raw) : CYNIC_DATA.listings;
+
+      container.innerHTML = listings.slice(0, 3).map(item => `
+        <div class="cynic-public-card" id="public-card-${item.id}">
+          <div class="card-media-box">
+            <img src="${item.images[0]}" alt="${item.title}" loading="lazy">
+            <div class="crown-badge" title="Verified Cynic Accommodation">
+              <i class="ri-vip-crown-fill"></i>
+            </div>
+            <button type="button" class="heart-fav-btn" onclick="toggleFavorite(this)" title="Save to favorites">
+              <i class="ri-heart-line"></i>
+            </button>
+          </div>
+
+          <!-- Green "See More Info" Ribbon (Screenshot 4) -->
+          <a href="public-listings.html?id=${item.id}" class="see-more-ribbon">
+            <i class="ri-information-fill"></i> See More Info
+          </a>
+
+          <div class="card-details-body">
+            <!-- Address (Screenshot 4) -->
+            <div class="card-address-line">
+              <i class="ri-map-pin-2-fill"></i>
+              <span>${item.address}</span>
+            </div>
+
+            <!-- School & Building Type Badges (Screenshot 4) -->
+            <div class="card-badges-row">
+              <div class="school-tag-badge">
+                <i class="ri-graduation-cap-fill"></i>
+                <span>${item.schoolArea.split('(')[0]}</span>
+              </div>
+              <div class="building-tag-badge">
+                <i class="ri-building-line"></i>
+                <span>${item.buildingType || item.apartmentType}</span>
+              </div>
+            </div>
+
+            <!-- Roommate Allocation Badge if shared -->
+            ${item.isRoommateShared ? `
+              <div style="margin: 6px 0 10px;">
+                <span class="roommate-allocation-badge">
+                  <i class="ri-team-fill"></i>
+                  <span><strong>${item.roommatesGotten || 1} Gotten</strong> &bull; <span class="highlight-needed">${item.roommatesNeeded || 1} Looking to Join</span></span>
+                </span>
+              </div>
+            ` : ''}
+
+            <!-- Capacities Row (Screenshot 4 & 5) -->
+            <div class="specs-metrics-row">
+              <div class="metric-pill">
+                <i class="ri-user-line"></i>
+                <span>Available: <strong>${item.availableUnits || 1}</strong></span>
+              </div>
+              <div class="metric-pill">
+                <i class="ri-group-line"></i>
+                <span>Max: <strong>${item.maxOccupants || 2}</strong></span>
+              </div>
+              <div class="metric-pill">
+                <i class="ri-user-smile-line"></i>
+                <span>Min: <strong>${item.minOccupants || 1}</strong></span>
+              </div>
+            </div>
+
+            <!-- Toilet & Kitchen Amenities (Screenshot 5) -->
+            <div class="amenity-dual-row">
+              <div><i class="ri-drop-line text-green"></i> Toilet/Baths: <strong>${item.toiletBathType || 'Shared'}</strong></div>
+              <div><i class="ri-restaurant-line text-green"></i> Kitchen: <strong>${item.kitchenType || 'Personal'}</strong></div>
+            </div>
+
+            <!-- Dual Pricing (Screenshot 5) -->
+            <div class="pricing-dual-row">
+              <div class="price-col">
+                <span class="price-caption">Subsequent Charge</span>
+                <span class="price-naira-bold">${formatNaira(item.subsequentCharge || item.annualCharge)}</span>
+              </div>
+              <div class="price-col" style="text-align: right;">
+                <span class="price-caption">Initial Charge</span>
+                <span class="price-naira-bold">${formatNaira(item.initialCharge || item.totalPackage)}</span>
+              </div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="card-footer-action">
+              <button type="button" class="btn btn-primary" style="width: 100%; font-size: 0.95rem;" onclick="openInterestModal('${item.id}', '${item.title.replace(/'/g, "\\'")}', ${!!item.isRoommateShared})">
+                <i class="ri-user-heart-line"></i> ${item.isRoommateShared ? 'Apply as Roommate' : 'Send Student Interest'}
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function toggleFavorite(btn) {
+      btn.classList.toggle('active');
+      const icon = btn.querySelector('i');
+      if (btn.classList.contains('active')) {
+        icon.className = 'ri-heart-fill';
+        showToast('Added to your saved student listings!');
+      } else {
+        icon.className = 'ri-heart-line';
+        showToast('Removed from saved listings.');
+      }
+    }
+
+    function handleHeroSearch(e) {
+      e.preventDefault();
+      const val = document.getElementById('heroSearchInput').value.trim();
+      window.location.href = `public-listings.html?q=${encodeURIComponent(val)}`;
+    }
+
+    function openInterestModal(listingId, listingTitle, isRoommateApply = false) {
+      document.getElementById('modalListingId').value = listingId;
+      document.getElementById('modalListingTitle').value = listingTitle;
+      document.getElementById('modalTargetListing').textContent = `Target Property: ${listingTitle}`;
+      
+      if (isRoommateApply) {
+        document.getElementById('interestMatchStatus').value = "Me & 1 other";
+        document.getElementById('interestStudentNotes').value = "Hi! I am applying to join as a compatible roommate for this accommodation.";
+      } else {
+        document.getElementById('interestMatchStatus').value = "Solo";
+        document.getElementById('interestStudentNotes').value = "";
+      }
+
+      document.getElementById('studentInterestModal').style.display = 'flex';
+    }
+
+    function closeInterestModal() {
+      document.getElementById('studentInterestModal').style.display = 'none';
+    }
+
+    function handleModalInterestSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmitInterest');
+      btn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Submitting...';
+      btn.disabled = true;
+
+      const data = {
+        listingId: document.getElementById('modalListingId').value,
+        listingTitle: document.getElementById('modalListingTitle').value,
+        name: document.getElementById('interestStudentName').value,
+        studentStatus: document.getElementById('interestStudentStatus').value,
+        matchStatus: document.getElementById('interestMatchStatus').value,
+        whatsapp: document.getElementById('interestStudentWhatsApp').value,
+        notes: document.getElementById('interestStudentNotes').value
+      };
+
+      submitStudentInterest(data);
+
+      setTimeout(() => {
+        closeInterestModal();
+        showToast('Interest submitted! The accredited Cynic agent will message your WhatsApp.');
+        btn.innerHTML = '<span>Submit Interest</span> <i class="ri-send-plane-fill"></i>';
+        btn.disabled = false;
+        document.getElementById('interestSubmitForm').reset();
+      }, 700);
+    }
+  </script>
+</body>
+</html>

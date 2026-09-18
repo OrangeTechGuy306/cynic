@@ -1,0 +1,252 @@
+/* ==========================================================================
+   CYNIC AGENT PORTAL - RESPONSIVE STYLES
+   Breakpoints: 1200px, 1024px, 768px, 480px
+   ========================================================================== */
+
+/* Backdrop overlay for mobile drawer */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.sidebar-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Screens under 1200px */
+@media (max-width: 1200px) {
+  .page-body {
+    padding: var(--space-5) var(--space-6);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Screens under 1024px (Tablets & Small Laptops) */
+@media (max-width: 1024px) {
+  .app-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .app-sidebar.mobile-open {
+    transform: translateX(0);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .main-content-wrapper {
+    margin-left: 0;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .topbar-search {
+    width: 200px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-group.col-span-2 {
+    grid-column: span 1;
+  }
+
+  .auth-page-wrapper {
+    flex-direction: column;
+  }
+
+  .auth-brand-side {
+    padding: var(--space-8);
+    min-height: 240px;
+  }
+}
+
+/* Screens under 768px (Mobile Devices) */
+@media (max-width: 768px) {
+  .app-topbar {
+    padding: 0 var(--space-4);
+    height: 64px;
+  }
+
+  .topbar-search {
+    display: none; /* Can be opened via search icon if needed */
+  }
+
+  .page-body {
+    padding: var(--space-4);
+  }
+
+  .page-title-group h1 {
+    font-size: 1.15rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-value {
+    font-size: 1.75rem;
+  }
+
+  .quick-actions-bar {
+    padding: var(--space-5);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .qa-buttons {
+    width: 100%;
+  }
+
+  .qa-buttons .btn {
+    flex: 1;
+  }
+
+  .listings-grid, .interests-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-card {
+    padding: var(--space-5);
+  }
+
+  .amenities-selector {
+    grid-template-columns: 1fr;
+  }
+
+  /* Chat Mobile View */
+  .chat-app-container {
+    height: calc(100vh - 120px);
+    position: relative;
+  }
+
+  .chat-sidebar {
+    width: 100%;
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    transition: transform var(--transition-normal);
+  }
+
+  .chat-app-container.in-conversation .chat-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .chat-main {
+    width: 100%;
+  }
+
+  .chat-header .btn-back-to-chats {
+    display: inline-flex !important;
+  }
+
+  .report-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .report-actions {
+    width: 100%;
+  }
+
+  .report-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Screens under 480px (Small Smart Phones) */
+@media (max-width: 480px) {
+  .agent-profile-pill .pill-name {
+    display: none;
+  }
+
+  .agent-profile-pill {
+    padding: 2px;
+    border: none;
+  }
+
+  .listing-actions-row {
+    flex-direction: column;
+  }
+
+  .listing-actions-row .btn {
+    width: 100%;
+  }
+
+  .interest-actions {
+    flex-direction: column;
+  }
+
+  .interest-actions .btn {
+    width: 100%;
+  }
+
+  .message-bubble {
+    max-width: 85%;
+  }
+}
+
+/* Public Website Responsive Adjustments */
+@media (max-width: 1024px) {
+  .public-nav-menu {
+    display: none;
+  }
+
+  .hamburger-btn {
+    display: block;
+  }
+
+  .footer-content-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-main-title {
+    font-size: 2.1rem;
+  }
+
+  .hero-subtext {
+    font-size: 0.95rem;
+  }
+
+  .hero-search-bar {
+    padding: 4px 6px 4px 14px;
+  }
+
+  .btn-find-out {
+    padding: 10px 18px;
+    font-size: 0.88rem;
+  }
+
+  .public-listings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .milestone-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .milestone-number {
+    font-size: 2.8rem;
+  }
+
+  .footer-content-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

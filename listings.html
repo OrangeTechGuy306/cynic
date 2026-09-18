@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Listings Management - Cynic Student Accommodation</title>
+  <meta name="description" content="Manage your student accommodation listings, update availability status, and review student interest levels on Cynic.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-shell">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- App Sidebar Component -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span>CYNIC</span>
+            <span class="brand-tag">Agent Portal</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Main Navigation</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="dashboard.html">
+              <i class="ri-dashboard-3-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="listings.html">
+              <i class="ri-hotel-line"></i>
+              <span>Listings</span>
+              <span class="nav-badge" id="sidebarListingsBadge">12</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="add-listing.html">
+              <i class="ri-add-circle-line"></i>
+              <span>Add New Listing</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="interests.html">
+              <i class="ri-user-heart-line"></i>
+              <span>Student Interests</span>
+              <span class="nav-badge badge-green">34</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="messages.html">
+              <i class="ri-message-3-line"></i>
+              <span>Messages</span>
+              <span class="nav-badge badge-green">8</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="reports.html">
+              <i class="ri-alert-line"></i>
+              <span>Reports</span>
+              <span class="nav-badge badge-amber">3</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-section-title" style="margin-top: var(--space-4);">Account Settings</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="profile.html">
+              <i class="ri-user-settings-line"></i>
+              <span>Agent Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html">
+              <i class="ri-global-line"></i>
+              <span>View Public Website</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="agent-mini-card">
+          <div class="agent-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent Avatar" class="agent-avatar-img">
+            <span class="online-dot"></span>
+          </div>
+          <div class="agent-meta">
+            <div class="agent-name agent-name-display">Tunde Balogun</div>
+            <div class="agent-role agent-agency-display">Prime Campus Properties</div>
+          </div>
+          <button type="button" class="btn-sidebar-logout" onclick="handleAgentLogout()" title="Logout">
+            <i class="ri-logout-box-r-line"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content-wrapper">
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" class="mobile-menu-btn" id="sidebarToggleBtn" aria-label="Open Sidebar Menu">
+            <i class="ri-menu-2-line"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Listings Management</h1>
+            <div class="page-breadcrumb">
+              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <span>Manage Accommodations</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <a href="add-listing.html" class="btn btn-primary">
+            <i class="ri-add-line"></i> Add New Listing
+          </a>
+          
+          <a href="profile.html" class="agent-profile-pill">
+            <div class="pill-avatar">TB</div>
+            <span class="pill-name agent-name-display">Tunde Balogun</span>
+          </a>
+        </div>
+      </header>
+
+      <main class="page-body">
+        
+        <!-- Controls & Filters Bar -->
+        <div class="card" style="padding: var(--space-4) var(--space-6); margin-bottom: var(--space-6);">
+          <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 16px;">
+            <!-- Filter Tabs -->
+            <div class="flex items-center gap-2" style="flex-wrap: wrap;">
+              <button type="button" class="btn btn-sm btn-primary filter-tab-btn" onclick="setFilter('all', this)">
+                All Listings
+              </button>
+              <button type="button" class="btn btn-sm btn-secondary filter-tab-btn" onclick="setFilter('Available', this)">
+                Available
+              </button>
+              <button type="button" class="btn btn-sm btn-secondary filter-tab-btn" onclick="setFilter('Occupied', this)">
+                Occupied
+              </button>
+              <button type="button" class="btn btn-sm btn-secondary filter-tab-btn" onclick="setFilter('Deactivated', this)">
+                Deactivated
+              </button>
+            </div>
+
+            <!-- Search input -->
+            <div style="position: relative; width: 280px;">
+              <i class="ri-search-line" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--slate-400);"></i>
+              <input type="text" id="listingSearchInput" class="form-input" style="padding-left: 36px; padding-top: 8px; padding-bottom: 8px;" placeholder="Search town, campus area, title..." oninput="handleSearch(this.value)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Wireframe 4.3: Listings Grid -->
+        <div class="listings-grid" id="listingsContainer">
+          <!-- Rendered dynamically by listings.js -->
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/listings.js"></script>
+  <script>
+    let currentFilter = 'all';
+    let currentSearch = '';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check URL query parameters
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get('q');
+      if (query) {
+        currentSearch = query;
+        const searchEl = document.getElementById('listingSearchInput');
+        if (searchEl) searchEl.value = query;
+      }
+
+      renderListingsGrid('listingsContainer', currentFilter, currentSearch);
+    });
+
+    function setFilter(status, btnElement) {
+      currentFilter = status;
+      document.querySelectorAll('.filter-tab-btn').forEach(b => {
+        b.classList.remove('btn-primary');
+        b.classList.add('btn-secondary');
+      });
+      btnElement.classList.remove('btn-secondary');
+      btnElement.classList.add('btn-primary');
+
+      renderListingsGrid('listingsContainer', currentFilter, currentSearch);
+    }
+
+    function handleSearch(val) {
+      currentSearch = val;
+      renderListingsGrid('listingsContainer', currentFilter, currentSearch);
+    }
+  </script>
+</body>
+</html>

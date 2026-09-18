@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us &amp; Student Helpdesk - Cynic Accommodation</title>
+  <meta name="description" content="Reach Cynic student accommodation helpdesk in Lagos, Ikeja, Yaba, and Ojo. Direct WhatsApp support, anti-scam reporting, and office locations.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body style="background-color: var(--light-gray-50);">
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="public-drawer-overlay" id="publicDrawerOverlay" onclick="togglePublicMobileMenu()"></div>
+
+  <!-- Mobile Slide-out Menu -->
+  <aside class="public-mobile-drawer" id="publicMobileDrawer">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">
+          <i class="ri-home-wifi-fill"></i>
+        </div>
+        <div class="brand-name" style="font-size: 1.15rem;">CYNIC</div>
+      </a>
+      <button onclick="togglePublicMobileMenu()" style="background: none; border: none; font-size: 1.5rem; color: var(--slate-500); cursor: pointer;">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-8);">
+      <li><a href="index.html" class="public-nav-link" style="font-size: 1.05rem;">Home</a></li>
+      <li><a href="public-listings.html" class="public-nav-link" style="font-size: 1.05rem;">Explore Listings</a></li>
+      <li><a href="services.html" class="public-nav-link" style="font-size: 1.05rem;">Our Services</a></li>
+      <li><a href="contact.html" class="public-nav-link active" style="font-size: 1.05rem;">Contact Us</a></li>
+      <li><a href="register.html" class="public-nav-link" style="font-size: 1.05rem; color: var(--emerald-600); font-weight: 700;">Agent Registration</a></li>
+    </ul>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <a href="dashboard.html" class="btn btn-primary" style="width: 100%;">
+        <i class="ri-dashboard-line"></i> Agent Portal
+      </a>
+      <a href="login.html" class="btn btn-secondary" style="width: 100%;">
+        <i class="ri-login-box-line"></i> Agent Sign In
+      </a>
+    </div>
+  </aside>
+
+  <!-- Public Header -->
+  <header class="public-header">
+    <div class="public-nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">
+          <i class="ri-home-wifi-fill"></i>
+        </div>
+        <div class="brand-name">
+          <span style="letter-spacing: -0.5px;">CYNIC</span>
+          <span class="brand-tag">Verified Homes</span>
+        </div>
+      </a>
+
+      <ul class="public-nav-menu">
+        <li><a href="index.html" class="public-nav-link">Home</a></li>
+        <li><a href="public-listings.html" class="public-nav-link">Explore Listings</a></li>
+        <li><a href="services.html" class="public-nav-link">Our Services</a></li>
+        <li><a href="contact.html" class="public-nav-link active">Contact Us</a></li>
+        <li><a href="register.html" class="public-nav-link" style="color: var(--emerald-600); font-weight: 700;">Agent Registration</a></li>
+      </ul>
+
+      <div class="public-nav-right">
+        <a href="dashboard.html" class="btn btn-outline-green btn-sm">
+          <i class="ri-dashboard-3-line"></i> Agent Portal
+        </a>
+        <a href="profile.html" class="user-round-btn" title="Agent Profile">
+          <i class="ri-user-line"></i>
+        </a>
+        <button class="hamburger-btn" onclick="togglePublicMobileMenu()" aria-label="Toggle menu">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Header -->
+  <section style="background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%); padding: 60px 20px 45px; text-align: center;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <span style="background: var(--status-success-bg); color: var(--emerald-700); padding: 4px 14px; border-radius: var(--radius-full); font-size: 0.82rem; font-weight: 700;">
+        WE'RE HERE TO HELP YOU
+      </span>
+      <h1 style="font-size: 2.5rem; color: #0f172a; margin: 12px 0 14px;">
+        Contact Cynic Student Helpdesk
+      </h1>
+      <p style="font-size: 1.05rem; color: #64748b; line-height: 1.6;">
+        Have questions about a verified accommodation, roommate matching, or need to report suspicious agent activity? Talk to our Lagos campus support team.
+      </p>
+    </div>
+  </section>
+
+  <!-- Contact & Branches Section -->
+  <main style="max-width: 1200px; margin: 0 auto; padding: 50px 20px 80px;">
+    
+    <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; margin-bottom: 70px;">
+      
+      <!-- Left: Contact Details & Campus Hubs -->
+      <div>
+        <h2 style="font-size: 1.6rem; color: #0f172a; margin-bottom: 12px;">Get In Touch Directly</h2>
+        <p style="font-size: 0.95rem; color: #64748b; line-height: 1.6; margin-bottom: 28px;">
+          Our representatives are available Monday through Saturday (8:00 AM – 7:00 PM WAT).
+        </p>
+
+        <!-- WhatsApp Instant Help -->
+        <div style="background: #e6f6ef; border: 1px solid #a7f3d0; border-radius: var(--radius-lg); padding: 20px; margin-bottom: 28px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: #25D366; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 1.75rem;">
+              <i class="ri-whatsapp-fill"></i>
+            </div>
+            <div>
+              <strong style="color: #065f46; font-size: 1.05rem;">Direct WhatsApp Hotline</strong>
+              <div style="font-size: 0.88rem; color: #00753e;">+234 803 123 4567</div>
+            </div>
+          </div>
+          <a href="https://wa.me/2348031234567?text=Hello%20Cynic%20Support,%20I%20need%20help%20with%20hostel%20inspection" target="_blank" class="btn btn-whatsapp btn-sm">
+            Chat on WhatsApp
+          </a>
+        </div>
+
+        <!-- Campus Branches -->
+        <h3 style="font-size: 1.2rem; margin-bottom: 16px;">Campus Helpdesk Desks</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          
+          <div class="card" style="padding: 16px 20px; border-left: 4px solid var(--emerald-500);">
+            <div style="font-weight: 700; color: var(--dark-slate); font-size: 0.95rem;">UNILAG / Yaba Hub</div>
+            <div style="font-size: 0.88rem; color: var(--slate-600); margin-top: 2px;">22 St. Finbarr's College Road, Akoka (Near UNILAG 2nd Gate)</div>
+            <div style="font-size: 0.8rem; color: var(--emerald-600); margin-top: 4px;"><i class="ri-time-line"></i> Mon - Sat: 8:30 AM - 6:00 PM</div>
+          </div>
+
+          <div class="card" style="padding: 16px 20px; border-left: 4px solid var(--emerald-500);">
+            <div style="font-weight: 700; color: var(--dark-slate); font-size: 0.95rem;">LASU Ojo Hub</div>
+            <div style="font-size: 0.88rem; color: var(--slate-600); margin-top: 2px;">5 Badagry Expressway, Iyana Iba, Ojo Campus Axis</div>
+            <div style="font-size: 0.8rem; color: var(--emerald-600); margin-top: 4px;"><i class="ri-time-line"></i> Mon - Sat: 9:00 AM - 5:30 PM</div>
+          </div>
+
+          <div class="card" style="padding: 16px 20px; border-left: 4px solid var(--emerald-500);">
+            <div style="font-weight: 700; color: var(--dark-slate); font-size: 0.95rem;">Ikeja Medical Axis</div>
+            <div style="font-size: 0.88rem; color: var(--slate-600); margin-top: 2px;">14 Obafemi Awolowo Way, Ikeja (LASUCOM Student Corridor)</div>
+            <div style="font-size: 0.8rem; color: var(--emerald-600); margin-top: 4px;"><i class="ri-time-line"></i> Mon - Fri: 9:00 AM - 5:00 PM</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: Contact Form -->
+      <div class="form-card">
+        <h2 style="font-size: 1.5rem; color: #0f172a; margin-bottom: 6px;">Send Us an Inquiry</h2>
+        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 24px;">
+          Leave your message and our student housing coordinator will get back to you within 2 hours.
+        </p>
+
+        <form onsubmit="handleContactSubmit(event)">
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label">Full Name <span class="required">*</span></label>
+            <input type="text" id="contactName" class="form-input" placeholder="e.g. Chioma Adebayo" required>
+          </div>
+
+          <div class="form-grid" style="margin-bottom: 16px;">
+            <div class="form-group">
+              <label class="form-label">Email Address <span class="required">*</span></label>
+              <input type="email" id="contactEmail" class="form-input" placeholder="student@unilag.edu.ng" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone / WhatsApp <span class="required">*</span></label>
+              <input type="tel" id="contactPhone" class="form-input" placeholder="08123456789" required>
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 16px;">
+            <label class="form-label">Inquiry Reason</label>
+            <select id="contactSubject" class="form-select" required>
+              <option value="Hostel Inspection Request">Hostel Inspection Request</option>
+              <option value="Roommate Matchmaking Help">Roommate Matchmaking Help</option>
+              <option value="Report Suspicious Agent Activity">Report Suspicious Agent Activity (Anti-Scam)</option>
+              <option value="Agent Accreditation Query">Agent Accreditation Query</option>
+              <option value="Other Assistance">Other Assistance</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 24px;">
+            <label class="form-label">Message Details <span class="required">*</span></label>
+            <textarea id="contactMessage" class="form-textarea" placeholder="Detail the property location, campus name, or questions you have..." required></textarea>
+          </div>
+
+          <button type="submit" id="btnSubmitContact" class="btn btn-primary btn-lg" style="width: 100%;">
+            <span>Send Message to Cynic</span> <i class="ri-send-plane-fill"></i>
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Frequently Asked Questions (FAQ) Accordion -->
+    <div style="max-width: 900px; margin: 0 auto;">
+      <h2 style="font-size: 1.8rem; text-align: center; margin-bottom: 12px;">Frequently Asked Questions</h2>
+      <p style="text-align: center; color: #64748b; margin-bottom: 32px;">Answers to key questions students ask when finding hostels with Cynic.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        
+        <details class="card" style="padding: 18px 24px; cursor: pointer;">
+          <summary style="font-weight: 700; color: #0f172a; font-size: 1.05rem;">How does Cynic protect students from fake agent scams?</summary>
+          <p style="margin-top: 12px; font-size: 0.92rem; color: #64748b; line-height: 1.6;">
+            Every single property agent on Cynic is vetted through national ID verification (NIN), CAC business records, and physical campus association standing. Furthermore, inspection is 100% free of charge before any commitment is made.
+          </p>
+        </details>
+
+        <details class="card" style="padding: 18px 24px; cursor: pointer;">
+          <summary style="font-weight: 700; color: #0f172a; font-size: 1.05rem;">What is the difference between Initial Charge and Subsequent Charge?</summary>
+          <p style="margin-top: 12px; font-size: 0.92rem; color: #64748b; line-height: 1.6;">
+            In Nigeria student rentals, the <strong>Initial Charge</strong> includes the first year's rent plus one-time agency, legal agreement, and refundable caution deposit fees. The <strong>Subsequent Charge</strong> is the lower annual recurring rent due in year two and beyond.
+          </p>
+        </details>
+
+        <details class="card" style="padding: 18px 24px; cursor: pointer;">
+          <summary style="font-weight: 700; color: #0f172a; font-size: 1.05rem;">Can I request a roommate match for a 2-bedroom flat or mini-flat?</summary>
+          <p style="margin-top: 12px; font-size: 0.92rem; color: #64748b; line-height: 1.6;">
+            Yes! When submitting student interest on any listing card, select "Me &amp; 1 other". Cynic will pair you with a verified student in your institution who has matching study preferences.
+          </p>
+        </details>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Public Footer -->
+  <footer class="public-footer">
+    <div class="footer-content-grid">
+      <div class="footer-col">
+        <div class="brand-logo" style="margin-bottom: var(--space-4);">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span style="color: #fff;">CYNIC</span>
+            <span class="brand-tag">Student Accommodation</span>
+          </div>
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.6; max-width: 320px;">
+          Trust what you found. Protecting Nigerian tertiary students from fake agents.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="public-listings.html">All Listings</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="register.html">Agent Accreditation</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Tertiary Hubs</h4>
+        <ul class="footer-links-list">
+          <li><a href="public-listings.html?school=UNILAG-Akoka">UNILAG Akoka</a></li>
+          <li><a href="public-listings.html?school=LASU-Ojo">LASU Ojo</a></li>
+          <li><a href="public-listings.html?school=Lasued-Epe">LASUED Epe</a></li>
+          <li><a href="public-listings.html?school=YABATECH">YABATECH</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Agent Access</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 12px;">Real estate agents can sign in to manage properties.</p>
+        <a href="login.html" class="btn btn-primary btn-sm">Agent Gateway</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div>&copy; 2026 Cynic Accommodation Technologies Ltd. Lagos, Nigeria.</div>
+      <div>Zero Scam Student Living</div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function togglePublicMobileMenu() {
+      const drawer = document.getElementById('publicMobileDrawer');
+      const overlay = document.getElementById('publicDrawerOverlay');
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmitContact');
+      btn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Submitting...';
+      btn.disabled = true;
+
+      const name = document.getElementById('contactName').value;
+      setTimeout(() => {
+        showToast(`Thank you ${name}! Your inquiry has been dispatched to our campus team.`);
+        btn.innerHTML = '<span>Sent Successfully!</span> <i class="ri-checkbox-circle-fill"></i>';
+        setTimeout(() => {
+          btn.innerHTML = '<span>Send Message to Cynic</span> <i class="ri-send-plane-fill"></i>';
+          btn.disabled = false;
+          e.target.reset();
+        }, 2000);
+      }, 700);
+    }
+  </script>
+</body>
+</html>

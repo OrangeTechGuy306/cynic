@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services - Cynic Student Accommodation</title>
+  <meta name="description" content="Explore Cynic's student accommodation services: verified agent matching, campus roommate matchmaking, scam protection, and school updates.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body style="background-color: var(--light-gray-50);">
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="public-drawer-overlay" id="publicDrawerOverlay" onclick="togglePublicMobileMenu()"></div>
+
+  <!-- Mobile Slide-out Menu -->
+  <aside class="public-mobile-drawer" id="publicMobileDrawer">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">
+          <i class="ri-home-wifi-fill"></i>
+        </div>
+        <div class="brand-name" style="font-size: 1.15rem;">CYNIC</div>
+      </a>
+      <button onclick="togglePublicMobileMenu()" style="background: none; border: none; font-size: 1.5rem; color: var(--slate-500); cursor: pointer;">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-8);">
+      <li><a href="index.html" class="public-nav-link" style="font-size: 1.05rem;">Home</a></li>
+      <li><a href="public-listings.html" class="public-nav-link" style="font-size: 1.05rem;">Explore Listings</a></li>
+      <li><a href="services.html" class="public-nav-link active" style="font-size: 1.05rem;">Our Services</a></li>
+      <li><a href="contact.html" class="public-nav-link" style="font-size: 1.05rem;">Contact Us</a></li>
+      <li><a href="register.html" class="public-nav-link" style="font-size: 1.05rem; color: var(--emerald-600); font-weight: 700;">Agent Registration</a></li>
+    </ul>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <a href="dashboard.html" class="btn btn-primary" style="width: 100%;">
+        <i class="ri-dashboard-line"></i> Agent Portal
+      </a>
+      <a href="login.html" class="btn btn-secondary" style="width: 100%;">
+        <i class="ri-login-box-line"></i> Agent Sign In
+      </a>
+    </div>
+  </aside>
+
+  <!-- Public Header -->
+  <header class="public-header">
+    <div class="public-nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">
+          <i class="ri-home-wifi-fill"></i>
+        </div>
+        <div class="brand-name">
+          <span style="letter-spacing: -0.5px;">CYNIC</span>
+          <span class="brand-tag">Verified Homes</span>
+        </div>
+      </a>
+
+      <ul class="public-nav-menu">
+        <li><a href="index.html" class="public-nav-link">Home</a></li>
+        <li><a href="public-listings.html" class="public-nav-link">Explore Listings</a></li>
+        <li><a href="services.html" class="public-nav-link active">Our Services</a></li>
+        <li><a href="contact.html" class="public-nav-link">Contact Us</a></li>
+        <li><a href="register.html" class="public-nav-link" style="color: var(--emerald-600); font-weight: 700;">Agent Registration</a></li>
+      </ul>
+
+      <div class="public-nav-right">
+        <a href="dashboard.html" class="btn btn-outline-green btn-sm">
+          <i class="ri-dashboard-3-line"></i> Agent Portal
+        </a>
+        <a href="profile.html" class="user-round-btn" title="Agent Profile">
+          <i class="ri-user-line"></i>
+        </a>
+        <button class="hamburger-btn" onclick="togglePublicMobileMenu()" aria-label="Toggle menu">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Services Hero -->
+  <section style="background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%); padding: 64px 20px 50px; text-align: center;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <span style="background: var(--status-success-bg); color: var(--emerald-700); padding: 4px 14px; border-radius: var(--radius-full); font-size: 0.82rem; font-weight: 700;">
+        WHAT WE DO FOR NIGERIAN STUDENTS
+      </span>
+      <h1 style="font-size: 2.6rem; color: #0f172a; margin: 12px 0 16px;">
+        Transparent, Safe &amp; Scam-Free Student Housing
+      </h1>
+      <p style="font-size: 1.1rem; color: #64748b; line-height: 1.6;">
+        We link you up with a verified agent based in the University or College area you are looking to find any kind of apartment at, and help you find ideal roommates.
+      </p>
+    </div>
+  </section>
+
+  <!-- Core Services Grid Matching Screenshot 2 & 3 -->
+  <main style="max-width: 1200px; margin: 0 auto; padding: 60px 20px 80px;">
+    
+    <div style="display: flex; flex-direction: column; gap: 60px;">
+
+      <!-- Service 1: Hostels Agent Matching -->
+      <div id="agents" class="card" style="padding: 40px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 36px; align-items: center;">
+        <div>
+          <div class="hex-icon-wrapper" style="width: 80px; height: 80px; font-size: 2rem;">
+            <i class="ri-shield-user-fill"></i>
+          </div>
+          <span style="color: var(--emerald-600); font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">Service #1</span>
+          <h2 style="font-size: 1.8rem; margin: 6px 0 14px;">Get In-Touch With Hostels Agent</h2>
+          <p style="font-size: 0.95rem; color: #64748b; line-height: 1.6; margin-bottom: 20px;">
+            Nigeria tertiary institution students have historically lost millions of Naira to fraudulent pseudo-agents advertising fake hostels online. At Cynic, every agent undergoes strict CAC, NIN, and campus association verification before listing.
+          </p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.92rem; color: var(--dark-slate);">
+              <i class="ri-checkbox-circle-fill text-green"></i> Direct WhatsApp chat with accredited property managers
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.92rem; color: var(--dark-slate);">
+              <i class="ri-checkbox-circle-fill text-green"></i> Physical room inspection scheduling with zero advance payment
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.92rem; color: var(--dark-slate);">
+              <i class="ri-checkbox-circle-fill text-green"></i> Clear total package fee breakdowns (Rent, Legal, Caution)
+            </li>
+          </ul>
+          <a href="public-listings.html" class="btn btn-primary">Find an Agent &rarr;</a>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80" alt="Verified Real Estate Agent" style="width: 100%; height: 340px; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-md);">
+        </div>
+      </div>
+
+      <!-- Service 2: Find Hostel Roommate -->
+      <div id="roommates" class="card" style="padding: 40px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center;">
+        <div>
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Student Roommates" style="width: 100%; height: 340px; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-md);">
+        </div>
+        <div>
+          <div class="hex-icon-wrapper" style="width: 80px; height: 80px; font-size: 2rem;">
+            <i class="ri-shake-hands-fill"></i>
+          </div>
+          <span style="color: var(--emerald-600); font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">Service #2</span>
+          <h2 style="font-size: 1.8rem; margin: 6px 0 14px;">Find Hostel Roommate For You</h2>
+          <p style="font-size: 0.95rem; color: #64748b; line-height: 1.6; margin-bottom: 20px;">
+            Renting a self-contain or mini-flat alone can strain student budgets. Cynic offers an intelligent roommate matchmaking tool that connects you with students in your institution based on study habits and preferences.
+          </p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.92rem; color: var(--dark-slate);">
+              <i class="ri-checkbox-circle-fill text-green"></i> Pair by level (Freshers, Sophomores, Finalists)
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.92rem; color: var(--dark-slate);">
+              <i class="ri-checkbox-circle-fill text-green"></i> Transparent 50/50 initial rent and utility split
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.92rem; color: var(--dark-slate);">
+              <i class="ri-checkbox-circle-fill text-green"></i> Background and matriculation number verification
+            </li>
+          </ul>
+          <a href="public-listings.html" class="btn btn-primary">Browse Roommate Requests &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Service 3: School Blogs & Updates -->
+      <div id="blogs" class="card" style="padding: 40px; display: grid; grid-template-columns: 1fr 1.2fr; gap: 36px; align-items: center;">
+        <div>
+          <div class="hex-icon-wrapper" style="width: 80px; height: 80px; font-size: 2rem;">
+            <i class="ri-newspaper-fill"></i>
+          </div>
+          <span style="color: var(--emerald-600); font-weight: 700; font-size: 0.85rem; text-transform: uppercase;">Service #3</span>
+          <h2 style="font-size: 1.8rem; margin: 6px 0 14px;">Get Schools Updated Blogs</h2>
+          <p style="font-size: 0.95rem; color: #64748b; line-height: 1.6; margin-bottom: 20px;">
+            Stay completely updated with academic session resumptions, off-campus hostel security guidelines, electricity supply schedules, and official university memos.
+          </p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px;">
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.92rem; color: var(--dark-slate);">
+              <i class="ri-checkbox-circle-fill text-green"></i> UNILAG, LASU, YABATECH, LASUED academic calendars
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.92rem; color: var(--dark-slate);">
+              <i class="ri-checkbox-circle-fill text-green"></i> Off-campus tenancy rights and legal advice
+            </li>
+            <li style="display: flex; align-items: center; gap: 8px; font-size: 0.92rem; color: var(--dark-slate);">
+              <i class="ri-checkbox-circle-fill text-green"></i> Crime prevention and neighborhood safety bulletins
+            </li>
+          </ul>
+          <a href="contact.html" class="btn btn-secondary">Get Student Guide &rarr;</a>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80" alt="Campus Students Learning" style="width: 100%; height: 340px; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-md);">
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Public Footer -->
+  <footer class="public-footer">
+    <div class="footer-content-grid">
+      <div class="footer-col">
+        <div class="brand-logo" style="margin-bottom: var(--space-4);">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span style="color: #fff;">CYNIC</span>
+            <span class="brand-tag">Student Accommodation</span>
+          </div>
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.6; max-width: 320px;">
+          Trust what you found. Protecting Nigerian tertiary students from fake agents.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="public-listings.html">All Listings</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="register.html">Agent Accreditation</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Tertiary Hubs</h4>
+        <ul class="footer-links-list">
+          <li><a href="public-listings.html?school=UNILAG-Akoka">UNILAG Akoka</a></li>
+          <li><a href="public-listings.html?school=LASU-Ojo">LASU Ojo</a></li>
+          <li><a href="public-listings.html?school=Lasued-Epe">LASUED Epe</a></li>
+          <li><a href="public-listings.html?school=YABATECH">YABATECH</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Agent Access</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 12px;">Real estate agents can sign in to manage properties.</p>
+        <a href="login.html" class="btn btn-primary btn-sm">Agent Gateway</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div>&copy; 2026 Cynic Accommodation Technologies Ltd. Lagos, Nigeria.</div>
+      <div>Zero Scam Student Living</div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function togglePublicMobileMenu() {
+      const drawer = document.getElementById('publicMobileDrawer');
+      const overlay = document.getElementById('publicDrawerOverlay');
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Public Accommodation Listings - Cynic Student Housing</title>
+  <meta name="description" content="Browse verified student apartments, self-contain hostels, mini flats, and boys quarters across tertiary institutions in Nigeria.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body style="background-color: var(--light-gray-50);">
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="public-drawer-overlay" id="publicDrawerOverlay" onclick="togglePublicMobileMenu()"></div>
+
+  <!-- Mobile Slide-out Menu -->
+  <aside class="public-mobile-drawer" id="publicMobileDrawer">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">
+          <i class="ri-home-wifi-fill"></i>
+        </div>
+        <div class="brand-name" style="font-size: 1.15rem;">
+          CYNIC
+        </div>
+      </a>
+      <button onclick="togglePublicMobileMenu()" style="background: none; border: none; font-size: 1.5rem; color: var(--slate-500); cursor: pointer;">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-8);">
+      <li><a href="index.html" class="public-nav-link" style="font-size: 1.05rem;">Home</a></li>
+      <li><a href="public-listings.html" class="public-nav-link active" style="font-size: 1.05rem;">Explore Listings</a></li>
+      <li><a href="services.html" class="public-nav-link" style="font-size: 1.05rem;">Our Services</a></li>
+      <li><a href="contact.html" class="public-nav-link" style="font-size: 1.05rem;">Contact Us</a></li>
+      <li><a href="register.html" class="public-nav-link" style="font-size: 1.05rem; color: var(--emerald-600); font-weight: 700;">Agent Registration</a></li>
+    </ul>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <a href="dashboard.html" class="btn btn-primary" style="width: 100%;">
+        <i class="ri-dashboard-line"></i> Agent Portal
+      </a>
+      <a href="login.html" class="btn btn-secondary" style="width: 100%;">
+        <i class="ri-login-box-line"></i> Agent Sign In
+      </a>
+    </div>
+  </aside>
+
+  <!-- Public Header -->
+  <header class="public-header">
+    <div class="public-nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">
+          <i class="ri-home-wifi-fill"></i>
+        </div>
+        <div class="brand-name">
+          <span style="letter-spacing: -0.5px;">CYNIC</span>
+          <span class="brand-tag">Verified Homes</span>
+        </div>
+      </a>
+
+      <ul class="public-nav-menu">
+        <li><a href="index.html" class="public-nav-link">Home</a></li>
+        <li><a href="public-listings.html" class="public-nav-link active">Explore Listings</a></li>
+        <li><a href="services.html" class="public-nav-link">Our Services</a></li>
+        <li><a href="contact.html" class="public-nav-link">Contact Us</a></li>
+        <li><a href="register.html" class="public-nav-link" style="color: var(--emerald-600); font-weight: 700;">Agent Registration</a></li>
+      </ul>
+
+      <div class="public-nav-right">
+        <a href="dashboard.html" class="btn btn-outline-green btn-sm" style="display: none; @media(min-width: 900px){display: inline-flex;}">
+          <i class="ri-dashboard-3-line"></i> Agent Portal
+        </a>
+        <a href="profile.html" class="user-round-btn" title="Agent Profile">
+          <i class="ri-user-line"></i>
+        </a>
+        <button class="hamburger-btn" onclick="togglePublicMobileMenu()" aria-label="Toggle menu">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Public Listings Page -->
+  <main style="max-width: 1280px; margin: 0 auto; padding: 40px 20px 80px;">
+    
+    <!-- Hero Banner -->
+    <div style="text-align: center; margin-bottom: var(--space-8);">
+      <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--status-success-bg); color: var(--emerald-700); padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 700; margin-bottom: 8px;">
+        <i class="ri-shield-check-fill"></i> 100% VERIFIED BY CYNIC
+      </div>
+      <h1 style="font-size: 2.4rem; color: #0f172a; margin-bottom: 8px;">
+        Public Student Accommodation Directory
+      </h1>
+      <p style="font-size: 1.05rem; color: #64748b; max-width: 680px; margin: 0 auto;">
+        Inspect real student hostels, compare initial package fees with subsequent renewal charges, and link up with accredited campus agents.
+      </p>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="card" style="padding: var(--space-6); margin-bottom: var(--space-8);">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4); margin-bottom: var(--space-4);">
+        
+        <!-- Search Keyword -->
+        <div>
+          <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Search Keyword</label>
+          <div style="position: relative;">
+            <i class="ri-search-line" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--slate-400);"></i>
+            <input type="text" id="filterKeyword" class="form-input" style="padding-left: 36px;" placeholder="Address, area, title..." oninput="applyFilters()">
+          </div>
+        </div>
+
+        <!-- Campus Selector -->
+        <div>
+          <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">University / College Campus</label>
+          <select id="filterCampus" class="form-select" onchange="applyFilters()">
+            <option value="all">All Tertiary Campuses</option>
+            <option value="UNILAG-Akoka">UNILAG - Akoka</option>
+            <option value="LASU-Ojo">LASU - Ojo Campus</option>
+            <option value="LASUCOM-Ikeja">LASUCOM - Ikeja</option>
+            <option value="YABATECH">Yabatech - Yaba</option>
+            <option value="Lasued-Epe">LASUED - Epe</option>
+            <option value="UI-Ibadan">UI - Ibadan</option>
+          </select>
+        </div>
+
+        <!-- Apartment Type -->
+        <div>
+          <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Apartment Type</label>
+          <select id="filterType" class="form-select" onchange="applyFilters()">
+            <option value="all">All Apartment Types</option>
+            <option value="Boys Quarters">Boys Quarters</option>
+            <option value="Self-Contain">Self-Contain</option>
+            <option value="Mini Flat">Mini Flat</option>
+            <option value="Studio">Studio</option>
+            <option value="Single Room">Single Room</option>
+          </select>
+        </div>
+
+        <!-- Maximum Budget (₦) -->
+        <div>
+          <label class="form-label" style="font-size: 0.82rem; margin-bottom: 4px;">Max Initial Budget</label>
+          <select id="filterMaxPrice" class="form-select" onchange="applyFilters()">
+            <option value="all">Any Price Range</option>
+            <option value="350000">Up to ₦350,000</option>
+            <option value="650000">Up to ₦650,000</option>
+            <option value="1000000">Up to ₦1,000,000</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Quick Campus Tag Pills -->
+      <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; pt: 8px; border-top: 1px solid var(--light-gray-100); padding-top: 12px;">
+        <span style="font-size: 0.8rem; font-weight: 600; color: var(--slate-400);">Popular Axes:</span>
+        <button type="button" class="btn btn-sm btn-secondary" onclick="quickFilterCampus('UNILAG-Akoka')">UNILAG</button>
+        <button type="button" class="btn btn-sm btn-secondary" onclick="quickFilterCampus('LASU-Ojo')">LASU Ojo</button>
+        <button type="button" class="btn btn-sm btn-secondary" onclick="quickFilterCampus('Lasued-Epe')">LASUED Epe</button>
+        <button type="button" class="btn btn-sm btn-secondary" onclick="quickFilterCampus('YABATECH')">Yabatech</button>
+        <button type="button" class="btn btn-sm btn-secondary" id="roommateFilterBtn" onclick="toggleRoommateFilter()">
+          <i class="ri-team-line text-green"></i> <span>Looking for Roommates</span>
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-danger" onclick="resetFilters()">Reset</button>
+      </div>
+    </div>
+
+    <!-- Active Results Header -->
+    <div class="flex items-center justify-between" style="margin-bottom: var(--space-6);">
+      <h3 style="font-size: 1.25rem;">
+        Available Hostels (<span id="resultsCount">0</span> properties found)
+      </h3>
+      <span style="font-size: 0.85rem; color: var(--slate-500);">
+        <i class="ri-shield-check-line text-green"></i> Escrow protected payments
+      </span>
+    </div>
+
+    <!-- Public Listings Grid Matching Screenshot 4 & 5 -->
+    <div class="public-listings-grid" id="publicListingsGrid">
+      <!-- Dynamically populated -->
+    </div>
+
+  </main>
+
+  <!-- Detailed Listing Preview Modal -->
+  <div id="listingDetailModal" style="display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); z-index: 999; align-items: center; justify-content: center; padding: 16px;">
+    <div class="card" style="width: 100%; max-width: 640px; padding: 28px; position: relative; max-height: 90vh; overflow-y: auto;">
+      <button onclick="closeDetailModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.35rem; color: var(--slate-400); cursor: pointer;">
+        <i class="ri-close-line"></i>
+      </button>
+      <div id="modalDetailContent"></div>
+    </div>
+  </div>
+
+  <!-- Student Send Interest Modal -->
+  <div id="studentInterestModal" style="display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); z-index: 999; align-items: center; justify-content: center; padding: 16px;">
+    <div class="card" style="width: 100%; max-width: 480px; padding: 28px; position: relative; max-height: 90vh; overflow-y: auto;">
+      <button onclick="closeInterestModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.25rem; color: var(--slate-400); cursor: pointer;">
+        <i class="ri-close-line"></i>
+      </button>
+      
+      <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--status-success-bg); color: var(--emerald-700); padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 700; margin-bottom: 10px;">
+        <i class="ri-shield-check-fill"></i> ZERO SCAM GUARANTEE
+      </div>
+      
+      <h3 style="font-size: 1.35rem; margin-bottom: 4px;">Express Accommodation Interest</h3>
+      <p style="font-size: 0.88rem; color: var(--slate-500); margin-bottom: 16px;" id="modalTargetListing">
+        Target Property: Loading...
+      </p>
+
+      <form id="interestSubmitForm" onsubmit="handleModalInterestSubmit(event)">
+        <input type="hidden" id="modalListingId">
+        <input type="hidden" id="modalListingTitle">
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label">Full Name <span class="required">*</span></label>
+          <input type="text" id="interestStudentName" class="form-input" placeholder="e.g. Babatunde Adeleke" required>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label">Student Status <span class="required">*</span></label>
+          <select id="interestStudentStatus" class="form-select" required>
+            <option value="Fresher">Fresher (100 Level)</option>
+            <option value="Returning Student (200L/300L)">Returning Student (200L / 300L)</option>
+            <option value="Finalist (400L/500L)">Finalist (400L / 500L)</option>
+            <option value="Postgraduate / Masters">Postgraduate / Masters</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label">Roommate Match Status <span class="required">*</span></label>
+          <select id="interestMatchStatus" class="form-select" required>
+            <option value="Solo">Solo (Taking entire room alone)</option>
+            <option value="Me & 1 other">Me & 1 other (Looking for roommate)</option>
+            <option value="Group of 3">Group of 3</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 14px;">
+          <label class="form-label">Active WhatsApp Phone Number <span class="required">*</span></label>
+          <div class="input-prefix-group">
+            <span class="input-prefix" style="color: var(--slate-500); font-size: 0.88rem;">+234</span>
+            <input type="tel" id="interestStudentWhatsApp" class="form-input" style="padding-left: 54px;" placeholder="8123456789" required>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label class="form-label">Notes &amp; Roommate Preferences</label>
+          <textarea id="interestStudentNotes" class="form-textarea" style="min-height: 80px;" placeholder="e.g. Studying Law, prefer quiet environment, available for inspection on Saturday."></textarea>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+          <button type="button" onclick="closeInterestModal()" class="btn btn-secondary" style="flex: 1;">Cancel</button>
+          <button type="submit" id="btnSubmitInterest" class="btn btn-primary" style="flex: 1.5;">
+            <span>Submit Interest</span> <i class="ri-send-plane-fill"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Public Footer -->
+  <footer class="public-footer">
+    <div class="footer-content-grid">
+      <div class="footer-col">
+        <div class="brand-logo" style="margin-bottom: var(--space-4);">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span style="color: #fff;">CYNIC</span>
+            <span class="brand-tag">Student Accommodation</span>
+          </div>
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.6; max-width: 320px;">
+          Connecting undergraduate and postgraduate students in Nigeria with verified campus homes.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="public-listings.html">All Listings</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="register.html">Agent Accreditation</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Tertiary Hubs</h4>
+        <ul class="footer-links-list">
+          <li><a href="javascript:void(0)" onclick="quickFilterCampus('UNILAG-Akoka')">UNILAG Akoka</a></li>
+          <li><a href="javascript:void(0)" onclick="quickFilterCampus('LASU-Ojo')">LASU Ojo</a></li>
+          <li><a href="javascript:void(0)" onclick="quickFilterCampus('Lasued-Epe')">LASUED Epe</a></li>
+          <li><a href="javascript:void(0)" onclick="quickFilterCampus('YABATECH')">YABATECH</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Agent Access</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 12px;">Real estate agents can sign in to respond to inquiries.</p>
+        <a href="login.html" class="btn btn-primary btn-sm">Agent Gateway</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div>&copy; 2026 Cynic Accommodation Technologies Ltd. Lagos, Nigeria.</div>
+      <div>Zero Scam Student Living</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let roommateOnlyFilter = false;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Check query params
+      const params = new URLSearchParams(window.location.search);
+      const schoolParam = params.get('school');
+      const searchParam = params.get('q');
+      const idParam = params.get('id');
+      const filterParam = params.get('filter');
+
+      if (schoolParam) {
+        document.getElementById('filterCampus').value = schoolParam;
+      }
+      if (searchParam) {
+        document.getElementById('filterKeyword').value = searchParam;
+      }
+      if (filterParam === 'roommates') {
+        roommateOnlyFilter = true;
+        const btn = document.getElementById('roommateFilterBtn');
+        if (btn) {
+          btn.className = 'btn btn-sm btn-primary';
+        }
+      }
+
+      applyFilters();
+
+      if (idParam) {
+        openDetailModal(idParam);
+      }
+    });
+
+    function togglePublicMobileMenu() {
+      const drawer = document.getElementById('publicMobileDrawer');
+      const overlay = document.getElementById('publicDrawerOverlay');
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+
+    function toggleRoommateFilter() {
+      roommateOnlyFilter = !roommateOnlyFilter;
+      const btn = document.getElementById('roommateFilterBtn');
+      if (btn) {
+        btn.className = roommateOnlyFilter ? 'btn btn-sm btn-primary' : 'btn btn-sm btn-secondary';
+      }
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const keyword = document.getElementById('filterKeyword').value.toLowerCase().trim();
+      const campus = document.getElementById('filterCampus').value;
+      const type = document.getElementById('filterType').value;
+      const maxPrice = document.getElementById('filterMaxPrice').value;
+
+      const raw = localStorage.getItem('cynic_listings');
+      let listings = raw ? JSON.parse(raw) : CYNIC_DATA.listings;
+
+      let filtered = listings.filter(item => {
+        // Roommate-only filter
+        if (roommateOnlyFilter && !item.isRoommateShared) {
+          return false;
+        }
+
+        // Keyword filter
+        if (keyword) {
+          const matchKeyword = item.title.toLowerCase().includes(keyword) ||
+                               item.address.toLowerCase().includes(keyword) ||
+                               item.town.toLowerCase().includes(keyword);
+          if (!matchKeyword) return false;
+        }
+
+        // Campus filter
+        if (campus !== 'all') {
+          if (!item.schoolArea.toLowerCase().includes(campus.toLowerCase())) return false;
+        }
+
+        // Apartment Type filter
+        if (type !== 'all') {
+          const building = (item.buildingType || item.apartmentType || '').toLowerCase();
+          if (!building.includes(type.toLowerCase())) return false;
+        }
+
+        // Max Price filter
+        if (maxPrice !== 'all') {
+          const price = item.initialCharge || item.totalPackage;
+          if (price > Number(maxPrice)) return false;
+        }
+
+        return true;
+      });
+
+      renderPublicGrid(filtered);
+    }
+
+    function renderPublicGrid(items) {
+      const container = document.getElementById('publicListingsGrid');
+      document.getElementById('resultsCount').textContent = items.length;
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; background: #fff; border-radius: 16px; border: 1px dashed var(--light-gray);">
+            <i class="ri-home-search-line" style="font-size: 3.5rem; color: var(--emerald-600);"></i>
+            <h3 style="margin: 12px 0 6px; color: var(--dark-slate);">No accommodation listings match your criteria</h3>
+            <p style="color: var(--slate-500); font-size: 0.95rem; margin-bottom: 16px;">Try expanding your price range or selecting another campus area.</p>
+            <button type="button" class="btn btn-secondary" onclick="resetFilters()">Reset All Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = items.map(item => `
+        <div class="cynic-public-card" id="card-${item.id}">
+          <div class="card-media-box">
+            <img src="${item.images[0]}" alt="${item.title}" loading="lazy">
+            <div class="crown-badge" title="Verified Cynic Accommodation">
+              <i class="ri-vip-crown-fill"></i>
+            </div>
+            <button type="button" class="heart-fav-btn" onclick="toggleFavorite(this)" title="Save to favorites">
+              <i class="ri-heart-line"></i>
+            </button>
+          </div>
+
+          <!-- Green See More Ribbon -->
+          <button type="button" class="see-more-ribbon" onclick="openDetailModal('${item.id}')">
+            <i class="ri-information-fill"></i> See More Info
+          </button>
+
+          <div class="card-details-body">
+            <div class="card-address-line">
+              <i class="ri-map-pin-2-fill"></i>
+              <span>${item.address}</span>
+            </div>
+
+            <div class="card-badges-row">
+              <div class="school-tag-badge">
+                <i class="ri-graduation-cap-fill"></i>
+                <span>${item.schoolArea.split('(')[0]}</span>
+              </div>
+              <div class="building-tag-badge">
+                <i class="ri-building-line"></i>
+                <span>${item.buildingType || item.apartmentType}</span>
+              </div>
+            </div>
+
+            <!-- Roommate Allocation & Occupant Bar -->
+            ${item.isRoommateShared ? `
+              <div style="margin: 6px 0 10px; padding: 10px 12px; background: rgba(0, 168, 90, 0.05); border-radius: 10px; border: 1px solid rgba(0, 168, 90, 0.18);">
+                <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 6px; margin-bottom: 6px;">
+                  <span class="roommate-allocation-badge">
+                    <i class="ri-team-fill"></i>
+                    <span><strong>${item.roommatesGotten || 1} Gotten</strong> &bull; <span class="highlight-needed">${item.roommatesNeeded || 1} Looking to Join</span></span>
+                  </span>
+                  ${item.roommateSharePrice ? `
+                    <span style="font-size: 0.78rem; font-weight: 700; color: #008748; background: #e6f6ef; padding: 2px 8px; border-radius: 12px;">
+                      ${formatNaira(item.roommateSharePrice)} / share
+                    </span>
+                  ` : ''}
+                </div>
+
+                ${item.currentRoommates && item.currentRoommates.length > 0 ? `
+                  <div class="roommate-profile-row" style="margin: 0;">
+                    <div class="roommate-profile-avatar" style="width: 24px; height: 24px; font-size: 0.7rem;">
+                      ${item.currentRoommates[0].name.slice(0, 1).toUpperCase()}
+                    </div>
+                    <span class="roommate-occupant-name" style="font-size: 0.82rem;">${item.currentRoommates[0].name}</span>
+                    ${item.currentRoommates[0].tags.map(t => `<span class="roommate-tag-chip" style="font-size: 0.7rem; padding: 1px 6px;">${t}</span>`).join('')}
+                  </div>
+                ` : ''}
+              </div>
+            ` : ''}
+
+            <div class="specs-metrics-row">
+              <div class="metric-pill">
+                <i class="ri-user-line"></i>
+                <span>Available: <strong>${item.availableUnits || 1}</strong></span>
+              </div>
+              <div class="metric-pill">
+                <i class="ri-group-line"></i>
+                <span>Max: <strong>${item.maxOccupants || 2}</strong></span>
+              </div>
+              <div class="metric-pill">
+                <i class="ri-user-smile-line"></i>
+                <span>Min: <strong>${item.minOccupants || 1}</strong></span>
+              </div>
+            </div>
+
+            <div class="amenity-dual-row">
+              <div><i class="ri-drop-line text-green"></i> Toilet/Baths: <strong>${item.toiletBathType || 'Shared'}</strong></div>
+              <div><i class="ri-restaurant-line text-green"></i> Kitchen: <strong>${item.kitchenType || 'Personal'}</strong></div>
+            </div>
+
+            <div class="pricing-dual-row">
+              <div class="price-col">
+                <span class="price-caption">Subsequent Charge</span>
+                <span class="price-naira-bold">${formatNaira(item.subsequentCharge || item.annualCharge)}</span>
+              </div>
+              <div class="price-col" style="text-align: right;">
+                <span class="price-caption">Initial Charge</span>
+                <span class="price-naira-bold">${formatNaira(item.initialCharge || item.totalPackage)}</span>
+              </div>
+            </div>
+
+            <div class="card-footer-action">
+              <button type="button" class="btn btn-primary" style="width: 100%;" onclick="openInterestModal('${item.id}', '${item.title.replace(/'/g, "\\'")}', ${!!item.isRoommateShared})">
+                <i class="ri-user-heart-line"></i> ${item.isRoommateShared ? 'Apply as Roommate' : 'Send Student Interest'}
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function quickFilterCampus(campus) {
+      document.getElementById('filterCampus').value = campus;
+      applyFilters();
+    }
+
+    function resetFilters() {
+      roommateOnlyFilter = false;
+      const btn = document.getElementById('roommateFilterBtn');
+      if (btn) btn.className = 'btn btn-sm btn-secondary';
+      document.getElementById('filterKeyword').value = '';
+      document.getElementById('filterCampus').value = 'all';
+      document.getElementById('filterType').value = 'all';
+      document.getElementById('filterMaxPrice').value = 'all';
+      applyFilters();
+    }
+
+    function openDetailModal(id) {
+      const raw = localStorage.getItem('cynic_listings');
+      const listings = raw ? JSON.parse(raw) : CYNIC_DATA.listings;
+      const item = listings.find(l => l.id === id);
+      if (!item) return;
+
+      const content = document.getElementById('modalDetailContent');
+      content.innerHTML = `
+        <div style="margin-bottom: 16px;">
+          <img src="${item.images[0]}" alt="${item.title}" style="width: 100%; height: 220px; object-fit: cover; border-radius: 12px; margin-bottom: 14px;">
+          <div class="school-tag-badge" style="margin-bottom: 6px;">
+            <i class="ri-graduation-cap-fill"></i> ${item.schoolArea} &bull; ${item.town}
+          </div>
+          <h2 style="font-size: 1.4rem; color: #0f172a; margin-bottom: 6px;">${item.title}</h2>
+          <div style="font-size: 0.92rem; color: #64748b; margin-bottom: 14px;">
+            <i class="ri-map-pin-line text-green"></i> ${item.address}
+          </div>
+        </div>
+
+        <!-- Roommate Allocation Breakdown (if shared) -->
+        ${item.isRoommateShared ? `
+          <div style="background: linear-gradient(135deg, rgba(0,168,90,0.08) 0%, rgba(240,253,244,0.7) 100%); border: 1px solid rgba(0,168,90,0.25); border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <i class="ri-team-fill" style="color: #00A85A; font-size: 1.3rem;"></i>
+                <strong style="color: #0f172a; font-size: 0.98rem;">Roommate Sharing &amp; Space Allocation</strong>
+              </div>
+              <span class="roommate-allocation-badge">
+                <span>${item.roommatesGotten || 1} Residing &bull; <span class="highlight-needed">${item.roommatesNeeded || 1} Open Slot(s)</span></span>
+              </span>
+            </div>
+
+            <!-- Progress Gauge -->
+            <div class="roommate-progress-gauge">
+              <div class="roommate-gauge-fill" style="width: ${((item.roommatesGotten || 1) / ((item.roommatesGotten || 1) + (item.roommatesNeeded || 1))) * 100}%;"></div>
+              <div class="roommate-gauge-needed" style="width: ${((item.roommatesNeeded || 1) / ((item.roommatesGotten || 1) + (item.roommatesNeeded || 1))) * 100}%;"></div>
+            </div>
+            <div class="roommate-gauge-labels">
+              <span><i class="ri-checkbox-circle-fill text-green"></i> ${item.roommatesGotten || 1} Roommate(s) Gotten</span>
+              <span><i class="ri-user-add-line" style="color: #00A85A;"></i> ${item.roommatesNeeded || 1} Looking to Join</span>
+            </div>
+
+            ${item.currentRoommates && item.currentRoommates.length > 0 ? `
+              <div style="margin-top: 12px; padding-top: 10px; border-top: 1px dashed rgba(0,168,90,0.25);">
+                <span style="font-size: 0.78rem; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px;">Current Occupant Profile:</span>
+                <div class="roommate-profile-row" style="margin-top: 6px;">
+                  <div class="roommate-profile-avatar">${item.currentRoommates[0].name.slice(0, 1).toUpperCase()}</div>
+                  <strong style="color: #0f172a; font-size: 0.92rem;">${item.currentRoommates[0].name}</strong>
+                  ${item.currentRoommates[0].tags.map(t => `<span class="roommate-tag-chip tag-green">${t}</span>`).join('')}
+                </div>
+              </div>
+            ` : ''}
+
+            ${item.roommateSharePrice ? `
+              <div style="margin-top: 10px; font-size: 0.88rem; color: #0f172a;">
+                Roommate Share Contribution: <strong style="color: #00A85A; font-size: 1.15rem;">${formatNaira(item.roommateSharePrice)}</strong> / session
+              </div>
+            ` : ''}
+          </div>
+        ` : ''}
+
+        <div style="background: var(--light-gray-50); padding: 14px; border-radius: 8px; margin-bottom: 16px;">
+          <div style="font-weight: 700; color: #0f172a; margin-bottom: 6px;">About this Hostel:</div>
+          <p style="font-size: 0.9rem; color: #475569; line-height: 1.5;">${item.description}</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; font-size: 0.88rem;">
+          <div>🏢 Type: <strong>${item.buildingType || item.apartmentType}</strong></div>
+          <div>🚿 Toilet: <strong>${item.toiletBathType}</strong></div>
+          <div>🍳 Kitchen: <strong>${item.kitchenType}</strong></div>
+          <div>👥 Capacity: <strong>Up to ${item.maxOccupants} Occupants</strong></div>
+        </div>
+
+        <div class="pricing-dual-row" style="margin-bottom: 20px;">
+          <div class="price-col">
+            <span class="price-caption">Subsequent Yearly Rent</span>
+            <span class="price-naira-bold">${formatNaira(item.subsequentCharge || item.annualCharge)}</span>
+          </div>
+          <div class="price-col" style="text-align: right;">
+            <span class="price-caption">Initial First-Year Package</span>
+            <span class="price-naira-bold">${formatNaira(item.initialCharge || item.totalPackage)}</span>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+          <button type="button" onclick="closeDetailModal()" class="btn btn-secondary" style="flex: 1;">Close</button>
+          <button type="button" onclick="closeDetailModal(); openInterestModal('${item.id}', '${item.title.replace(/'/g, "\\'")}', ${!!item.isRoommateShared})" class="btn btn-primary" style="flex: 1.6;">
+            <i class="ri-user-heart-line"></i> ${item.isRoommateShared ? 'Apply as Roommate' : 'Send Interest'}
+          </button>
+        </div>
+      `;
+
+      document.getElementById('listingDetailModal').style.display = 'flex';
+    }
+
+    function closeDetailModal() {
+      document.getElementById('listingDetailModal').style.display = 'none';
+    }
+
+    function toggleFavorite(btn) {
+      btn.classList.toggle('active');
+      const icon = btn.querySelector('i');
+      if (btn.classList.contains('active')) {
+        icon.className = 'ri-heart-fill';
+        showToast('Added to your saved student listings!');
+      } else {
+        icon.className = 'ri-heart-line';
+        showToast('Removed from saved listings.');
+      }
+    }
+
+    function openInterestModal(listingId, listingTitle, isRoommateApply = false) {
+      document.getElementById('modalListingId').value = listingId;
+      document.getElementById('modalListingTitle').value = listingTitle;
+      document.getElementById('modalTargetListing').textContent = `Target Property: ${listingTitle}`;
+      
+      if (isRoommateApply) {
+        document.getElementById('interestMatchStatus').value = "Me & 1 other";
+        document.getElementById('interestStudentNotes').value = "Hi! I am interested in joining as a compatible roommate for this accommodation.";
+      } else {
+        document.getElementById('interestMatchStatus').value = "Solo";
+        document.getElementById('interestStudentNotes').value = "";
+      }
+
+      document.getElementById('studentInterestModal').style.display = 'flex';
+    }
+
+    function closeInterestModal() {
+      document.getElementById('studentInterestModal').style.display = 'none';
+    }
+
+    function handleModalInterestSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmitInterest');
+      btn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Submitting...';
+      btn.disabled = true;
+
+      const data = {
+        listingId: document.getElementById('modalListingId').value,
+        listingTitle: document.getElementById('modalListingTitle').value,
+        name: document.getElementById('interestStudentName').value,
+        studentStatus: document.getElementById('interestStudentStatus').value,
+        matchStatus: document.getElementById('interestMatchStatus').value,
+        whatsapp: document.getElementById('interestStudentWhatsApp').value,
+        notes: document.getElementById('interestStudentNotes').value
+      };
+
+      submitStudentInterest(data);
+
+      setTimeout(() => {
+        closeInterestModal();
+        showToast('Interest submitted! The accredited Cynic agent will message your WhatsApp.');
+        btn.innerHTML = '<span>Submit Interest</span> <i class="ri-send-plane-fill"></i>';
+        btn.disabled = false;
+        document.getElementById('interestSubmitForm').reset();
+      }, 700);
+    }
+  </script>
+</body>
+</html>

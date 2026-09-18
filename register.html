@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Registration &amp; Accreditation - Cynic Nigeria</title>
+  <meta name="description" content="Apply to become a verified student accommodation agent on Cynic. Showcase student hostels across UNILAG, LASU, YABATECH, and top Nigerian institutions.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body style="background-color: var(--light-gray-50);">
+
+  <!-- Mobile Drawer Overlay -->
+  <div class="public-drawer-overlay" id="publicDrawerOverlay" onclick="togglePublicMobileMenu()"></div>
+
+  <!-- Mobile Slide-out Menu -->
+  <aside class="public-mobile-drawer" id="publicMobileDrawer">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon" style="width: 36px; height: 36px; font-size: 1.1rem;">
+          <i class="ri-home-wifi-fill"></i>
+        </div>
+        <div class="brand-name" style="font-size: 1.15rem;">CYNIC</div>
+      </a>
+      <button onclick="togglePublicMobileMenu()" style="background: none; border: none; font-size: 1.5rem; color: var(--slate-500); cursor: pointer;">
+        <i class="ri-close-line"></i>
+      </button>
+    </div>
+
+    <ul style="list-style: none; display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-8);">
+      <li><a href="index.html" class="public-nav-link" style="font-size: 1.05rem;">Home</a></li>
+      <li><a href="public-listings.html" class="public-nav-link" style="font-size: 1.05rem;">Explore Listings</a></li>
+      <li><a href="services.html" class="public-nav-link" style="font-size: 1.05rem;">Our Services</a></li>
+      <li><a href="contact.html" class="public-nav-link" style="font-size: 1.05rem;">Contact Us</a></li>
+      <li><a href="register.html" class="public-nav-link active" style="font-size: 1.05rem; color: var(--emerald-600); font-weight: 700;">Agent Registration</a></li>
+    </ul>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
+      <a href="dashboard.html" class="btn btn-primary" style="width: 100%;">
+        <i class="ri-dashboard-line"></i> Agent Portal
+      </a>
+      <a href="login.html" class="btn btn-secondary" style="width: 100%;">
+        <i class="ri-login-box-line"></i> Agent Sign In
+      </a>
+    </div>
+  </aside>
+
+  <!-- Public Header -->
+  <header class="public-header">
+    <div class="public-nav-container">
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon">
+          <i class="ri-home-wifi-fill"></i>
+        </div>
+        <div class="brand-name">
+          <span style="letter-spacing: -0.5px;">CYNIC</span>
+          <span class="brand-tag">Verified Homes</span>
+        </div>
+      </a>
+
+      <ul class="public-nav-menu">
+        <li><a href="index.html" class="public-nav-link">Home</a></li>
+        <li><a href="public-listings.html" class="public-nav-link">Explore Listings</a></li>
+        <li><a href="services.html" class="public-nav-link">Our Services</a></li>
+        <li><a href="contact.html" class="public-nav-link">Contact Us</a></li>
+        <li><a href="register.html" class="public-nav-link active" style="color: var(--emerald-600); font-weight: 700;">Agent Registration</a></li>
+      </ul>
+
+      <div class="public-nav-right">
+        <a href="login.html" class="btn btn-secondary btn-sm">Sign In</a>
+        <a href="dashboard.html" class="btn btn-primary btn-sm">Agent Portal</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Registration Body -->
+  <main style="max-width: 1000px; margin: 40px auto 80px; padding: 0 20px;">
+    
+    <div style="text-align: center; margin-bottom: var(--space-8);">
+      <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--status-success-bg); color: var(--emerald-700); padding: 4px 14px; border-radius: var(--radius-full); font-size: 0.82rem; font-weight: 700; margin-bottom: 8px;">
+        <i class="ri-shield-check-line"></i> OFFICIAL AGENT ACCREDITATION
+      </div>
+      <h1 style="font-size: 2.5rem; color: #0f172a; margin-bottom: 8px;">
+        Join the Cynic Verified Agent Network
+      </h1>
+      <p style="font-size: 1.05rem; color: #64748b; max-width: 680px; margin: 0 auto;">
+        Expand your student real estate reach. List hostels, manage student roommate inquiries, and build trusted tenant relationships.
+      </p>
+    </div>
+
+    <!-- Agent Benefits Strip -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: var(--space-8);">
+      <div class="card" style="padding: 20px; display: flex; align-items: flex-start; gap: 14px;">
+        <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(0, 168, 90,0.12); color: var(--emerald-600); display: flex; align-items: center; justify-content: center; font-size: 1.35rem; flex-shrink: 0;">
+          <i class="ri-team-line"></i>
+        </div>
+        <div>
+          <strong style="color: var(--dark-slate); font-size: 0.95rem;">Thousands of Campus Students</strong>
+          <div style="font-size: 0.82rem; color: var(--slate-500); margin-top: 2px;">Direct tenant inquiries from freshers and returning undergraduates.</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding: 20px; display: flex; align-items: flex-start; gap: 14px;">
+        <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(0, 168, 90,0.12); color: var(--emerald-600); display: flex; align-items: center; justify-content: center; font-size: 1.35rem; flex-shrink: 0;">
+          <i class="ri-verified-badge-line"></i>
+        </div>
+        <div>
+          <strong style="color: var(--dark-slate); font-size: 0.95rem;">Verified Badge Standing</strong>
+          <div style="font-size: 0.82rem; color: var(--slate-500); margin-top: 2px;">Gain instant student trust with verified Cynic anti-scam certification.</div>
+        </div>
+      </div>
+
+      <div class="card" style="padding: 20px; display: flex; align-items: flex-start; gap: 14px;">
+        <div style="width: 40px; height: 40px; border-radius: 8px; background: rgba(0, 168, 90,0.12); color: var(--emerald-600); display: flex; align-items: center; justify-content: center; font-size: 1.35rem; flex-shrink: 0;">
+          <i class="ri-chat-voice-line"></i>
+        </div>
+        <div>
+          <strong style="color: var(--dark-slate); font-size: 0.95rem;">Dedicated Agent Dashboard</strong>
+          <div style="font-size: 0.82rem; color: var(--slate-500); margin-top: 2px;">Built-in real-time chat, video uploader, and inspection management.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Agent Registration Form Card -->
+    <div class="form-card">
+      <div style="margin-bottom: var(--space-6); padding-bottom: var(--space-4); border-bottom: 1px solid var(--light-gray);">
+        <h2 style="font-size: 1.5rem; color: #0f172a; margin-bottom: 4px;">Agent Onboarding Application</h2>
+        <p style="font-size: 0.9rem; color: #64748b;">
+          Please complete all personal and agency details below. All submissions are cross-referenced for security.
+        </p>
+      </div>
+
+      <form id="agentRegisterForm" onsubmit="handleAgentRegistration(event)">
+        <div class="form-grid">
+          
+          <!-- Agent Full Name -->
+          <div class="form-group">
+            <label class="form-label" for="regName">Agent Full Name <span class="required">*</span></label>
+            <input type="text" id="regName" class="form-input" placeholder="e.g. Babatunde Alabi" required>
+          </div>
+
+          <!-- Agency / Company Name -->
+          <div class="form-group">
+            <label class="form-label" for="regAgency">Real Estate Agency / Business Name <span class="required">*</span></label>
+            <input type="text" id="regAgency" class="form-input" placeholder="e.g. Campus Haven Realty Ltd" required>
+          </div>
+
+          <!-- Email Address -->
+          <div class="form-group">
+            <label class="form-label" for="regEmail">Corporate Email Address <span class="required">*</span></label>
+            <input type="email" id="regEmail" class="form-input" placeholder="agent@campushaven.ng" required>
+          </div>
+
+          <!-- WhatsApp Number -->
+          <div class="form-group">
+            <label class="form-label" for="regPhone">WhatsApp Active Phone <span class="required">*</span></label>
+            <div class="input-prefix-group">
+              <span class="input-prefix" style="color: var(--slate-500); font-size: 0.88rem;">+234</span>
+              <input type="tel" id="regPhone" class="form-input" style="padding-left: 54px;" placeholder="8031234567" required>
+            </div>
+            <span style="font-size: 0.78rem; color: var(--slate-400);">Students will be routed to this line for room inspections.</span>
+          </div>
+
+          <!-- CAC Registration Number -->
+          <div class="form-group">
+            <label class="form-label" for="regCAC">CAC Business Number (Optional)</label>
+            <input type="text" id="regCAC" class="form-input" placeholder="e.g. RC-1928472">
+          </div>
+
+          <!-- Years of Experience -->
+          <div class="form-group">
+            <label class="form-label" for="regExperience">Years in Student Accommodation</label>
+            <select id="regExperience" class="form-select" required>
+              <option value="1-2 years">1 - 2 Years</option>
+              <option value="3-5 years" selected>3 - 5 Years</option>
+              <option value="5+ years">5+ Years Experience</option>
+            </select>
+          </div>
+
+          <!-- Campus Coverage Areas (Multi-select) -->
+          <div class="form-group col-span-2">
+            <label class="form-label">Operating Campus Territories <span class="required">*</span></label>
+            <div class="amenities-selector">
+              <label class="amenity-checkbox-label checked">
+                <input type="checkbox" name="campuses" value="UNILAG-Akoka" checked>
+                <span>UNILAG Akoka</span>
+              </label>
+              <label class="amenity-checkbox-label">
+                <input type="checkbox" name="campuses" value="LASU-Ojo">
+                <span>LASU Ojo</span>
+              </label>
+              <label class="amenity-checkbox-label checked">
+                <input type="checkbox" name="campuses" value="LASUCOM-Ikeja" checked>
+                <span>LASUCOM Ikeja</span>
+              </label>
+              <label class="amenity-checkbox-label">
+                <input type="checkbox" name="campuses" value="YABATECH">
+                <span>YABATECH</span>
+              </label>
+              <label class="amenity-checkbox-label">
+                <input type="checkbox" name="campuses" value="Lasued-Epe">
+                <span>LASUED Epe</span>
+              </label>
+              <label class="amenity-checkbox-label">
+                <input type="checkbox" name="campuses" value="UI-Ibadan">
+                <span>UI Ibadan</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Government ID / Business Card Upload Dropzone -->
+          <div class="form-group col-span-2">
+            <label class="form-label">Verification Document (NIN, Drivers License, or Business Card) <span class="required">*</span></label>
+            <div class="upload-dropzone" id="idDropzone" onclick="document.getElementById('idUploadInput').click()">
+              <i class="ri-id-card-line upload-icon"></i>
+              <div class="upload-title">Click to upload identity or business accreditation document</div>
+              <div class="upload-hint">PDF, JPG, PNG (Max 5MB)</div>
+              <input type="file" id="idUploadInput" accept="image/*,.pdf" style="display: none;" onchange="showToast('Verification document attached for audit')">
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="form-group">
+            <label class="form-label" for="regPassword">Portal Password <span class="required">*</span></label>
+            <input type="password" id="regPassword" class="form-input" placeholder="••••••••" required>
+          </div>
+
+          <!-- Confirm Password -->
+          <div class="form-group">
+            <label class="form-label" for="regConfirmPassword">Confirm Password <span class="required">*</span></label>
+            <input type="password" id="regConfirmPassword" class="form-input" placeholder="••••••••" required>
+          </div>
+
+        </div>
+
+        <!-- Terms Agreement -->
+        <div style="margin: var(--space-6) 0; padding: 14px; background: var(--light-gray-50); border-radius: var(--radius-md); border: 1px solid var(--light-gray);">
+          <label style="display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; color: var(--slate-600); cursor: pointer;">
+            <input type="checkbox" required checked style="accent-color: var(--emerald-600); width: 18px; height: 18px; margin-top: 2px;">
+            <span>
+              I agree to abide by Cynic's <strong>Anti-Scam Code of Conduct</strong>, guarantee 100% free physical inspections for students, and declare that all submitted hostel listings are genuine.
+            </span>
+          </label>
+        </div>
+
+        <!-- Action Buttons -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+          <a href="login.html" style="font-size: 0.9rem; font-weight: 600;">Already registered? Sign in &rarr;</a>
+          <button type="submit" id="btnRegisterAgent" class="btn btn-primary btn-lg">
+            <span>Complete Registration</span> <i class="ri-arrow-right-line"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </main>
+
+  <!-- Public Footer -->
+  <footer class="public-footer">
+    <div class="footer-content-grid">
+      <div class="footer-col">
+        <div class="brand-logo" style="margin-bottom: var(--space-4);">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span style="color: #fff;">CYNIC</span>
+            <span class="brand-tag">Student Accommodation</span>
+          </div>
+        </div>
+        <p style="font-size: 0.9rem; line-height: 1.6; max-width: 320px;">
+          Trust what you found. Protecting Nigerian tertiary students from fake agents.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul class="footer-links-list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="public-listings.html">All Listings</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="register.html">Agent Accreditation</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Tertiary Hubs</h4>
+        <ul class="footer-links-list">
+          <li><a href="public-listings.html?school=UNILAG-Akoka">UNILAG Akoka</a></li>
+          <li><a href="public-listings.html?school=LASU-Ojo">LASU Ojo</a></li>
+          <li><a href="public-listings.html?school=Lasued-Epe">LASUED Epe</a></li>
+          <li><a href="public-listings.html?school=YABATECH">YABATECH</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Agent Access</h4>
+        <p style="font-size: 0.88rem; margin-bottom: 12px;">Real estate agents can sign in to manage properties.</p>
+        <a href="login.html" class="btn btn-primary btn-sm">Agent Gateway</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div>&copy; 2026 Cynic Accommodation Technologies Ltd. Lagos, Nigeria.</div>
+      <div>Zero Scam Student Living</div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function togglePublicMobileMenu() {
+      const drawer = document.getElementById('publicMobileDrawer');
+      const overlay = document.getElementById('publicDrawerOverlay');
+      drawer.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+
+    function handleAgentRegistration(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnRegisterAgent');
+      btn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Accreditating...';
+      btn.disabled = true;
+
+      const password = document.getElementById('regPassword').value;
+      const confirmPass = document.getElementById('regConfirmPassword').value;
+
+      if (password !== confirmPass) {
+        showToast('Passwords do not match!', 'warning');
+        btn.innerHTML = '<span>Complete Registration</span> <i class="ri-arrow-right-line"></i>';
+        btn.disabled = false;
+        return;
+      }
+
+      let phone = document.getElementById('regPhone').value;
+      if (!phone.startsWith('0')) phone = '0' + phone;
+
+      const selectedCampuses = [];
+      document.querySelectorAll('input[name="campuses"]:checked').forEach(c => selectedCampuses.push(c.value));
+
+      const agentData = {
+        name: document.getElementById('regName').value,
+        agency: document.getElementById('regAgency').value,
+        email: document.getElementById('regEmail').value,
+        phone: phone,
+        cacNumber: document.getElementById('regCAC').value || 'RC-Verified',
+        coverageAreas: selectedCampuses
+      };
+
+      registerNewAgent(agentData);
+
+      setTimeout(() => {
+        showToast('Registration successful! Welcome to the Cynic Agent Network.');
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 800);
+      }, 900);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Login - Cynic Student Accommodation</title>
+  <meta name="description" content="Secure login portal for verified Cynic student accommodation property agents in Nigeria.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="auth-page-wrapper">
+    <!-- Left Hero Side with Gradient Green Aesthetics -->
+    <div class="auth-brand-side">
+      <div>
+        <a href="login.html" class="brand-logo" style="margin-bottom: var(--space-8);">
+          <div class="logo-icon" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);">
+            <i class="ri-home-wifi-fill" style="color: #fff;"></i>
+          </div>
+          <div class="brand-name">
+            <span style="color: #fff;">CYNIC</span>
+            <span class="brand-tag" style="color: rgba(255,255,255,0.85);">Agent Portal</span>
+          </div>
+        </a>
+
+        <div style="max-width: 520px; margin-top: var(--space-8);">
+          <span style="display: inline-block; background: rgba(255,255,255,0.18); backdrop-filter: blur(8px); padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.5px; margin-bottom: var(--space-4);">
+            🇳🇬 NIGERIA'S LEADING STUDENT HOUSING NETWORK
+          </span>
+          <h1 style="color: #fff; font-size: 2.3rem; line-height: 1.25; margin-bottom: var(--space-4);">
+            Empowering Agents to Connect Students with Verified Homes.
+          </h1>
+          <p style="color: rgba(255,255,255,0.9); font-size: 1.05rem; line-height: 1.6;">
+            Manage campus listings, respond to verified fresher and returning student inquiries, coordinate room inspections, and process property reports with seamless precision.
+          </p>
+        </div>
+      </div>
+
+      <!-- Verified Metric Footer -->
+      <div style="display: flex; gap: var(--space-8); padding-top: var(--space-6); border-top: 1px solid rgba(255,255,255,0.2);">
+        <div>
+          <div style="font-size: 1.6rem; font-weight: 700; font-family: var(--font-heading);">45+</div>
+          <div style="font-size: 0.8rem; color: rgba(255,255,255,0.8);">Tertiary Campuses</div>
+        </div>
+        <div>
+          <div style="font-size: 1.6rem; font-weight: 700; font-family: var(--font-heading);">15,000+</div>
+          <div style="font-size: 0.8rem; color: rgba(255,255,255,0.8);">Student Roommates Matched</div>
+        </div>
+        <div>
+          <div style="font-size: 1.6rem; font-weight: 700; font-family: var(--font-heading);">100%</div>
+          <div style="font-size: 0.8rem; color: rgba(255,255,255,0.8);">Direct Agent Inquiries</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Form Side Matching Wireframe 4.1 -->
+    <div class="auth-form-side">
+      <div class="auth-card">
+        <div class="auth-header">
+          <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--status-success-bg); color: var(--emerald-700); padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 600; margin-bottom: var(--space-3);">
+            <i class="ri-shield-check-line"></i> Secure Agent Gateway
+          </div>
+          <h2>Welcome Back</h2>
+          <p>Please enter your authorized Cynic agent credentials to access your dashboard.</p>
+        </div>
+
+        <form id="agentLoginForm" onsubmit="handleLoginSubmit(event)">
+          <div class="form-group" style="margin-bottom: var(--space-4);">
+            <label class="form-label" for="loginEmail">Email Address <span class="required">*</span></label>
+            <div class="input-prefix-group">
+              <i class="ri-mail-line" style="position: absolute; left: 14px; color: var(--slate-400);"></i>
+              <input type="email" id="loginEmail" class="form-input" style="padding-left: 40px;" placeholder="e.g. tunde.balogun@cynichomes.ng" value="tunde.balogun@cynichomes.ng" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: var(--space-3);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <label class="form-label" for="loginPassword">Password <span class="required">*</span></label>
+              <a href="javascript:void(0)" onclick="openForgotModal()" style="font-size: 0.82rem; font-weight: 600;">Forgot Password?</a>
+            </div>
+            <div class="input-prefix-group">
+              <i class="ri-lock-2-line" style="position: absolute; left: 14px; color: var(--slate-400);"></i>
+              <input type="password" id="loginPassword" class="form-input" style="padding-left: 40px; padding-right: 40px;" placeholder="••••••••••••" value="cynicagent2026" required autocomplete="current-password">
+              <button type="button" onclick="togglePasswordVisibility()" style="position: absolute; right: 12px; background: none; border: none; color: var(--slate-400); cursor: pointer;" title="Toggle visibility">
+                <i id="passwordToggleIcon" class="ri-eye-line"></i>
+              </button>
+            </div>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: var(--space-6);">
+            <label style="display: flex; align-items: center; gap: 8px; font-size: 0.88rem; color: var(--slate-600); cursor: pointer;">
+              <input type="checkbox" id="rememberMe" checked style="accent-color: var(--emerald-600); width: 16px; height: 16px;">
+              <span>Keep me signed in</span>
+            </label>
+          </div>
+
+          <button type="submit" id="btnLoginSubmit" class="btn btn-primary btn-lg" style="width: 100%;">
+            <span>Login to Agent Dashboard</span>
+            <i class="ri-arrow-right-line"></i>
+          </button>
+
+          <div style="margin-top: var(--space-5); text-align: center; background: var(--light-gray-50); padding: 12px; border-radius: var(--radius-md); border: 1px dashed var(--light-gray);">
+            <span style="font-size: 0.82rem; color: var(--slate-500);">Need to join the Cynic Agent Network?</span>
+            <a href="javascript:void(0)" onclick="showToast('Contact support@cynichomes.ng for agent onboarding certification', 'info')" style="font-size: 0.82rem; font-weight: 600; display: block; margin-top: 2px;">Apply for Agent Accreditation &rarr;</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forgot Password Dialog Modal -->
+  <div id="forgotPasswordModal" style="display: none; position: fixed; inset: 0; background: rgba(15,23,42,0.6); backdrop-filter: blur(4px); z-index: 999; align-items: center; justify-content: center; padding: 16px;">
+    <div class="card" style="width: 100%; max-width: 420px; padding: 28px; position: relative;">
+      <button onclick="closeForgotModal()" style="position: absolute; top: 16px; right: 16px; background: none; border: none; font-size: 1.25rem; color: var(--slate-400); cursor: pointer;">
+        <i class="ri-close-line"></i>
+      </button>
+      <div style="width: 46px; height: 46px; border-radius: 10px; background: rgba(0, 168, 90,0.12); color: var(--emerald-600); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 16px;">
+        <i class="ri-key-2-line"></i>
+      </div>
+      <h3 style="margin-bottom: 6px;">Reset Your Password</h3>
+      <p style="font-size: 0.88rem; color: var(--slate-500); margin-bottom: 20px;">
+        Enter your registered agent email address. We'll dispatch an instant password reset token link.
+      </p>
+      <form onsubmit="handleForgotSubmit(event)">
+        <div class="form-group" style="margin-bottom: 16px;">
+          <label class="form-label">Agent Email</label>
+          <input type="email" id="forgotEmail" class="form-input" placeholder="tunde.balogun@cynichomes.ng" required>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button type="button" onclick="closeForgotModal()" class="btn btn-secondary" style="flex: 1;">Cancel</button>
+          <button type="submit" class="btn btn-primary" style="flex: 1;">Send Reset Link</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function togglePasswordVisibility() {
+      const pass = document.getElementById('loginPassword');
+      const icon = document.getElementById('passwordToggleIcon');
+      if (pass.type === 'password') {
+        pass.type = 'text';
+        icon.className = 'ri-eye-off-line';
+      } else {
+        pass.type = 'password';
+        icon.className = 'ri-eye-line';
+      }
+    }
+
+    function handleLoginSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btnLoginSubmit');
+      btn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Authenticating...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        showToast('Login successful! Welcome back, Agent Tunde.');
+        setTimeout(() => {
+          window.location.href = 'dashboard.html';
+        }, 600);
+      }, 700);
+    }
+
+    function openForgotModal() {
+      document.getElementById('forgotPasswordModal').style.display = 'flex';
+    }
+
+    function closeForgotModal() {
+      document.getElementById('forgotPasswordModal').style.display = 'none';
+    }
+
+    function handleForgotSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('forgotEmail').value;
+      closeForgotModal();
+      showToast(`Password reset link sent to ${email}! Check your inbox.`, 'success');
+    }
+  </script>
+</body>
+</html>

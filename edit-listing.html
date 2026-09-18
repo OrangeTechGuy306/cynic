@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Listing - Cynic Student Accommodation</title>
+  <meta name="description" content="Update existing student accommodation listing details on Cynic.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-shell">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span>CYNIC</span>
+            <span class="brand-tag">Agent Portal</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Main Navigation</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="dashboard.html">
+              <i class="ri-dashboard-3-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="listings.html">
+              <i class="ri-hotel-line"></i>
+              <span>Listings</span>
+              <span class="nav-badge" id="sidebarListingsBadge">12</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="add-listing.html">
+              <i class="ri-add-circle-line"></i>
+              <span>Add New Listing</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="interests.html">
+              <i class="ri-user-heart-line"></i>
+              <span>Student Interests</span>
+              <span class="nav-badge badge-green">34</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="messages.html">
+              <i class="ri-message-3-line"></i>
+              <span>Messages</span>
+              <span class="nav-badge badge-green">8</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="reports.html">
+              <i class="ri-alert-line"></i>
+              <span>Reports</span>
+              <span class="nav-badge badge-amber">3</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-section-title" style="margin-top: var(--space-4);">Account Settings</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="profile.html">
+              <i class="ri-user-settings-line"></i>
+              <span>Agent Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html">
+              <i class="ri-global-line"></i>
+              <span>View Public Website</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="agent-mini-card">
+          <div class="agent-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent Avatar" class="agent-avatar-img">
+            <span class="online-dot"></span>
+          </div>
+          <div class="agent-meta">
+            <div class="agent-name agent-name-display">Tunde Balogun</div>
+            <div class="agent-role agent-agency-display">Prime Campus Properties</div>
+          </div>
+          <button type="button" class="btn-sidebar-logout" onclick="handleAgentLogout()" title="Logout">
+            <i class="ri-logout-box-r-line"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <div class="main-content-wrapper">
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" class="mobile-menu-btn" id="sidebarToggleBtn" aria-label="Open Sidebar Menu">
+            <i class="ri-menu-2-line"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Edit Listing</h1>
+            <div class="page-breadcrumb">
+              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <a href="listings.html">Listings</a> <i class="ri-arrow-right-s-line"></i> <span id="breadcrumbListingTitle">Edit Property</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <a href="listings.html" class="btn btn-secondary btn-sm">
+            <i class="ri-arrow-left-line"></i> Back to Listings
+          </a>
+        </div>
+      </header>
+
+      <main class="page-body">
+        
+        <div class="form-card">
+          <div style="margin-bottom: var(--space-6); padding-bottom: var(--space-4); border-bottom: 1px solid var(--light-gray); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--status-success-bg); color: var(--emerald-700); padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 600; margin-bottom: 6px;">
+                <i class="ri-edit-2-line"></i> Edit Property Details
+              </div>
+              <h2 id="editHeaderTitle">Editing: Self-Contain at Ikeja</h2>
+            </div>
+            
+            <!-- Quick Status Selector -->
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 0.85rem; color: var(--slate-500); font-weight: 600;">Status:</span>
+              <select id="editListingStatus" class="form-select" style="width: auto; padding: 6px 12px; font-weight: 600;">
+                <option value="Available">Available</option>
+                <option value="Occupied">Occupied</option>
+                <option value="Deactivated">Deactivated</option>
+              </select>
+            </div>
+          </div>
+
+          <form id="editListingForm" onsubmit="handleUpdateListing(event)">
+            <input type="hidden" id="editListingId">
+
+            <div class="form-grid">
+              <!-- Title -->
+              <div class="form-group col-span-2">
+                <label class="form-label" for="editTitle">Listing Title <span class="required">*</span></label>
+                <input type="text" id="editTitle" class="form-input" required>
+              </div>
+
+              <!-- Address -->
+              <div class="form-group col-span-2">
+                <label class="form-label" for="editAddress">Address <span class="required">*</span></label>
+                <input type="text" id="editAddress" class="form-input" required>
+              </div>
+
+              <!-- Town -->
+              <div class="form-group">
+                <label class="form-label" for="editTown">Town / City <span class="required">*</span></label>
+                <input type="text" id="editTown" class="form-input" required>
+              </div>
+
+              <!-- School Area -->
+              <div class="form-group">
+                <label class="form-label" for="editSchoolArea">School Area / Campus Axis <span class="required">*</span></label>
+                <select id="editSchoolArea" class="form-select" required>
+                  <option value="University of Lagos (UNILAG)">University of Lagos (UNILAG) - Akoka</option>
+                  <option value="Yaba College of Technology (YABATECH)">Yaba College of Technology (YABATECH)</option>
+                  <option value="Lagos State University (LASU Ojo)">Lagos State University (LASU Ojo)</option>
+                  <option value="Lagos State University College of Medicine (LASUCOM)">LASUCOM Ikeja</option>
+                  <option value="University of Ibadan (UI)">University of Ibadan (UI)</option>
+                  <option value="Covenant University / Ota Hub">Covenant / Bells Ota Hub</option>
+                  <option value="FUTA Akure Axis">Federal University of Technology Akure (FUTA)</option>
+                </select>
+              </div>
+
+              <!-- Type of Apartment -->
+              <div class="form-group">
+                <label class="form-label" for="editApartmentType">Type of Apartment <span class="required">*</span></label>
+                <select id="editApartmentType" class="form-select" required>
+                  <option value="Self-Contain">Self-Contain</option>
+                  <option value="Single Room">Single Room</option>
+                  <option value="Mini Flat">Mini Flat</option>
+                  <option value="1-Bedroom Flat">1-Bedroom Flat</option>
+                  <option value="2-Bedroom Flat">2-Bedroom Flat</option>
+                  <option value="Studio">Studio</option>
+                </select>
+              </div>
+
+              <!-- Type of Kitchen -->
+              <div class="form-group">
+                <label class="form-label" for="editKitchenType">Type of Kitchen <span class="required">*</span></label>
+                <select id="editKitchenType" class="form-select" required>
+                  <option value="Private Kitchen">Private Kitchen</option>
+                  <option value="Shared Kitchen">Shared Kitchen</option>
+                  <option value="Kitchenette">Kitchenette</option>
+                  <option value="Open Plan Kitchen">Open Plan Kitchen</option>
+                </select>
+              </div>
+
+              <!-- Type of Toilet/Bath -->
+              <div class="form-group col-span-2">
+                <label class="form-label" for="editToiletBathType">Type of Toilet/Bath <span class="required">*</span></label>
+                <select id="editToiletBathType" class="form-select" required>
+                  <option value="En-suite / Private">En-suite / Private</option>
+                  <option value="Shared with 1 Roommate">Shared with 1 Roommate</option>
+                  <option value="Shared Common">Shared Common</option>
+                </select>
+              </div>
+
+              <!-- Roommate Sharing & Allocation Section -->
+              <div class="form-group col-span-2">
+                <div class="roommate-form-card">
+                  <div class="roommate-form-header" onclick="toggleEditRoommateForm()">
+                    <div>
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <i class="ri-team-fill" style="color: #00A85A; font-size: 1.25rem;"></i>
+                        <h4 style="margin: 0; font-size: 1rem; color: #0f172a;">Roommate Matching &amp; Allocation</h4>
+                      </div>
+                      <p style="margin: 4px 0 0; font-size: 0.82rem; color: var(--slate-500);">
+                        Update number of roommates gotten so far and number of roommates looking to join them.
+                      </p>
+                    </div>
+                    <label class="roommate-toggle-switch" onclick="event.stopPropagation()">
+                      <input type="checkbox" id="editIsRoommateShared" onchange="handleEditRoommateToggleChange()">
+                      <span class="roommate-toggle-slider"></span>
+                    </label>
+                  </div>
+
+                  <!-- Collapsible Roommate Fields -->
+                  <div id="editRoommateFieldsContainer" style="display: none; margin-top: 18px; padding-top: 18px; border-top: 1px dashed #cbd5e1;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px;">
+                      <div>
+                        <label class="form-label" for="editRoommatesGotten">Roommates Gotten So Far</label>
+                        <input type="number" id="editRoommatesGotten" class="form-input" value="1" min="0" max="10">
+                        <span style="font-size: 0.76rem; color: var(--slate-400);">Current tenant(s) residing or paid.</span>
+                      </div>
+                      <div>
+                        <label class="form-label" for="editRoommatesNeeded">Roommates Looking to Join</label>
+                        <input type="number" id="editRoommatesNeeded" class="form-input" value="1" min="0" max="10">
+                        <span style="font-size: 0.76rem; color: var(--slate-400);">Vacant slots available for roommates.</span>
+                      </div>
+                      <div>
+                        <label class="form-label" for="editRoommateSharePrice">Price per Roommate (₦)</label>
+                        <div class="input-prefix-group">
+                          <span class="input-prefix">₦</span>
+                          <input type="number" id="editRoommateSharePrice" class="form-input" placeholder="150,000" min="0" step="5000">
+                        </div>
+                        <span style="font-size: 0.76rem; color: var(--slate-400);">Each incoming roommate's contribution.</span>
+                      </div>
+                    </div>
+
+                    <!-- Occupant Profiles -->
+                    <div style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                      <label class="form-label" style="font-size: 0.85rem; margin-bottom: 8px; color: #0f172a;">
+                        <i class="ri-user-smile-line text-green"></i> Current Occupant Profile (Helps Match Compatible Students)
+                      </label>
+                      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px;">
+                        <div>
+                          <label class="form-label" style="font-size: 0.78rem;">Occupant Name</label>
+                          <input type="text" id="editOccupantName" class="form-input" placeholder="e.g. Mojeed">
+                        </div>
+                        <div>
+                          <label class="form-label" style="font-size: 0.78rem;">Gender</label>
+                          <select id="editOccupantGender" class="form-select">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label class="form-label" style="font-size: 0.78rem;">Religion / Preference</label>
+                          <select id="editOccupantReligion" class="form-select">
+                            <option value="Muslim">Muslim</option>
+                            <option value="Christian">Christian</option>
+                            <option value="Any">Any / Tolerant</option>
+                          </select>
+                        </div>
+                        <div>
+                          <label class="form-label" style="font-size: 0.78rem;">Habit Tags (Comma separated)</label>
+                          <input type="text" id="editOccupantTags" class="form-input" placeholder="Quiet, Studious, 200L">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Total Package -->
+              <div class="form-group">
+                <label class="form-label" for="editTotalPackage">Total Package (₦) <span class="required">*</span></label>
+                <div class="input-prefix-group">
+                  <span class="input-prefix">₦</span>
+                  <input type="number" id="editTotalPackage" class="form-input" required>
+                </div>
+              </div>
+
+              <!-- Annual Charge -->
+              <div class="form-group">
+                <label class="form-label" for="editAnnualCharge">Annual Charge (₦) <span class="required">*</span></label>
+                <div class="input-prefix-group">
+                  <span class="input-prefix">₦</span>
+                  <input type="number" id="editAnnualCharge" class="form-input" required>
+                </div>
+              </div>
+
+              <!-- Cleaning Fee -->
+              <div class="form-group">
+                <label class="form-label" for="editCleaningFee">Cleaning Fee (₦) <span class="required">*</span></label>
+                <div class="input-prefix-group">
+                  <span class="input-prefix">₦</span>
+                  <input type="number" id="editCleaningFee" class="form-input" required>
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div class="form-group col-span-2">
+                <label class="form-label" for="editDescription">Description <span class="required">*</span></label>
+                <textarea id="editDescription" class="form-textarea" required></textarea>
+              </div>
+
+              <!-- Amenities Multi-Select -->
+              <div class="form-group col-span-2">
+                <label class="form-label">Amenities</label>
+                <div class="amenities-selector" id="editAmenitiesContainer">
+                  <!-- Rendered dynamically -->
+                </div>
+              </div>
+
+              <!-- Image Gallery Preview -->
+              <div class="form-group col-span-2">
+                <label class="form-label">Current Property Photos</label>
+                <div class="upload-dropzone" id="imageDropzone">
+                  <i class="ri-image-add-line upload-icon"></i>
+                  <div class="upload-title">Add more property photos</div>
+                  <input type="file" id="listingImagesInput" accept="image/*" multiple style="display: none;">
+                </div>
+                <div class="media-preview-grid" id="imagePreviewGrid"></div>
+              </div>
+
+              <!-- Video Tour Preview -->
+              <div class="form-group col-span-2">
+                <label class="form-label">Property Video Tour (Max 1 min)</label>
+                <div class="upload-dropzone" id="videoDropzone">
+                  <i class="ri-video-upload-line upload-icon"></i>
+                  <div class="upload-title">Replace 1-minute Walkthrough Video</div>
+                  <input type="file" id="listingVideoInput" accept="video/*" style="display: none;">
+                </div>
+                <div id="videoPreviewBox"></div>
+              </div>
+
+            </div>
+
+            <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--light-gray); display: flex; justify-content: flex-end; gap: var(--space-3);">
+              <a href="listings.html" class="btn btn-secondary btn-lg">Cancel</a>
+              <button type="submit" id="btnUpdateListing" class="btn btn-primary btn-lg">
+                <i class="ri-check-line"></i>
+                <span>Save Changes</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/listings.js"></script>
+  <script>
+    const allAmenitiesList = [
+      "Prepaid Meter", "Running Water", "Gated Security", "Wardrobe",
+      "Tiled Floor", "Pop Ceiling", "Generator Backup", "WiFi Ready", "Waste Disposal"
+    ];
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setupMediaUploaders();
+      populateEditForm();
+    });
+
+    function toggleEditRoommateForm() {
+      const checkbox = document.getElementById('editIsRoommateShared');
+      checkbox.checked = !checkbox.checked;
+      handleEditRoommateToggleChange();
+    }
+
+    function handleEditRoommateToggleChange() {
+      const isChecked = document.getElementById('editIsRoommateShared').checked;
+      document.getElementById('editRoommateFieldsContainer').style.display = isChecked ? 'block' : 'none';
+    }
+
+    function populateEditForm() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const listingId = urlParams.get('id') || 'cyn-101';
+      const listings = getStoredListings();
+      const item = listings.find(l => l.id === listingId) || listings[0];
+
+      document.getElementById('editListingId').value = item.id;
+      document.getElementById('editTitle').value = item.title;
+      document.getElementById('editHeaderTitle').textContent = `Editing: ${item.title}`;
+      document.getElementById('breadcrumbListingTitle').textContent = item.title;
+      document.getElementById('editAddress').value = item.address;
+      document.getElementById('editTown').value = item.town;
+      document.getElementById('editTotalPackage').value = item.totalPackage;
+      document.getElementById('editAnnualCharge').value = item.annualCharge;
+      document.getElementById('editCleaningFee').value = item.cleaningFee;
+      document.getElementById('editDescription').value = item.description;
+      document.getElementById('editListingStatus').value = item.status;
+
+      // Select matching dropdown options
+      selectDropdownValue('editSchoolArea', item.schoolArea);
+      selectDropdownValue('editApartmentType', item.apartmentType);
+      selectDropdownValue('editKitchenType', item.kitchenType);
+      selectDropdownValue('editToiletBathType', item.toiletBathType);
+
+      // Populate Roommate Sharing fields
+      const isShared = !!item.isRoommateShared;
+      document.getElementById('editIsRoommateShared').checked = isShared;
+      document.getElementById('editRoommateFieldsContainer').style.display = isShared ? 'block' : 'none';
+      document.getElementById('editRoommatesGotten').value = item.roommatesGotten !== undefined ? item.roommatesGotten : 1;
+      document.getElementById('editRoommatesNeeded').value = item.roommatesNeeded !== undefined ? item.roommatesNeeded : 1;
+      document.getElementById('editRoommateSharePrice').value = item.roommateSharePrice || '';
+
+      if (item.currentRoommates && item.currentRoommates.length > 0) {
+        const occ = item.currentRoommates[0];
+        document.getElementById('editOccupantName').value = occ.name || '';
+        if (occ.gender) document.getElementById('editOccupantGender').value = occ.gender;
+        if (occ.religion) document.getElementById('editOccupantReligion').value = occ.religion;
+        if (occ.tags) document.getElementById('editOccupantTags').value = occ.tags.join(', ');
+      }
+
+      // Render Amenities
+      const amenitiesContainer = document.getElementById('editAmenitiesContainer');
+      amenitiesContainer.innerHTML = allAmenitiesList.map(a => {
+        const isChecked = item.amenities && item.amenities.includes(a);
+        return `
+          <label class="amenity-checkbox-label ${isChecked ? 'checked' : ''}">
+            <input type="checkbox" name="amenities" value="${a}" ${isChecked ? 'checked' : ''} onchange="this.parentElement.classList.toggle('checked', this.checked)">
+            <span>${a}</span>
+          </label>
+        `;
+      }).join('');
+
+      // Existing Images
+      const previewGrid = document.getElementById('imagePreviewGrid');
+      if (item.images && item.images.length > 0) {
+        previewGrid.innerHTML = item.images.map(img => `
+          <div class="preview-item">
+            <img src="${img}" alt="Listing photo" />
+            <button type="button" class="preview-remove-btn" onclick="this.parentElement.remove()" title="Remove photo">
+              <i class="ri-close-line"></i>
+            </button>
+          </div>
+        `).join('');
+      }
+
+      // Existing Video
+      if (item.hasVideo) {
+        document.getElementById('videoPreviewBox').innerHTML = `
+          <div style="margin-top: 12px; background: #fff; padding: 12px; border-radius: 8px; border: 1px solid var(--light-gray); display: flex; align-items: center; justify-content: space-between;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <div style="width: 36px; height: 36px; border-radius: 6px; background: rgba(0, 168, 90,0.12); color: var(--emerald-600); display: flex; align-items: center; justify-content: center;">
+                <i class="ri-film-line" style="font-size: 1.25rem;"></i>
+              </div>
+              <div>
+                <strong style="font-size: 0.88rem; color: var(--dark-slate);">listing_walkthrough.mp4</strong>
+                <div style="font-size: 0.78rem; color: var(--slate-400);">Duration: ${item.videoDuration || '0:45'} &bull; Verified under 1 min</div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="this.closest('#videoPreviewBox').innerHTML=''" style="padding: 4px 8px;">
+              <i class="ri-delete-bin-line text-danger"></i>
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function selectDropdownValue(elementId, value) {
+      const select = document.getElementById(elementId);
+      if (!select) return;
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value.includes(value) || value.includes(select.options[i].value)) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+    }
+
+    function handleUpdateListing(e) {
+      e.preventDefault();
+      const id = document.getElementById('editListingId').value;
+      const listings = getStoredListings();
+      const index = listings.findIndex(l => l.id === id);
+      if (index === -1) return;
+
+      const selectedAmenities = [];
+      document.querySelectorAll('input[name="amenities"]:checked').forEach(c => selectedAmenities.push(c.value));
+
+      // Roommate sharing fields
+      const isRoommateShared = document.getElementById('editIsRoommateShared').checked;
+      const roommatesGotten = isRoommateShared ? Number(document.getElementById('editRoommatesGotten').value || 1) : 0;
+      const roommatesNeeded = isRoommateShared ? Number(document.getElementById('editRoommatesNeeded').value || 1) : 0;
+      const roommateSharePrice = isRoommateShared ? Number(document.getElementById('editRoommateSharePrice').value || 0) : 0;
+
+      const currentRoommates = [];
+      if (isRoommateShared) {
+        const occName = document.getElementById('editOccupantName').value.trim() || 'Resident';
+        const occGender = document.getElementById('editOccupantGender').value;
+        const occReligion = document.getElementById('editOccupantReligion').value;
+        const occTagsRaw = document.getElementById('editOccupantTags').value.trim();
+        const occTags = occTagsRaw ? occTagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [occGender, occReligion];
+        if (!occTags.includes(occGender)) occTags.unshift(occGender);
+        if (!occTags.includes(occReligion)) occTags.push(occReligion);
+
+        currentRoommates.push({
+          name: occName,
+          gender: occGender,
+          religion: occReligion,
+          tags: occTags
+        });
+      }
+
+      listings[index].title = document.getElementById('editTitle').value;
+      listings[index].address = document.getElementById('editAddress').value;
+      listings[index].town = document.getElementById('editTown').value;
+      listings[index].schoolArea = document.getElementById('editSchoolArea').value;
+      listings[index].apartmentType = document.getElementById('editApartmentType').value;
+      listings[index].kitchenType = document.getElementById('editKitchenType').value;
+      listings[index].toiletBathType = document.getElementById('editToiletBathType').value;
+      listings[index].totalPackage = Number(document.getElementById('editTotalPackage').value);
+      listings[index].annualCharge = Number(document.getElementById('editAnnualCharge').value);
+      listings[index].cleaningFee = Number(document.getElementById('editCleaningFee').value);
+      listings[index].description = document.getElementById('editDescription').value;
+      listings[index].status = document.getElementById('editListingStatus').value;
+      listings[index].amenities = selectedAmenities;
+      listings[index].isRoommateShared = isRoommateShared;
+      listings[index].roommatesGotten = roommatesGotten;
+      listings[index].roommatesNeeded = roommatesNeeded;
+      listings[index].roommateSharePrice = roommateSharePrice;
+      listings[index].currentRoommates = currentRoommates;
+
+      saveStoredListings(listings);
+      showToast('Property listing updated successfully!');
+      setTimeout(() => {
+        window.location.href = 'listings.html';
+      }, 700);
+    }
+  </script>
+</body>
+</html>

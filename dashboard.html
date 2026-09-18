@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Dashboard - Cynic Student Accommodation</title>
+  <meta name="description" content="Overview dashboard for Cynic student accommodation agents in Nigeria.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-shell">
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- App Sidebar Component -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span>CYNIC</span>
+            <span class="brand-tag">Agent Portal</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Main Navigation</div>
+        <ul class="nav-list">
+          <li class="nav-item active">
+            <a href="dashboard.html">
+              <i class="ri-dashboard-3-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="listings.html">
+              <i class="ri-hotel-line"></i>
+              <span>Listings</span>
+              <span class="nav-badge" id="sidebarListingsBadge">12</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="add-listing.html">
+              <i class="ri-add-circle-line"></i>
+              <span>Add New Listing</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="interests.html">
+              <i class="ri-user-heart-line"></i>
+              <span>Student Interests</span>
+              <span class="nav-badge badge-green" id="sidebarInterestsBadge">34</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="messages.html">
+              <i class="ri-message-3-line"></i>
+              <span>Messages</span>
+              <span class="nav-badge badge-green">8</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="reports.html">
+              <i class="ri-alert-line"></i>
+              <span>Reports</span>
+              <span class="nav-badge badge-amber">3</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-section-title" style="margin-top: var(--space-4);">Account Settings</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="profile.html">
+              <i class="ri-user-settings-line"></i>
+              <span>Agent Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html">
+              <i class="ri-global-line"></i>
+              <span>View Public Website</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="agent-mini-card">
+          <div class="agent-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent Avatar" class="agent-avatar-img">
+            <span class="online-dot"></span>
+          </div>
+          <div class="agent-meta">
+            <div class="agent-name agent-name-display">Tunde Balogun</div>
+            <div class="agent-role agent-agency-display">Prime Campus Properties</div>
+          </div>
+          <button type="button" class="btn-sidebar-logout" onclick="handleAgentLogout()" title="Logout">
+            <i class="ri-logout-box-r-line"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content-wrapper">
+      <!-- Topbar Component -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" class="mobile-menu-btn" id="sidebarToggleBtn" aria-label="Open Sidebar Menu">
+            <i class="ri-menu-2-line"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Agent Dashboard</h1>
+            <div class="page-breadcrumb">
+              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <span>Overview &amp; Statistics</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="topbar-search">
+            <i class="ri-search-line"></i>
+            <input type="text" placeholder="Search properties, students..." onkeyup="if(event.key==='Enter') window.location.href='listings.html?q='+encodeURIComponent(this.value)">
+          </div>
+
+          <div class="topbar-actions">
+            <a href="messages.html" class="icon-btn" title="Messages">
+              <i class="ri-message-3-line"></i>
+              <span class="badge-dot"></span>
+            </a>
+            <a href="reports.html" class="icon-btn" title="Reports">
+              <i class="ri-notification-3-line"></i>
+              <span class="badge-dot" style="background-color: var(--status-warning);"></span>
+            </a>
+            
+            <a href="profile.html" class="agent-profile-pill">
+              <div class="pill-avatar">TB</div>
+              <span class="pill-name agent-name-display">Tunde Balogun</span>
+              <i class="ri-arrow-down-s-line" style="color: var(--slate-400);"></i>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Body Container -->
+      <main class="page-body">
+        
+        <!-- Welcome Hero Banner -->
+        <div class="card" style="padding: var(--space-6); margin-bottom: var(--space-6); background: linear-gradient(135deg, rgba(0, 168, 90, 0.1) 0%, rgba(30, 41, 59, 0.03) 100%); border-color: rgba(0, 168, 90, 0.25);">
+          <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 16px;">
+            <div>
+              <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--status-success-bg); color: var(--emerald-700); padding: 3px 10px; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 700; margin-bottom: 8px;">
+                <i class="ri-verified-badge-fill"></i> VERIFIED CYNIC PARTNER
+              </div>
+              <h2>Good day, <span class="agent-name-display gradient-text">Tunde Balogun</span> 👋</h2>
+              <p style="margin-top: 4px; font-size: 0.92rem;">
+                Here is an overview of your student housing portfolio in Ikeja, Yaba, UNILAG, and LASU axes today.
+              </p>
+            </div>
+            <div class="flex items-center gap-3">
+              <a href="add-listing.html" class="btn btn-primary">
+                <i class="ri-add-line"></i> Add New Listing
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 4.2 Stats Matching Wireframe -->
+        <section class="stats-grid">
+          <!-- Total Listings -->
+          <div class="stat-card">
+            <div class="stat-info">
+              <span class="stat-label">Total Listings</span>
+              <span class="stat-value" id="statListingsCount">12</span>
+              <div class="stat-trend trend-up">
+                <i class="ri-arrow-up-line"></i>
+                <span>2 added this month</span>
+              </div>
+            </div>
+            <div class="stat-icon-wrapper green">
+              <i class="ri-hotel-bed-line"></i>
+            </div>
+          </div>
+
+          <!-- Interests -->
+          <div class="stat-card">
+            <div class="stat-info">
+              <span class="stat-label">Student Interests</span>
+              <span class="stat-value" id="statInterestsCount">34</span>
+              <div class="stat-trend trend-up">
+                <i class="ri-arrow-up-line"></i>
+                <span>+14% vs last week</span>
+              </div>
+            </div>
+            <div class="stat-icon-wrapper blue">
+              <i class="ri-user-heart-line"></i>
+            </div>
+          </div>
+
+          <!-- Active Chats -->
+          <div class="stat-card">
+            <div class="stat-info">
+              <span class="stat-label">Active Chats</span>
+              <span class="stat-value" id="statChatsCount">8</span>
+              <div class="stat-trend trend-neutral">
+                <i class="ri-chat-voice-line"></i>
+                <span>3 pending response</span>
+              </div>
+            </div>
+            <div class="stat-icon-wrapper purple">
+              <i class="ri-message-3-line"></i>
+            </div>
+          </div>
+
+          <!-- Reports -->
+          <div class="stat-card">
+            <div class="stat-info">
+              <span class="stat-label">Student Reports</span>
+              <span class="stat-value" id="statReportsCount">3</span>
+              <div class="stat-trend trend-down">
+                <i class="ri-error-warning-line"></i>
+                <span>Needs maintenance check</span>
+              </div>
+            </div>
+            <div class="stat-icon-wrapper amber">
+              <i class="ri-alarm-warning-line"></i>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4.2 Quick Actions Matching Wireframe -->
+        <section class="quick-actions-bar">
+          <div class="qa-intro">
+            <h3>Quick Actions</h3>
+            <p>Perform urgent property management tasks directly from your central terminal.</p>
+          </div>
+          <div class="qa-buttons">
+            <a href="add-listing.html" class="btn btn-primary">
+              <i class="ri-add-circle-fill"></i> Add Listing
+            </a>
+            <a href="interests.html" class="btn btn-secondary">
+              <i class="ri-user-heart-fill" style="color: var(--emerald-600);"></i> View Interests
+            </a>
+            <a href="messages.html" class="btn btn-secondary">
+              <i class="ri-chat-1-fill" style="color: #3b82f6;"></i> Messages
+            </a>
+          </div>
+        </section>
+
+        <!-- Listings Management Snapshot (Wireframe 4.3 Preview) -->
+        <div style="margin-bottom: var(--space-8);">
+          <div class="flex items-center justify-between" style="margin-bottom: var(--space-4);">
+            <div>
+              <h3>Featured Accommodations</h3>
+              <p style="font-size: 0.88rem;">Current status of student listings under your agency.</p>
+            </div>
+            <a href="listings.html" class="btn btn-outline-green btn-sm">
+              <span>View All 12 Listings</span>
+              <i class="ri-arrow-right-line"></i>
+            </a>
+          </div>
+
+          <div class="listings-grid" id="dashboardListingsContainer">
+            <!-- Rendered by listings.js -->
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/listings.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Render snapshot of listings
+      renderListingsGrid('dashboardListingsContainer');
+      
+      // Update dynamic numbers
+      const listings = getStoredListings();
+      if (document.getElementById('statListingsCount')) {
+        document.getElementById('statListingsCount').textContent = listings.length;
+      }
+    });
+  </script>
+</body>
+</html>
