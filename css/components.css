@@ -692,15 +692,24 @@
   text-transform: uppercase;
 }
 
-.status-available {
-  background: var(--status-success);
+.status-available,
+.status-verified {
+  background: var(--status-success, #00A85A);
   color: var(--white);
   box-shadow: 0 2px 8px rgba(0, 168, 90, 0.4);
 }
 
+.status-unverified {
+  background: #f59e0b;
+  color: #1e293b;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.35);
+  font-weight: 700;
+}
+
 .status-occupied {
-  background: var(--status-danger);
+  background: #64748b;
   color: var(--white);
+  box-shadow: 0 2px 8px rgba(100, 116, 139, 0.35);
 }
 
 .status-deactivated {
@@ -1192,15 +1201,26 @@
 }
 
 .chat-property-pill {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 6px;
   background: var(--status-success-bg);
   color: var(--emerald-700);
-  padding: 4px 10px;
+  padding: 4px 12px;
   border-radius: var(--radius-full);
   font-size: 0.78rem;
   font-weight: 600;
+  max-width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.chat-property-pill span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .chat-messages-area {
@@ -2631,6 +2651,598 @@
 
 .roommate-toggle-switch input:checked + .roommate-toggle-slider:before {
   transform: translateX(22px);
+}
+
+/* ==========================================================================
+   LISTINGS COMMENTS MODAL & REPLIES
+   ========================================================================== */
+.listing-comment-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f1f5f9;
+  color: #334155;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid #e2e8f0;
+}
+
+.listing-comment-pill:hover {
+  background: var(--status-success-bg);
+  color: var(--emerald-700);
+  border-color: var(--primary-green);
+}
+
+.listing-comment-pill .comment-count-badge {
+  background: var(--primary-green);
+  color: white;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+/* Modal Dialog Frame */
+.cynic-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.cynic-modal-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.cynic-modal-dialog {
+  background: var(--white);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 620px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.25);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  transform: translateY(12px) scale(0.98);
+  transition: transform 0.25s ease;
+  overflow: hidden;
+}
+
+.cynic-modal-backdrop.active .cynic-modal-dialog {
+  transform: translateY(0) scale(1);
+}
+
+.cynic-modal-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f8fafc;
+}
+
+.cynic-modal-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--dark-slate);
+  margin: 0;
+}
+
+.cynic-modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.35rem;
+  color: var(--slate-400);
+  cursor: pointer;
+  border-radius: 8px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.cynic-modal-close-btn:hover {
+  background: #e2e8f0;
+  color: var(--dark-slate);
+}
+
+.cynic-modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.cynic-modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #f1f5f9;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Comment Thread Item */
+.listing-comment-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.listing-comment-card:last-child {
+  margin-bottom: 0;
+}
+
+.comment-author-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.comment-author-name {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--dark-slate);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.comment-date {
+  font-size: 0.76rem;
+  color: #64748b;
+}
+
+.comment-text {
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.agent-replies-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  padding-left: 12px;
+  border-left: 2px solid var(--primary-green);
+}
+
+.agent-reply-bubble {
+  background: var(--status-success-bg);
+  border: 1px solid rgba(0, 168, 90, 0.2);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.agent-reply-header {
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--emerald-700);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.agent-reply-text {
+  font-size: 0.84rem;
+  color: #1e293b;
+  line-height: 1.45;
+}
+
+.comment-reply-form {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.comment-reply-input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 0.84rem;
+  font-family: inherit;
+}
+
+.comment-reply-input:focus {
+  outline: none;
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px rgba(0, 168, 90, 0.15);
+}
+
+/* ==========================================================================
+   MULTI-ROOMMATE DYNAMIC REPEATER
+   ========================================================================== */
+.multi-roommate-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 14px;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.multi-roommate-card:hover {
+  border-color: #cbd5e1;
+}
+
+.roommate-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.roommate-card-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--dark-slate);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-remove-roommate {
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid #fee2e2;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+}
+
+.btn-remove-roommate:hover {
+  background: #fee2e2;
+}
+
+.btn-add-roommate {
+  background: #f8fafc;
+  color: var(--primary-green);
+  border: 1px dashed var(--primary-green);
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-add-roommate:hover {
+  background: var(--status-success-bg);
+}
+
+.roommate-lock-banner {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.roommate-lock-banner i {
+  color: #d97706;
+  font-size: 1.25rem;
+  margin-top: 2px;
+}
+
+.roommate-lock-banner-text {
+  font-size: 0.85rem;
+  color: #92400e;
+  line-height: 1.45;
+}
+
+/* ==========================================================================
+   OCCUPANCY & MANAGEMENT ACTION BUTTONS
+   ========================================================================== */
+.btn-mark-occupied {
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-mark-occupied:hover {
+  background: #e2e8f0;
+  color: var(--dark-slate);
+}
+
+.btn-mark-vacant {
+  background: var(--status-success-bg);
+  color: var(--emerald-700);
+  border: 1px solid var(--primary-green);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-mark-vacant:hover {
+  background: var(--primary-green);
+  color: white;
+}
+
+.btn-delete-listing {
+  background: #fff1f2;
+  color: #e11d48;
+  border: 1px solid #fecdd3;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-delete-listing:hover {
+  background: #e11d48;
+  color: white;
+}
+
+/* ==========================================================================
+   NOTIFICATIONS PAGE COMPONENTS
+   ========================================================================== */
+.notification-card {
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.notification-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-sm);
+}
+
+.notification-card.unread {
+  background: #f8fffa;
+  border-left: 4px solid var(--primary-green);
+}
+
+.notification-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.notification-icon-wrap.comment {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.notification-icon-wrap.admin {
+  background: #ecfdf5;
+  color: var(--primary-green);
+}
+
+.notification-icon-wrap.roommate {
+  background: #fdf4ff;
+  color: #a855f7;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--dark-slate);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notification-msg {
+  font-size: 0.88rem;
+  color: #475569;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.notification-meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.78rem;
+  color: #94a3b8;
+}
+
+.notification-filter-tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.filter-tab-btn {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.filter-tab-btn:hover {
+  background: #f1f5f9;
+  color: var(--dark-slate);
+}
+
+.filter-tab-btn.active {
+  background: var(--primary-green);
+  border-color: var(--primary-green);
+  color: white;
+}
+
+/* ==========================================================================
+   AGENT PROFILE REVAMP & ANALYTICS
+   ========================================================================== */
+.profile-hero-card {
+  background: linear-gradient(135deg, var(--dark-slate) 0%, #1e293b 100%);
+  border-radius: 16px;
+  padding: 32px;
+  color: white;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-hero-card::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 168, 90, 0.2) 0%, transparent 70%);
+}
+
+.profile-hero-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profile-hero-avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 3px solid var(--primary-green);
+  object-fit: cover;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+
+.profile-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(0, 168, 90, 0.25);
+  color: #86efac;
+  border: 1px solid rgba(0, 168, 90, 0.5);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.profile-analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.profile-stat-box {
+  background: white;
+  border: 1px solid var(--light-gray);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-stat-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #64748b;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.profile-stat-num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--dark-slate);
+  margin-bottom: 4px;
+}
+
+.profile-stat-sub {
+  font-size: 0.78rem;
+  color: var(--emerald-600);
+  font-weight: 600;
 }
 
 

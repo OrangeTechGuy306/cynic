@@ -79,6 +79,19 @@
   .app-topbar {
     padding: 0 var(--space-4);
     height: 64px;
+    gap: 8px;
+  }
+
+  .page-breadcrumb {
+    display: none; /* Prevents topbar wrapping/collision on mobile */
+  }
+
+  .agent-profile-pill .pill-name {
+    display: none;
+  }
+
+  .topbar-actions {
+    gap: 8px;
   }
 
   .topbar-search {
@@ -196,6 +209,12 @@
 
   .message-bubble {
     max-width: 85%;
+  }
+
+  .chat-property-pill {
+    max-width: 140px;
+    font-size: 0.72rem;
+    padding: 3px 8px;
   }
 }
 

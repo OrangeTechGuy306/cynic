@@ -46,7 +46,7 @@ function showToast(message, type = 'success') {
   toast.className = `cynic-toast toast-${type}`;
   
   let iconClass = 'ri-checkbox-circle-fill text-green';
-  if (type === 'danger') iconClass = 'ri-error-warning-fill text-danger';
+  if (type === 'danger' || type === 'error') iconClass = 'ri-error-warning-fill text-danger';
   if (type === 'warning') iconClass = 'ri-alert-fill text-warning';
   if (type === 'info') iconClass = 'ri-information-fill text-muted';
 
@@ -63,6 +63,10 @@ function showToast(message, type = 'success') {
     toast.style.transform = 'translateY(10px)';
     setTimeout(() => toast.remove(), 300);
   }, 3500);
+}
+
+function showToastNotification(message, type = 'success') {
+  showToast(message, type);
 }
 
 /* Synchronize Agent Profile from localStorage */

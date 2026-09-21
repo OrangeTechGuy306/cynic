@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notifications &amp; Alerts - Cynic Agent Portal</title>
+  <meta name="description" content="View listing comments, student roommate inquiries, and administrative notifications on Cynic.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-shell">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- App Sidebar Component -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span>CYNIC</span>
+            <span class="brand-tag">Agent Portal</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Main Navigation</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="dashboard.html">
+              <i class="ri-dashboard-3-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="listings.html">
+              <i class="ri-hotel-line"></i>
+              <span>Listings</span>
+              <span class="nav-badge" id="sidebarListingsBadge">12</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="occupied-listings.html">
+              <i class="ri-lock-line"></i>
+              <span>Occupied Listings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="add-listing.html">
+              <i class="ri-add-circle-line"></i>
+              <span>Add New Listing</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="interests.html">
+              <i class="ri-user-heart-line"></i>
+              <span>Student Interests</span>
+              <span class="nav-badge badge-green">34</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="messages.html">
+              <i class="ri-message-3-line"></i>
+              <span>Messages</span>
+              <span class="nav-badge badge-green">8</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="notifications.html">
+              <i class="ri-notification-3-line"></i>
+              <span>Notifications</span>
+              <span class="nav-badge badge-amber" id="sidebarNotifBadge">4</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-section-title" style="margin-top: var(--space-4);">Account Settings</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="profile.html">
+              <i class="ri-user-settings-line"></i>
+              <span>Agent Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html">
+              <i class="ri-global-line"></i>
+              <span>View Public Website</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="agent-mini-card">
+          <div class="agent-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent Avatar" class="agent-avatar-img">
+            <span class="online-dot"></span>
+          </div>
+          <div class="agent-meta">
+            <div class="agent-name agent-name-display">Tunde Balogun</div>
+            <div class="agent-role agent-agency-display">Prime Campus Properties</div>
+          </div>
+          <button type="button" class="btn-sidebar-logout" onclick="handleAgentLogout()" title="Logout">
+            <i class="ri-logout-box-r-line"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content-wrapper">
+      <!-- Topbar Component -->
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" class="mobile-menu-btn" id="sidebarToggleBtn" aria-label="Open Sidebar Menu">
+            <i class="ri-menu-2-line"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Notifications &amp; Alerts</h1>
+            <div class="page-breadcrumb">
+              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <span>Listing Comments &amp; Admin Notices</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="topbar-actions">
+            <a href="messages.html" class="icon-btn" title="Messages">
+              <i class="ri-message-3-line"></i>
+              <span class="badge-dot"></span>
+            </a>
+            <a href="notifications.html" class="icon-btn" title="Notifications">
+              <i class="ri-notification-3-line"></i>
+              <span class="badge-dot" style="background-color: var(--status-warning);"></span>
+            </a>
+            
+            <a href="profile.html" class="agent-profile-pill">
+              <div class="pill-avatar">TB</div>
+              <span class="pill-name agent-name-display">Tunde Balogun</span>
+              <i class="ri-arrow-down-s-line" style="color: var(--slate-400);"></i>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Page Body Container -->
+      <main class="page-body">
+        
+        <!-- Header Banner & Action bar -->
+        <div class="card" style="padding: var(--space-6); margin-bottom: var(--space-6); background: linear-gradient(135deg, rgba(0, 168, 90, 0.08) 0%, rgba(30, 41, 59, 0.02) 100%); border-color: rgba(0, 168, 90, 0.2);">
+          <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 16px;">
+            <div>
+              <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--status-success-bg); color: var(--emerald-700); padding: 3px 10px; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 700; margin-bottom: 8px;">
+                <i class="ri-notification-badge-line"></i> LIVE NOTIFICATIONS TERMINAL
+              </div>
+              <h2 style="font-size: 1.4rem;">Listing Comments &amp; Admin Alerts</h2>
+              <p style="margin-top: 4px; font-size: 0.92rem; color: var(--slate-500);">
+                Track student queries, administrative review updates, and roommate applications across all properties.
+              </p>
+            </div>
+            <div class="flex items-center gap-3">
+              <button type="button" class="btn btn-secondary" onclick="handleMarkAllRead()">
+                <i class="ri-check-double-line"></i> Mark All as Read
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="notification-filter-tabs">
+          <button type="button" class="filter-tab-btn active" onclick="setNotifFilter('all', this)">
+            <i class="ri-apps-line"></i> All Notifications (<span id="countAllNotifs">0</span>)
+          </button>
+          <button type="button" class="filter-tab-btn" onclick="setNotifFilter('comment', this)">
+            <i class="ri-chat-1-line"></i> Comments (<span id="countCommentNotifs">0</span>)
+          </button>
+          <button type="button" class="filter-tab-btn" onclick="setNotifFilter('admin', this)">
+            <i class="ri-shield-check-line"></i> Admin Notices (<span id="countAdminNotifs">0</span>)
+          </button>
+          <button type="button" class="filter-tab-btn" onclick="setNotifFilter('roommate', this)">
+            <i class="ri-group-line"></i> Roommates (<span id="countRoommateNotifs">0</span>)
+          </button>
+        </div>
+
+        <!-- Notifications List Container -->
+        <div id="notificationsContainer">
+          <!-- Rendered via JS -->
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Comments Reply Modal Dialog -->
+  <div class="cynic-modal-backdrop" id="commentReplyModal">
+    <div class="cynic-modal-dialog">
+      <div class="cynic-modal-header">
+        <div>
+          <h3 id="modalListingTitle">Property Comments</h3>
+          <span style="font-size: 0.8rem; color: var(--slate-500);" id="modalListingSubtitle">UNILAG Premium Self-Contain</span>
+        </div>
+        <button type="button" class="cynic-modal-close-btn" onclick="closeCommentModal()">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+
+      <div class="cynic-modal-body" id="modalCommentsList">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <div class="cynic-modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeCommentModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let activeFilter = 'all';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderNotifications();
+      updateCounts();
+    });
+
+    function setNotifFilter(filter, btn) {
+      activeFilter = filter;
+      document.querySelectorAll('.filter-tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderNotifications();
+    }
+
+    function renderNotifications() {
+      const container = document.getElementById('notificationsContainer');
+      const notifs = getStoredNotifications();
+
+      let filtered = notifs;
+      if (activeFilter !== 'all') {
+        filtered = notifs.filter(n => n.type === activeFilter);
+      }
+
+      if (!filtered || filtered.length === 0) {
+        container.innerHTML = `
+          <div class="card text-center" style="padding: 48px 24px;">
+            <div style="font-size: 2.5rem; color: var(--slate-300); margin-bottom: 12px;">
+              <i class="ri-notification-off-line"></i>
+            </div>
+            <h3 style="color: var(--dark-slate); margin-bottom: 6px;">No Notifications Found</h3>
+            <p style="color: var(--slate-500); font-size: 0.9rem;">You have caught up with all alerts in this category.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => {
+        let iconClass = 'ri-notification-3-line';
+        let typeClass = 'admin';
+        if (item.type === 'comment') {
+          iconClass = 'ri-chat-3-line';
+          typeClass = 'comment';
+        } else if (item.type === 'roommate') {
+          iconClass = 'ri-user-shared-line';
+          typeClass = 'roommate';
+        } else if (item.type === 'admin') {
+          iconClass = 'ri-shield-check-line';
+          typeClass = 'admin';
+        }
+
+        let actionBtnHtml = '';
+        if (item.type === 'comment' && item.listingId) {
+          actionBtnHtml = `
+            <button type="button" class="btn btn-outline-green btn-sm" onclick="openReplyModalFromNotif('${item.id}', '${item.listingId}')">
+              <i class="ri-reply-line"></i> View &amp; Reply
+            </button>
+          `;
+        } else if (item.link) {
+          actionBtnHtml = `
+            <a href="${item.link}" class="btn btn-outline-green btn-sm" onclick="markNotificationRead('${item.id}')">
+              <span>View Details</span> <i class="ri-arrow-right-line"></i>
+            </a>
+          `;
+        }
+
+        return `
+          <div class="notification-card ${item.read ? '' : 'unread'}" id="notif-card-${item.id}">
+            <div class="notification-icon-wrap ${typeClass}">
+              <i class="${iconClass}"></i>
+            </div>
+            <div class="notification-content">
+              <div class="notification-title">
+                <span>${item.title}</span>
+                <span style="font-size: 0.78rem; font-weight: normal; color: var(--slate-400);">${item.time}</span>
+              </div>
+              <div class="notification-msg">${item.message}</div>
+              <div class="notification-meta">
+                ${item.propertyTitle ? `<span><i class="ri-hotel-line"></i> ${item.propertyTitle}</span>` : ''}
+                ${item.author ? `<span><i class="ri-user-line"></i> By ${item.author}</span>` : ''}
+                ${!item.read ? `<span style="color: var(--primary-green); font-weight: 600;"><i class="ri-record-circle-line"></i> New</span>` : ''}
+              </div>
+            </div>
+            <div style="align-self: center; flex-shrink: 0;">
+              ${actionBtnHtml}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function updateCounts() {
+      const notifs = getStoredNotifications();
+      const unreadCount = notifs.filter(n => !n.read).length;
+      
+      const countAll = document.getElementById('countAllNotifs');
+      const countComment = document.getElementById('countCommentNotifs');
+      const countAdmin = document.getElementById('countAdminNotifs');
+      const countRoommate = document.getElementById('countRoommateNotifs');
+      const sidebarBadge = document.getElementById('sidebarNotifBadge');
+
+      if (countAll) countAll.textContent = notifs.length;
+      if (countComment) countComment.textContent = notifs.filter(n => n.type === 'comment').length;
+      if (countAdmin) countAdmin.textContent = notifs.filter(n => n.type === 'admin').length;
+      if (countRoommate) countRoommate.textContent = notifs.filter(n => n.type === 'roommate').length;
+      if (sidebarBadge) sidebarBadge.textContent = unreadCount;
+    }
+
+    function handleMarkAllRead() {
+      markAllNotificationsRead();
+      renderNotifications();
+      updateCounts();
+      showToastNotification("All notifications marked as read", "success");
+    }
+
+    // Modal & Comment Reply Logic
+    let currentActiveListingId = null;
+
+    function openReplyModalFromNotif(notifId, listingId) {
+      markNotificationRead(notifId);
+      updateCounts();
+      const notifCard = document.getElementById(`notif-card-${notifId}`);
+      if (notifCard) notifCard.classList.remove('unread');
+      
+      openListingCommentsModal(listingId);
+    }
+
+    function openListingCommentsModal(listingId) {
+      currentActiveListingId = listingId;
+      const rawListings = localStorage.getItem('cynic_listings');
+      const listings = rawListings ? JSON.parse(rawListings) : CYNIC_DATA.listings;
+      const listing = listings.find(l => l.id === listingId);
+
+      if (!listing) {
+        showToastNotification("Listing not found", "error");
+        return;
+      }
+
+      document.getElementById('modalListingTitle').textContent = `Comments on Listing`;
+      document.getElementById('modalListingSubtitle').textContent = `${listing.title} (${listing.location})`;
+
+      renderModalComments(listing);
+      document.getElementById('commentReplyModal').classList.add('active');
+    }
+
+    function renderModalComments(listing) {
+      const body = document.getElementById('modalCommentsList');
+      const comments = listing.comments || [];
+
+      if (comments.length === 0) {
+        body.innerHTML = `
+          <div class="text-center" style="padding: 24px; color: var(--slate-400);">
+            <i class="ri-chat-smile-2-line" style="font-size: 2rem;"></i>
+            <p style="margin-top: 8px;">No student comments on this listing yet.</p>
+          </div>
+        `;
+        return;
+      }
+
+      body.innerHTML = comments.map(c => `
+        <div class="listing-comment-card" id="comment-box-${c.id}">
+          <div class="comment-author-row">
+            <span class="comment-author-name">
+              <i class="ri-user-3-line" style="color: var(--primary-green);"></i> ${c.author}
+            </span>
+            <span class="comment-date">${c.date}</span>
+          </div>
+          <p class="comment-text">${c.text}</p>
+          
+          <div class="agent-replies-list">
+            ${c.reply ? `
+              <div class="agent-reply-bubble">
+                <div class="agent-reply-header">
+                  <span><i class="ri-reply-fill"></i> Agent Response (You)</span>
+                  <span>${c.replyDate || 'Recently'}</span>
+                </div>
+                <div class="agent-reply-text">${c.reply}</div>
+              </div>
+            ` : `
+              <div style="font-size: 0.78rem; color: #94a3b8; font-style: italic;">No reply sent yet.</div>
+            `}
+          </div>
+
+          <form class="comment-reply-form" onsubmit="handleSendCommentReply(event, '${c.id}')">
+            <input type="text" class="comment-reply-input" id="reply-input-${c.id}" placeholder="${c.reply ? 'Update your reply...' : 'Type your reply as Agent...'}" required>
+            <button type="submit" class="btn btn-primary btn-sm">
+              <i class="ri-send-plane-fill"></i> Reply
+            </button>
+          </form>
+        </div>
+      `).join('');
+    }
+
+    function handleSendCommentReply(e, commentId) {
+      e.preventDefault();
+      const input = document.getElementById(`reply-input-${commentId}`);
+      const text = input.value.trim();
+      if (!text) return;
+
+      const success = replyToListingComment(currentActiveListingId, commentId, text);
+      if (success) {
+        showToastNotification("Reply published successfully!", "success");
+        // Reload listing comments
+        const rawListings = localStorage.getItem('cynic_listings');
+        const listings = rawListings ? JSON.parse(rawListings) : CYNIC_DATA.listings;
+        const listing = listings.find(l => l.id === currentActiveListingId);
+        renderModalComments(listing);
+      }
+    }
+
+    function closeCommentModal() {
+      document.getElementById('commentReplyModal').classList.remove('active');
+    }
+
+    // Close modal on backdrop click
+    document.getElementById('commentReplyModal').addEventListener('click', (e) => {
+      if (e.target.id === 'commentReplyModal') closeCommentModal();
+    });
+  </script>
+</body>
+</html>

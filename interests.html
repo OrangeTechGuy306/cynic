@@ -55,6 +55,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="occupied-listings.html">
+              <i class="ri-lock-line"></i>
+              <span>Occupied Listings</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="add-listing.html">
               <i class="ri-add-circle-line"></i>
               <span>Add New Listing</span>
@@ -75,10 +81,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="reports.html">
-              <i class="ri-alert-line"></i>
-              <span>Reports</span>
-              <span class="nav-badge badge-amber">3</span>
+            <a href="notifications.html">
+              <i class="ri-notification-3-line"></i>
+              <span>Notifications</span>
+              <span class="nav-badge badge-amber" id="sidebarReportsBadge">4</span>
             </a>
           </li>
         </ul>
@@ -132,10 +138,17 @@
         </div>
 
         <div class="topbar-right">
-          <div class="topbar-search">
-            <i class="ri-search-line"></i>
-            <input type="text" id="interestSearchInput" placeholder="Search student, property, school..." oninput="handleInterestSearch(this.value)">
+          <div class="topbar-actions" style="margin-right: 12px;">
+            <a href="messages.html" class="icon-btn" title="Messages">
+              <i class="ri-message-3-line"></i>
+              <span class="badge-dot"></span>
+            </a>
+            <a href="notifications.html" class="icon-btn" title="Notifications">
+              <i class="ri-notification-3-line"></i>
+              <span class="badge-dot" style="background-color: var(--status-warning);"></span>
+            </a>
           </div>
+
           <a href="profile.html" class="agent-profile-pill">
             <div class="pill-avatar">TB</div>
             <span class="pill-name agent-name-display">Tunde Balogun</span>

@@ -54,6 +54,12 @@
               <span class="nav-badge" id="sidebarListingsBadge">12</span>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="occupied-listings.html">
+              <i class="ri-lock-line"></i>
+              <span>Occupied Listings</span>
+            </a>
+          </li>
           <li class="nav-item active">
             <a href="add-listing.html">
               <i class="ri-add-circle-line"></i>
@@ -75,10 +81,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="reports.html">
-              <i class="ri-alert-line"></i>
-              <span>Reports</span>
-              <span class="nav-badge badge-amber">3</span>
+            <a href="notifications.html">
+              <i class="ri-notification-3-line"></i>
+              <span>Notifications</span>
+              <span class="nav-badge badge-amber" id="sidebarReportsBadge">4</span>
             </a>
           </li>
         </ul>
@@ -127,12 +133,23 @@
           <div class="page-title-group">
             <h1>Add New Listing</h1>
             <div class="page-breadcrumb">
-              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <a href="listings.html">Listings</a> <i class="ri-arrow-right-s-line"></i> <span>Create Property</span>
+              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <a href="listings.html">Listings</a> <i class="ri-arrow-right-s-line"></i> <span>Add Property</span>
             </div>
           </div>
         </div>
 
         <div class="topbar-right">
+          <div class="topbar-actions" style="margin-right: 12px;">
+            <a href="messages.html" class="icon-btn" title="Messages">
+              <i class="ri-message-3-line"></i>
+              <span class="badge-dot"></span>
+            </a>
+            <a href="notifications.html" class="icon-btn" title="Notifications">
+              <i class="ri-notification-3-line"></i>
+              <span class="badge-dot" style="background-color: var(--status-warning);"></span>
+            </a>
+          </div>
+
           <a href="listings.html" class="btn btn-secondary btn-sm">
             <i class="ri-arrow-left-line"></i> Back to Listings
           </a>
@@ -228,78 +245,18 @@
                 </select>
               </div>
 
-              <!-- Roommate Sharing & Allocation Section -->
+              <!-- Roommate Policy Notice (Requirement 10) -->
               <div class="form-group col-span-2">
-                <div class="roommate-form-card">
-                  <div class="roommate-form-header" onclick="toggleRoommateForm()">
+                <div class="card" style="padding: 16px 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 12px;">
+                  <div class="flex items-start gap-3">
+                    <div style="width: 36px; height: 36px; border-radius: 8px; background: var(--status-success-bg); color: var(--primary-green); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0;">
+                      <i class="ri-shield-check-line"></i>
+                    </div>
                     <div>
-                      <div style="display: flex; align-items: center; gap: 8px;">
-                        <i class="ri-team-fill" style="color: #00A85A; font-size: 1.25rem;"></i>
-                        <h4 style="margin: 0; font-size: 1rem; color: #0f172a;">Roommate Matching &amp; Allocation</h4>
-                      </div>
-                      <p style="margin: 4px 0 0; font-size: 0.82rem; color: var(--slate-500);">
-                        Enable this if current tenant(s) are looking for compatible roommates to split rent and share accommodation.
+                      <h4 style="margin: 0 0 4px; font-size: 0.95rem; color: var(--dark-slate);">Listing Verification &amp; Roommate Matching Notice</h4>
+                      <p style="margin: 0; font-size: 0.85rem; color: #166534; line-height: 1.45;">
+                        All newly added properties are submitted to Cynic Administration for quality and safety verification. Once approved, you can enable <strong>Roommate Matching &amp; Multi-Occupant Allocation</strong> directly in the listing edit panel.
                       </p>
-                    </div>
-                    <label class="roommate-toggle-switch" onclick="event.stopPropagation()">
-                      <input type="checkbox" id="isRoommateShared" onchange="handleRoommateToggleChange()">
-                      <span class="roommate-toggle-slider"></span>
-                    </label>
-                  </div>
-
-                  <!-- Collapsible Roommate Fields -->
-                  <div id="roommateFieldsContainer" style="display: none; margin-top: 18px; padding-top: 18px; border-top: 1px dashed #cbd5e1;">
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 16px;">
-                      <div>
-                        <label class="form-label" for="roommatesGotten">Roommates Gotten So Far</label>
-                        <input type="number" id="roommatesGotten" class="form-input" value="1" min="1" max="10">
-                        <span style="font-size: 0.76rem; color: var(--slate-400);">Current tenant(s) residing or paid.</span>
-                      </div>
-                      <div>
-                        <label class="form-label" for="roommatesNeeded">Roommates Looking to Join</label>
-                        <input type="number" id="roommatesNeeded" class="form-input" value="1" min="1" max="10">
-                        <span style="font-size: 0.76rem; color: var(--slate-400);">Vacant slots available for roommates.</span>
-                      </div>
-                      <div>
-                        <label class="form-label" for="roommateSharePrice">Price per Roommate (₦)</label>
-                        <div class="input-prefix-group">
-                          <span class="input-prefix">₦</span>
-                          <input type="number" id="roommateSharePrice" class="form-input" placeholder="150,000" min="0" step="5000">
-                        </div>
-                        <span style="font-size: 0.76rem; color: var(--slate-400);">Each incoming roommate's contribution.</span>
-                      </div>
-                    </div>
-
-                    <!-- Occupant Profiles -->
-                    <div style="background: #ffffff; padding: 14px; border-radius: 8px; border: 1px solid #e2e8f0;">
-                      <label class="form-label" style="font-size: 0.85rem; margin-bottom: 8px; color: #0f172a;">
-                        <i class="ri-user-smile-line text-green"></i> Current Occupant Profile (Helps Match Compatible Students)
-                      </label>
-                      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px;">
-                        <div>
-                          <label class="form-label" style="font-size: 0.78rem;">Occupant Name</label>
-                          <input type="text" id="occupantName" class="form-input" placeholder="e.g. Mojeed">
-                        </div>
-                        <div>
-                          <label class="form-label" style="font-size: 0.78rem;">Gender</label>
-                          <select id="occupantGender" class="form-select">
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label class="form-label" style="font-size: 0.78rem;">Religion / Preference</label>
-                          <select id="occupantReligion" class="form-select">
-                            <option value="Muslim">Muslim</option>
-                            <option value="Christian">Christian</option>
-                            <option value="Any">Any / Tolerant</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label class="form-label" style="font-size: 0.78rem;">Habit Tags (Comma separated)</label>
-                          <input type="text" id="occupantTags" class="form-input" placeholder="Quiet, Studious, 200L">
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -449,21 +406,10 @@
       });
     });
 
-    function toggleRoommateForm() {
-      const checkbox = document.getElementById('isRoommateShared');
-      checkbox.checked = !checkbox.checked;
-      handleRoommateToggleChange();
-    }
-
-    function handleRoommateToggleChange() {
-      const isChecked = document.getElementById('isRoommateShared').checked;
-      document.getElementById('roommateFieldsContainer').style.display = isChecked ? 'block' : 'none';
-    }
-
     function handleSaveListing(e) {
       e.preventDefault();
       const saveBtn = document.getElementById('btnSaveListing');
-      saveBtn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Saving...';
+      saveBtn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Submitting for Verification...';
       saveBtn.disabled = true;
 
       const title = document.getElementById('listingTitle').value;
@@ -478,36 +424,10 @@
       const cleaningFee = document.getElementById('cleaningFee').value;
       const description = document.getElementById('listingDescription').value;
 
-      // Roommate sharing fields
-      const isRoommateShared = document.getElementById('isRoommateShared').checked;
-      const roommatesGotten = isRoommateShared ? Number(document.getElementById('roommatesGotten').value || 1) : 0;
-      const roommatesNeeded = isRoommateShared ? Number(document.getElementById('roommatesNeeded').value || 1) : 0;
-      const roommateSharePrice = isRoommateShared ? Number(document.getElementById('roommateSharePrice').value || 0) : 0;
-      
-      const currentRoommates = [];
-      if (isRoommateShared) {
-        const occName = document.getElementById('occupantName').value.trim() || 'Resident';
-        const occGender = document.getElementById('occupantGender').value;
-        const occReligion = document.getElementById('occupantReligion').value;
-        const occTagsRaw = document.getElementById('occupantTags').value.trim();
-        const occTags = occTagsRaw ? occTagsRaw.split(',').map(t => t.trim()).filter(Boolean) : [occGender, occReligion];
-        if (!occTags.includes(occGender)) occTags.unshift(occGender);
-        if (!occTags.includes(occReligion)) occTags.push(occReligion);
-
-        currentRoommates.push({
-          name: occName,
-          gender: occGender,
-          religion: occReligion,
-          tags: occTags
-        });
-      }
-
       // Amenities
       const selectedAmenities = [];
       document.querySelectorAll('input[name="amenities"]:checked').forEach(c => selectedAmenities.push(c.value));
 
-      // Photos preview count
-      const previewCount = document.querySelectorAll('#imagePreviewGrid .preview-item').length;
       const defaultImage = "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80";
 
       const newListing = {
@@ -523,28 +443,45 @@
         annualCharge: Number(annualCharge),
         cleaningFee: Number(cleaningFee),
         status: "Available",
+        verificationStatus: "Unverified", // Submitted for Admin Review (Requirement 10)
         interestsCount: 0,
+        comments: [],
         hasVideo: document.getElementById('videoPreviewBox').children.length > 0,
         videoDuration: "0:45",
         images: [defaultImage],
         description: description,
         amenities: selectedAmenities,
-        isRoommateShared: isRoommateShared,
-        roommatesGotten: roommatesGotten,
-        roommatesNeeded: roommatesNeeded,
-        roommateSharePrice: roommateSharePrice,
-        currentRoommates: currentRoommates
+        isRoommateShared: false,
+        roommatesGotten: 0,
+        roommatesNeeded: 0,
+        roommateSharePrice: 0,
+        currentRoommates: []
       };
 
       const listings = getStoredListings();
       listings.unshift(newListing);
       saveStoredListings(listings);
 
+      // Create Admin Verification Notification
+      const notifs = getStoredNotifications();
+      notifs.unshift({
+        id: "notif-" + Date.now(),
+        type: "admin",
+        title: "Listing Awaiting Admin Verification",
+        message: `"${title}" has been submitted and is currently pending Cynic verification. Once verified, roommate matching can be enabled.`,
+        propertyTitle: title,
+        listingId: newListing.id,
+        link: "listings.html?filter=unverified",
+        time: "Just now",
+        read: false
+      });
+      saveStoredNotifications(notifs);
+
       setTimeout(() => {
-        showToast('New student listing saved and published successfully!');
+        showToast('Listing submitted! It is now pending Cynic Admin verification.');
         setTimeout(() => {
-          window.location.href = 'listings.html';
-        }, 800);
+          window.location.href = 'listings.html?filter=unverified';
+        }, 900);
       }, 700);
     }
   </script>

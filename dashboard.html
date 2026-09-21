@@ -56,6 +56,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="occupied-listings.html">
+              <i class="ri-lock-line"></i>
+              <span>Occupied Listings</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="add-listing.html">
               <i class="ri-add-circle-line"></i>
               <span>Add New Listing</span>
@@ -76,10 +82,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="reports.html">
-              <i class="ri-alert-line"></i>
-              <span>Reports</span>
-              <span class="nav-badge badge-amber">3</span>
+            <a href="notifications.html">
+              <i class="ri-notification-3-line"></i>
+              <span>Notifications</span>
+              <span class="nav-badge badge-amber" id="sidebarReportsBadge">4</span>
             </a>
           </li>
         </ul>
@@ -145,7 +151,7 @@
               <i class="ri-message-3-line"></i>
               <span class="badge-dot"></span>
             </a>
-            <a href="reports.html" class="icon-btn" title="Reports">
+            <a href="notifications.html" class="icon-btn" title="Notifications">
               <i class="ri-notification-3-line"></i>
               <span class="badge-dot" style="background-color: var(--status-warning);"></span>
             </a>
@@ -179,6 +185,28 @@
                 <i class="ri-add-line"></i> Add New Listing
               </a>
             </div>
+          </div>
+        </div>
+
+        <!-- Pending Verification Alert Banner (Requirement 4 & 5) -->
+        <div id="pendingVerificationBanner" class="card" style="padding: 16px 20px; margin-bottom: var(--space-6); background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; display: none;">
+          <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 12px;">
+            <div class="flex items-center gap-3">
+              <div style="width: 38px; height: 38px; border-radius: 8px; background: #fef3c7; color: #d97706; display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                <i class="ri-time-line"></i>
+              </div>
+              <div>
+                <div style="font-weight: 700; color: #92400e; font-size: 0.95rem;">
+                  <span id="pendingListingsCount">0</span> Listing(s) Awaiting Cynic Admin Verification
+                </div>
+                <div style="font-size: 0.82rem; color: #b45309;">
+                  New properties undergo quality checks before public syndication. You can monitor and view pending listings here.
+                </div>
+              </div>
+            </div>
+            <a href="listings.html?filter=unverified" class="btn btn-sm" style="background: #f59e0b; color: #1e293b; font-weight: 700;">
+              <span>View Pending Listings</span> <i class="ri-arrow-right-line"></i>
+            </a>
           </div>
         </div>
 
@@ -229,20 +257,20 @@
             </div>
           </div>
 
-          <!-- Reports -->
-          <div class="stat-card">
+          <!-- Notifications & Alerts (Requirement 9) -->
+          <a href="notifications.html" class="stat-card" style="text-decoration: none; color: inherit; cursor: pointer;">
             <div class="stat-info">
-              <span class="stat-label">Student Reports</span>
-              <span class="stat-value" id="statReportsCount">3</span>
-              <div class="stat-trend trend-down">
-                <i class="ri-error-warning-line"></i>
-                <span>Needs maintenance check</span>
+              <span class="stat-label">Notifications &amp; Alerts</span>
+              <span class="stat-value" id="statNotifsCount">4</span>
+              <div class="stat-trend trend-up">
+                <i class="ri-chat-3-line"></i>
+                <span id="statNotifSubtext">New comments &amp; updates</span>
               </div>
             </div>
             <div class="stat-icon-wrapper amber">
-              <i class="ri-alarm-warning-line"></i>
+              <i class="ri-notification-3-line"></i>
             </div>
-          </div>
+          </a>
         </section>
 
         <!-- Section 4.2 Quick Actions Matching Wireframe -->
@@ -297,8 +325,20 @@
       
       // Update dynamic numbers
       const listings = getStoredListings();
+      const notifs = getStoredNotifications();
+      const unverified = listings.filter(l => (l.verificationStatus || 'Verified') === 'Unverified');
+      
       if (document.getElementById('statListingsCount')) {
         document.getElementById('statListingsCount').textContent = listings.length;
+      }
+      if (document.getElementById('statNotifsCount')) {
+        document.getElementById('statNotifsCount').textContent = notifs.length;
+      }
+      if (unverified.length > 0) {
+        const banner = document.getElementById('pendingVerificationBanner');
+        const countSpan = document.getElementById('pendingListingsCount');
+        if (banner) banner.style.display = 'block';
+        if (countSpan) countSpan.textContent = unverified.length;
       }
     });
   </script>

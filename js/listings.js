@@ -29,7 +29,19 @@ function renderListingsGrid(containerId, filterStatus = 'all', searchQuery = '')
   let filtered = listings;
 
   if (filterStatus !== 'all') {
-    filtered = filtered.filter(item => item.status.toLowerCase() === filterStatus.toLowerCase());
+    const f = filterStatus.toLowerCase();
+    if (f === 'verified') {
+      filtered = filtered.filter(item => (item.verificationStatus || 'Verified') === 'Verified' && item.status !== 'Occupied');
+    } else if (f === 'unverified' || f === 'pending') {
+      filtered = filtered.filter(item => (item.verificationStatus || 'Verified') === 'Unverified');
+    } else if (f === 'occupied') {
+      filtered = filtered.filter(item => item.status === 'Occupied');
+    } else {
+      filtered = filtered.filter(item => 
+        (item.status && item.status.toLowerCase() === f) || 
+        (item.verificationStatus && item.verificationStatus.toLowerCase() === f)
+      );
+    }
   }
 
   if (searchQuery.trim() !== '') {
@@ -53,19 +65,28 @@ function renderListingsGrid(containerId, filterStatus = 'all', searchQuery = '')
   }
 
   container.innerHTML = filtered.map(item => {
-    let statusClass = 'status-available';
-    if (item.status === 'Occupied') statusClass = 'status-occupied';
-    if (item.status === 'Deactivated') statusClass = 'status-deactivated';
+    let statusClass = 'status-verified';
+    let statusText = '<i class="ri-verified-badge-fill"></i> Verified';
+    
+    if (item.status === 'Occupied') {
+      statusClass = 'status-occupied';
+      statusText = '<i class="ri-lock-2-fill"></i> Occupied';
+    } else if ((item.verificationStatus || 'Verified') === 'Unverified') {
+      statusClass = 'status-unverified';
+      statusText = '<i class="ri-time-fill"></i> Pending Review';
+    }
 
     const firstImage = (item.images && item.images.length > 0) 
       ? item.images[0] 
       : 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80';
 
+    const commentCount = (item.comments && item.comments.length) || 0;
+
     return `
       <div class="listing-card" id="card-${item.id}">
         <div class="listing-media">
           <img src="${firstImage}" alt="${item.title}" class="listing-thumbnail" loading="lazy" />
-          <span class="listing-status-badge ${statusClass}">${item.status}</span>
+          <span class="listing-status-badge ${statusClass}">${statusText}</span>
           ${item.hasVideo ? `
             <div class="video-badge">
               <i class="ri-video-fill"></i>
@@ -99,26 +120,30 @@ function renderListingsGrid(containerId, filterStatus = 'all', searchQuery = '')
               </span>
               ${item.currentRoommates && item.currentRoommates.length > 0 ? `
                 <div style="font-size: 0.76rem; color: var(--slate-500); margin-top: 4px;">
-                  Occupant: <strong>${item.currentRoommates[0].name}</strong> (${item.currentRoommates[0].tags.slice(0, 2).join(' &bull; ')})
+                  Occupants: <strong>${item.currentRoommates.map(r => r.name).join(', ')}</strong>
                 </div>
               ` : ''}
             </div>
           ` : ''}
 
-          <div>
-            <span class="listing-interestsCount listing-interests-count">
-              <i class="ri-user-heart-line"></i> ${item.interestsCount} Students Interested
+          <div class="flex items-center justify-between" style="margin: 8px 0 12px;">
+            <span class="listing-interests-count">
+              <i class="ri-user-heart-line"></i> ${item.interestsCount || 0} Interested
             </span>
+            <button type="button" onclick="openListingCommentsModal('${item.id}')" class="listing-comment-pill" title="View & Reply to Comments">
+              <i class="ri-chat-3-line"></i>
+              <span>Comments</span>
+              <span class="comment-count-badge" id="comment-pill-count-${item.id}">${commentCount}</span>
+            </button>
           </div>
 
           <div class="listing-actions-row">
-            <a href="edit-listing.html?id=${item.id}" class="btn btn-secondary btn-sm">
+            <a href="edit-listing.html?id=${item.id}" class="btn btn-secondary btn-sm" style="flex: 1;">
               <i class="ri-edit-line"></i> Edit
             </a>
-            <button type="button" onclick="toggleListingStatus('${item.id}')" class="btn ${item.status === 'Deactivated' ? 'btn-outline-green' : 'btn-outline-danger'} btn-sm">
-              <i class="${item.status === 'Deactivated' ? 'ri-checkbox-circle-line' : 'ri-pause-circle-line'}"></i>
-              ${item.status === 'Deactivated' ? 'Activate' : 'Deactivate'}
-            </button>
+            <a href="public-listings.html?id=${item.id}" target="_blank" class="btn btn-outline-green btn-sm" style="flex: 1;" title="Preview Public Listing">
+              <i class="ri-external-link-line"></i> Preview
+            </a>
           </div>
         </div>
       </div>
@@ -126,25 +151,126 @@ function renderListingsGrid(containerId, filterStatus = 'all', searchQuery = '')
   }).join('');
 }
 
-// Toggle Listing Status (Available <-> Deactivated)
-function toggleListingStatus(listingId) {
-  const listings = getStoredListings();
-  const index = listings.findIndex(l => l.id === listingId);
-  if (index !== -1) {
-    const current = listings[index].status;
-    const nextStatus = current === 'Deactivated' ? 'Available' : 'Deactivated';
-    listings[index].status = nextStatus;
-    saveStoredListings(listings);
-    showToast(`Listing is now marked as ${nextStatus}!`);
+// Comments Modal & Reply Management
+let currentActiveListingId = null;
 
-    // Re-render if grid is on page
-    if (document.getElementById('listingsContainer')) {
-      renderListingsGrid('listingsContainer');
-    }
-    if (document.getElementById('dashboardListingsContainer')) {
-      renderListingsGrid('dashboardListingsContainer');
-    }
+function ensureCommentModalExists() {
+  if (document.getElementById('commentReplyModal')) return;
+  const modalDiv = document.createElement('div');
+  modalDiv.className = 'cynic-modal-backdrop';
+  modalDiv.id = 'commentReplyModal';
+  modalDiv.innerHTML = `
+    <div class="cynic-modal-dialog">
+      <div class="cynic-modal-header">
+        <div>
+          <h3 id="modalListingTitle">Property Comments</h3>
+          <span style="font-size: 0.8rem; color: var(--slate-500);" id="modalListingSubtitle">Loading...</span>
+        </div>
+        <button type="button" class="cynic-modal-close-btn" onclick="closeCommentModal()">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+
+      <div class="cynic-modal-body" id="modalCommentsList"></div>
+
+      <div class="cynic-modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="closeCommentModal()">Close</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modalDiv);
+
+  modalDiv.addEventListener('click', (e) => {
+    if (e.target.id === 'commentReplyModal') closeCommentModal();
+  });
+}
+
+function openListingCommentsModal(listingId) {
+  ensureCommentModalExists();
+  currentActiveListingId = listingId;
+  const listings = getStoredListings();
+  const listing = listings.find(l => l.id === listingId);
+  if (!listing) return;
+
+  document.getElementById('modalListingTitle').textContent = `Comments on Listing`;
+  document.getElementById('modalListingSubtitle').textContent = `${listing.title} (${listing.location || listing.town})`;
+
+  renderModalComments(listing);
+  document.getElementById('commentReplyModal').classList.add('active');
+}
+
+function renderModalComments(listing) {
+  const body = document.getElementById('modalCommentsList');
+  if (!body) return;
+  const comments = listing.comments || [];
+
+  if (comments.length === 0) {
+    body.innerHTML = `
+      <div class="text-center" style="padding: 28px 16px; color: var(--slate-400);">
+        <i class="ri-chat-smile-2-line" style="font-size: 2.2rem;"></i>
+        <h4 style="margin-top: 10px; color: var(--dark-slate);">No Comments Yet</h4>
+        <p style="font-size: 0.88rem; color: var(--slate-500);">Students haven't asked questions on this property yet.</p>
+      </div>
+    `;
+    return;
   }
+
+  body.innerHTML = comments.map(c => `
+    <div class="listing-comment-card" id="comment-box-${c.id}">
+      <div class="comment-author-row">
+        <span class="comment-author-name">
+          <i class="ri-user-3-line" style="color: var(--primary-green);"></i> ${c.author}
+        </span>
+        <span class="comment-date">${c.date}</span>
+      </div>
+      <p class="comment-text">${c.text}</p>
+      
+      <div class="agent-replies-list">
+        ${c.reply ? `
+          <div class="agent-reply-bubble">
+            <div class="agent-reply-header">
+              <span><i class="ri-reply-fill"></i> Agent Response (You)</span>
+              <span>${c.replyDate || 'Recently'}</span>
+            </div>
+            <div class="agent-reply-text">${c.reply}</div>
+          </div>
+        ` : `
+          <div style="font-size: 0.78rem; color: #94a3b8; font-style: italic;">No reply sent yet.</div>
+        `}
+      </div>
+
+      <form class="comment-reply-form" onsubmit="handleSendCommentReply(event, '${c.id}')">
+        <input type="text" class="comment-reply-input" id="reply-input-${c.id}" placeholder="${c.reply ? 'Update your reply...' : 'Type your reply as Agent...'}" required>
+        <button type="submit" class="btn btn-primary btn-sm">
+          <i class="ri-send-plane-fill"></i> Reply
+        </button>
+      </form>
+    </div>
+  `).join('');
+}
+
+function handleSendCommentReply(e, commentId) {
+  e.preventDefault();
+  const input = document.getElementById(`reply-input-${commentId}`);
+  const text = input.value.trim();
+  if (!text) return;
+
+  const success = replyToListingComment(currentActiveListingId, commentId, text);
+  if (success) {
+    if (typeof showToast === 'function') {
+      showToast("Reply published successfully!");
+    } else if (typeof showToastNotification === 'function') {
+      showToastNotification("Reply published successfully!", "success");
+    }
+    const listings = getStoredListings();
+    const listing = listings.find(l => l.id === currentActiveListingId);
+    renderModalComments(listing);
+  }
+}
+
+function closeCommentModal() {
+  const modal = document.getElementById('commentReplyModal');
+  if (modal) modal.classList.remove('active');
 }
 
 // Setup Media Uploaders (Images & Video with 1 min check)

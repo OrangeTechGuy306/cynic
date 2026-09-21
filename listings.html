@@ -55,6 +55,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="occupied-listings.html">
+              <i class="ri-lock-line"></i>
+              <span>Occupied Listings</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="add-listing.html">
               <i class="ri-add-circle-line"></i>
               <span>Add New Listing</span>
@@ -75,10 +81,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="reports.html">
-              <i class="ri-alert-line"></i>
-              <span>Reports</span>
-              <span class="nav-badge badge-amber">3</span>
+            <a href="notifications.html">
+              <i class="ri-notification-3-line"></i>
+              <span>Notifications</span>
+              <span class="nav-badge badge-amber" id="sidebarReportsBadge">4</span>
             </a>
           </li>
         </ul>
@@ -133,6 +139,17 @@
         </div>
 
         <div class="topbar-right">
+          <div class="topbar-actions" style="margin-right: 12px;">
+            <a href="messages.html" class="icon-btn" title="Messages">
+              <i class="ri-message-3-line"></i>
+              <span class="badge-dot"></span>
+            </a>
+            <a href="notifications.html" class="icon-btn" title="Notifications">
+              <i class="ri-notification-3-line"></i>
+              <span class="badge-dot" style="background-color: var(--status-warning);"></span>
+            </a>
+          </div>
+
           <a href="add-listing.html" class="btn btn-primary">
             <i class="ri-add-line"></i> Add New Listing
           </a>
@@ -151,17 +168,17 @@
           <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 16px;">
             <!-- Filter Tabs -->
             <div class="flex items-center gap-2" style="flex-wrap: wrap;">
-              <button type="button" class="btn btn-sm btn-primary filter-tab-btn" onclick="setFilter('all', this)">
-                All Listings
+              <button type="button" class="btn btn-sm btn-primary filter-tab-btn" id="tab-all" onclick="setFilter('all', this)">
+                <i class="ri-apps-line"></i> All Listings
               </button>
-              <button type="button" class="btn btn-sm btn-secondary filter-tab-btn" onclick="setFilter('Available', this)">
-                Available
+              <button type="button" class="btn btn-sm btn-secondary filter-tab-btn" id="tab-verified" onclick="setFilter('verified', this)">
+                <i class="ri-verified-badge-line"></i> Verified
               </button>
-              <button type="button" class="btn btn-sm btn-secondary filter-tab-btn" onclick="setFilter('Occupied', this)">
-                Occupied
+              <button type="button" class="btn btn-sm btn-secondary filter-tab-btn" id="tab-unverified" onclick="setFilter('unverified', this)">
+                <i class="ri-time-line"></i> Pending Admin Review
               </button>
-              <button type="button" class="btn btn-sm btn-secondary filter-tab-btn" onclick="setFilter('Deactivated', this)">
-                Deactivated
+              <button type="button" class="btn btn-sm btn-secondary filter-tab-btn" id="tab-occupied" onclick="setFilter('occupied', this)">
+                <i class="ri-lock-line"></i> Occupied
               </button>
             </div>
 
@@ -194,10 +211,20 @@
       // Check URL query parameters
       const urlParams = new URLSearchParams(window.location.search);
       const query = urlParams.get('q');
+      const filterParam = urlParams.get('filter');
+
       if (query) {
         currentSearch = query;
         const searchEl = document.getElementById('listingSearchInput');
         if (searchEl) searchEl.value = query;
+      }
+
+      if (filterParam) {
+        const targetBtn = document.getElementById(`tab-${filterParam.toLowerCase()}`);
+        if (targetBtn) {
+          setFilter(filterParam, targetBtn);
+          return;
+        }
       }
 
       renderListingsGrid('listingsContainer', currentFilter, currentSearch);

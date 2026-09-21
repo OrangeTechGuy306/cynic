@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agent Profile - Cynic Student Accommodation</title>
-  <meta name="description" content="Manage your Cynic agent accreditation profile, agency details, contact information, and security credentials.">
+  <title>Agent Profile &amp; Performance Analytics - Cynic</title>
+  <meta name="description" content="View professional agent accreditation, succession rate, housing analytics, and manage agency profile on Cynic.">
   
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,6 +55,12 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="occupied-listings.html">
+              <i class="ri-lock-line"></i>
+              <span>Occupied Listings</span>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="add-listing.html">
               <i class="ri-add-circle-line"></i>
               <span>Add New Listing</span>
@@ -75,10 +81,10 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="reports.html">
-              <i class="ri-alert-line"></i>
-              <span>Reports</span>
-              <span class="nav-badge badge-amber">3</span>
+            <a href="notifications.html">
+              <i class="ri-notification-3-line"></i>
+              <span>Notifications</span>
+              <span class="nav-badge badge-amber" id="sidebarReportsBadge">4</span>
             </a>
           </li>
         </ul>
@@ -124,14 +130,25 @@
             <i class="ri-menu-2-line"></i>
           </button>
           <div class="page-title-group">
-            <h1>Agent Profile</h1>
+            <h1>Agent Profile &amp; Analytics</h1>
             <div class="page-breadcrumb">
-              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <span>Account Settings &amp; Accreditation</span>
+              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <span>Professional Credentials &amp; Succession</span>
             </div>
           </div>
         </div>
 
         <div class="topbar-right">
+          <div class="topbar-actions" style="margin-right: 12px;">
+            <a href="messages.html" class="icon-btn" title="Messages">
+              <i class="ri-message-3-line"></i>
+              <span class="badge-dot"></span>
+            </a>
+            <a href="notifications.html" class="icon-btn" title="Notifications">
+              <i class="ri-notification-3-line"></i>
+              <span class="badge-dot" style="background-color: var(--status-warning);"></span>
+            </a>
+          </div>
+
           <button type="button" class="btn btn-outline-danger btn-sm" onclick="handleAgentLogout()">
             <i class="ri-logout-box-line"></i> Sign Out
           </button>
@@ -140,105 +157,150 @@
 
       <main class="page-body">
         
-        <div class="form-card" style="max-width: 900px; margin: 0 auto;">
-          <div style="margin-bottom: var(--space-6); padding-bottom: var(--space-4); border-bottom: 1px solid var(--light-gray);">
-            <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--status-success-bg); color: var(--emerald-700); padding: 4px 12px; border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 600; margin-bottom: 8px;">
-              <i class="ri-shield-check-line"></i> Verified Agent Credentials
+        <!-- Requirement 6: Professional Agent Hero Card -->
+        <div class="profile-hero-card">
+          <div class="profile-hero-left">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent Profile" class="profile-hero-avatar">
+            <div>
+              <div class="profile-badge-pill">
+                <i class="ri-verified-badge-fill"></i> CYNIC ACCREDITED VERIFIED AGENT
+              </div>
+              <h2 style="font-size: 1.6rem; margin: 0 0 4px; color: white;">
+                <span class="agent-name-display">Tunde Balogun</span>
+              </h2>
+              <div style="font-size: 0.9rem; color: #94a3b8; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+                <span><i class="ri-building-line" style="color: var(--primary-green);"></i> <span class="agent-agency-display">Prime Campus Properties</span></span>
+                <span><i class="ri-id-card-line" style="color: var(--primary-green);"></i> Lic: <strong>CYN-AG-88219</strong></span>
+                <span><i class="ri-star-fill" style="color: #fbbf24;"></i> <strong>4.9 / 5.0</strong> (52 Student Reviews)</span>
+              </div>
             </div>
-            <h2>Manage Agent Profile</h2>
-            <p style="font-size: 0.92rem; color: var(--slate-500);">
-              Update your agency branding, contact phone number for student WhatsApp inquiries, and account password.
+          </div>
+          <div class="flex items-center gap-3">
+            <button type="button" class="btn btn-primary" onclick="openPublicPreviewModal()">
+              <i class="ri-eye-line"></i> View Public Profile
+            </button>
+          </div>
+        </div>
+
+        <!-- Requirement 6: Profile Performance Analytics Grid -->
+        <h3 style="margin-bottom: 12px; font-size: 1.15rem; color: var(--dark-slate);">
+          <i class="ri-bar-chart-box-line" style="color: var(--primary-green);"></i> Portfolio Performance Analytics
+        </h3>
+        <div class="profile-analytics-grid">
+          <!-- Total Listings -->
+          <div class="profile-stat-box">
+            <span class="profile-stat-label">Total Listings</span>
+            <span class="profile-stat-num" id="profTotalListings">12</span>
+            <span class="profile-stat-sub"><i class="ri-check-line"></i> <span id="profVerifiedListings">10</span> Verified Units</span>
+          </div>
+
+          <!-- Succession Rate -->
+          <div class="profile-stat-box">
+            <span class="profile-stat-label">Succession / Match Rate</span>
+            <span class="profile-stat-num" style="color: var(--primary-green);">94%</span>
+            <span class="profile-stat-sub"><i class="ri-arrow-up-line"></i> Top 5% in Lagos Axis</span>
+          </div>
+
+          <!-- Average Response Time -->
+          <div class="profile-stat-box">
+            <span class="profile-stat-label">Avg. Response Time</span>
+            <span class="profile-stat-num">12m</span>
+            <span class="profile-stat-sub"><i class="ri-flashlight-line"></i> Fast Responder</span>
+          </div>
+
+          <!-- Housed Students -->
+          <div class="profile-stat-box">
+            <span class="profile-stat-label">Students Housed</span>
+            <span class="profile-stat-num">76</span>
+            <span class="profile-stat-sub"><i class="ri-user-smile-line"></i> 2025/2026 Session</span>
+          </div>
+
+          <!-- Occupancy Rate -->
+          <div class="profile-stat-box">
+            <span class="profile-stat-label">Portfolio Occupancy</span>
+            <span class="profile-stat-num" id="profOccupancyRate">88%</span>
+            <span class="profile-stat-sub"><i class="ri-lock-line"></i> Leased &amp; active</span>
+          </div>
+
+          <!-- Trust Score -->
+          <div class="profile-stat-box">
+            <span class="profile-stat-label">Cynic Trust Score</span>
+            <span class="profile-stat-num" style="color: #2563eb;">98/100</span>
+            <span class="profile-stat-sub"><i class="ri-shield-check-line"></i> Escrow Protected</span>
+          </div>
+        </div>
+
+        <!-- Profile Settings Form -->
+        <div class="form-card" style="margin-top: var(--space-6);">
+          <div style="margin-bottom: var(--space-6); padding-bottom: var(--space-4); border-bottom: 1px solid var(--light-gray);">
+            <h3 style="font-size: 1.15rem; color: var(--dark-slate); margin-bottom: 4px;">Agency &amp; Contact Information</h3>
+            <p style="font-size: 0.88rem; color: var(--slate-500);">
+              Ensure your phone number is correct as students use it to verify WhatsApp video inspections.
             </p>
           </div>
 
           <form id="agentProfileForm" onsubmit="handleSaveProfile(event)">
-            
-            <!-- Wireframe 4.8: Profile Picture [Upload] -->
-            <div style="display: flex; align-items: center; gap: var(--space-6); margin-bottom: var(--space-8); padding: var(--space-5); background: var(--light-gray-50); border-radius: var(--radius-lg); border: 1px solid var(--light-gray);">
-              <div style="position: relative;">
-                <img id="profilePicturePreview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent Profile" style="width: 88px; height: 88px; border-radius: 50%; object-fit: cover; border: 3px solid var(--emerald-500); box-shadow: var(--shadow-sm);">
-              </div>
-              <div>
-                <label class="form-label" style="margin-bottom: 4px;">Profile Picture: [Upload]</label>
-                <p style="font-size: 0.82rem; color: var(--slate-500); margin-bottom: 10px;">
-                  Upload a clear portrait to build trust with university students and guardians.
-                </p>
-                <div style="display: flex; gap: 10px;">
-                  <button type="button" class="btn btn-secondary btn-sm" onclick="document.getElementById('profilePicInput').click()">
-                    <i class="ri-upload-2-line"></i> Change Photo
-                  </button>
-                  <input type="file" id="profilePicInput" accept="image/*" style="display: none;" onchange="previewNewAvatar(event)">
-                </div>
-              </div>
-            </div>
-
-            <!-- Wireframe 4.8 Input Fields -->
             <div class="form-grid">
               
-              <!-- Name: [____________________] -->
+              <!-- Full Name -->
               <div class="form-group">
-                <label class="form-label" for="profileName">Agent Full Name <span class="required">*</span></label>
-                <input type="text" id="profileName" class="form-input" placeholder="e.g. Tunde Balogun" required>
+                <label class="form-label" for="profName">Full Name <span class="required">*</span></label>
+                <input type="text" id="profName" class="form-input" value="Tunde Balogun" required>
               </div>
 
-              <!-- Email: [___________________] -->
+              <!-- Agency Name -->
               <div class="form-group">
-                <label class="form-label" for="profileEmail">Email Address <span class="required">*</span></label>
-                <input type="email" id="profileEmail" class="form-input" placeholder="e.g. tunde.balogun@cynichomes.ng" required>
+                <label class="form-label" for="profAgency">Agency / Business Name <span class="required">*</span></label>
+                <input type="text" id="profAgency" class="form-input" value="Prime Campus Properties" required>
               </div>
 
-              <!-- Phone: [___________________] -->
+              <!-- Phone Number -->
               <div class="form-group">
-                <label class="form-label" for="profilePhone">Phone Number (WhatsApp Active) <span class="required">*</span></label>
+                <label class="form-label" for="profPhone">WhatsApp Contact Hotline <span class="required">*</span></label>
                 <div class="input-prefix-group">
-                  <span class="input-prefix" style="color: var(--slate-500); font-size: 0.88rem;">+234</span>
-                  <input type="tel" id="profilePhone" class="form-input" style="padding-left: 54px;" placeholder="8031234567" required>
+                  <span class="input-prefix">+234</span>
+                  <input type="tel" id="profPhone" class="form-input" value="8034567890" required>
                 </div>
-                <span style="font-size: 0.78rem; color: var(--slate-400);">Students will be routed to this WhatsApp line for direct inquiries.</span>
               </div>
 
-              <!-- Agency: [__________________] -->
+              <!-- Email -->
               <div class="form-group">
-                <label class="form-label" for="profileAgency">Agency / Real Estate Firm <span class="required">*</span></label>
-                <input type="text" id="profileAgency" class="form-input" placeholder="e.g. Prime Campus Properties Ltd" required>
+                <label class="form-label" for="profEmail">Official Email Address <span class="required">*</span></label>
+                <input type="email" id="profEmail" class="form-input" value="tunde.balogun@cynicproperties.ng" required>
+              </div>
+
+              <!-- Campus Coverage Axes -->
+              <div class="form-group col-span-2">
+                <label class="form-label">Primary Campus Coverage Zones</label>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <span class="badge" style="background: #ecfdf5; color: var(--emerald-700); padding: 6px 14px; border-radius: 8px; font-weight: 600; border: 1px solid #bbf7d0;">
+                    <i class="ri-check-line"></i> UNILAG Akoka
+                  </span>
+                  <span class="badge" style="background: #ecfdf5; color: var(--emerald-700); padding: 6px 14px; border-radius: 8px; font-weight: 600; border: 1px solid #bbf7d0;">
+                    <i class="ri-check-line"></i> YABATECH Axis
+                  </span>
+                  <span class="badge" style="background: #ecfdf5; color: var(--emerald-700); padding: 6px 14px; border-radius: 8px; font-weight: 600; border: 1px solid #bbf7d0;">
+                    <i class="ri-check-line"></i> LASUCOM Ikeja
+                  </span>
+                  <span class="badge" style="background: #ecfdf5; color: var(--emerald-700); padding: 6px 14px; border-radius: 8px; font-weight: 600; border: 1px solid #bbf7d0;">
+                    <i class="ri-check-line"></i> Bariga &amp; Fola Agoro
+                  </span>
+                </div>
+              </div>
+
+              <!-- Bio -->
+              <div class="form-group col-span-2">
+                <label class="form-label" for="profBio">Professional Bio &amp; Student Housing Philosophy</label>
+                <textarea id="profBio" class="form-textarea" rows="3">Providing verified, student-friendly off-campus accommodations around Akoka, Yaba, and Ikeja since 2018. Cynic certified partner prioritizing direct landlord agreements, 24/7 security, and reliable utility backup.</textarea>
               </div>
 
             </div>
 
-            <!-- Change Password: [Fields] Section -->
-            <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--light-gray);">
-              <h3 style="font-size: 1.1rem; margin-bottom: 4px;">Change Password</h3>
-              <p style="font-size: 0.85rem; color: var(--slate-500); margin-bottom: var(--space-5);">
-                Ensure your account is protected with a secure password containing at least 8 characters.
-              </p>
-
-              <div class="form-grid">
-                <div class="form-group">
-                  <label class="form-label" for="currentPassword">Current Password</label>
-                  <input type="password" id="currentPassword" class="form-input" placeholder="••••••••">
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="newPassword">New Password</label>
-                  <input type="password" id="newPassword" class="form-input" placeholder="••••••••">
-                </div>
-
-                <div class="form-group col-span-2">
-                  <label class="form-label" for="confirmPassword">Confirm New Password</label>
-                  <input type="password" id="confirmPassword" class="form-input" placeholder="••••••••">
-                </div>
-              </div>
-            </div>
-
-            <!-- [ Save Changes ] Action Button -->
             <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--light-gray); display: flex; justify-content: flex-end; gap: var(--space-3);">
-              <a href="dashboard.html" class="btn btn-secondary btn-lg">Cancel</a>
               <button type="submit" id="btnSaveProfile" class="btn btn-primary btn-lg">
-                <i class="ri-check-line"></i>
-                <span>Save Changes</span>
+                <i class="ri-save-line"></i> Save Profile Details
               </button>
             </div>
-
           </form>
         </div>
 
@@ -246,87 +308,132 @@
     </div>
   </div>
 
+  <!-- Public Profile Preview Modal -->
+  <div class="cynic-modal-backdrop" id="publicProfileModal">
+    <div class="cynic-modal-dialog" style="max-width: 500px;">
+      <div class="cynic-modal-header">
+        <h3>Public Student View</h3>
+        <button type="button" class="cynic-modal-close-btn" onclick="closePublicProfileModal()">
+          <i class="ri-close-line"></i>
+        </button>
+      </div>
+      <div class="cynic-modal-body text-center" style="padding: 32px 24px;">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent" style="width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid var(--primary-green); margin: 0 auto 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+        
+        <div style="display: inline-flex; align-items: center; gap: 4px; background: var(--status-success-bg); color: var(--emerald-700); padding: 2px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 6px;">
+          <i class="ri-verified-badge-fill"></i> VERIFIED AGENT
+        </div>
+        
+        <h3 style="margin: 0 0 4px; font-size: 1.25rem; color: var(--dark-slate);" id="modalPreviewName">Tunde Balogun</h3>
+        <p style="margin: 0 0 16px; font-size: 0.88rem; color: var(--slate-500);" id="modalPreviewAgency">Prime Campus Properties Ltd</p>
+        
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px; margin-bottom: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+          <div>
+            <div style="font-size: 1.2rem; font-weight: 800; color: var(--dark-slate);" id="modalPreviewListings">12</div>
+            <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase;">Listings</div>
+          </div>
+          <div>
+            <div style="font-size: 1.2rem; font-weight: 800; color: var(--primary-green);">94%</div>
+            <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase;">Success</div>
+          </div>
+          <div>
+            <div style="font-size: 1.2rem; font-weight: 800; color: #fbbf24;">4.9 ★</div>
+            <div style="font-size: 0.72rem; color: #64748b; text-transform: uppercase;">Rating</div>
+          </div>
+        </div>
+
+        <p style="font-size: 0.84rem; color: #475569; line-height: 1.5; margin-bottom: 20px;" id="modalPreviewBio">
+          Providing verified, student-friendly off-campus accommodations around Akoka, Yaba, and Ikeja.
+        </p>
+
+        <a href="public-listings.html" class="btn btn-primary" style="width: 100%;">
+          <i class="ri-hotel-line"></i> Browse Agent's Active Listings
+        </a>
+      </div>
+    </div>
+  </div>
+
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      loadProfileFields();
-    });
-
-    function loadProfileFields() {
-      const raw = localStorage.getItem('cynic_agent');
-      const agent = raw ? JSON.parse(raw) : CYNIC_DATA.agent;
-
-      document.getElementById('profileName').value = agent.name;
-      document.getElementById('profileEmail').value = agent.email;
+      // Calculate dynamic analytics from local storage
+      const listings = getStoredListings();
+      const verified = listings.filter(l => (l.verificationStatus || 'Verified') === 'Verified');
+      const occupied = listings.filter(l => l.status === 'Occupied');
       
-      // Clean phone number
-      let phone = agent.phone.replace('+234', '');
-      if (phone.startsWith('0')) phone = phone.substring(1);
-      document.getElementById('profilePhone').value = phone;
+      const totalEl = document.getElementById('profTotalListings');
+      const verifiedEl = document.getElementById('profVerifiedListings');
+      const occRateEl = document.getElementById('profOccupancyRate');
 
-      document.getElementById('profileAgency').value = agent.agency;
-      if (agent.avatar) {
-        document.getElementById('profilePicturePreview').src = agent.avatar;
+      if (totalEl) totalEl.textContent = listings.length;
+      if (verifiedEl) verifiedEl.textContent = verified.length;
+      if (occRateEl && listings.length > 0) {
+        const rate = Math.round((occupied.length / listings.length) * 100);
+        occRateEl.textContent = `${rate}%`;
       }
-    }
 
-    function previewNewAvatar(event) {
-      const file = event.target.files[0];
-      if (file && file.type.startsWith('image/')) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          document.getElementById('profilePicturePreview').src = e.target.result;
-          showToast('Profile photo selected');
-        };
-        reader.readAsDataURL(file);
+      // Load saved agent profile info if available
+      const savedProfile = localStorage.getItem('cynic_agent_profile');
+      if (savedProfile) {
+        try {
+          const prof = JSON.parse(savedProfile);
+          if (prof.name) {
+            document.getElementById('profName').value = prof.name;
+            document.querySelectorAll('.agent-name-display').forEach(el => el.textContent = prof.name);
+          }
+          if (prof.agency) {
+            document.getElementById('profAgency').value = prof.agency;
+            document.querySelectorAll('.agent-agency-display').forEach(el => el.textContent = prof.agency);
+          }
+          if (prof.phone) document.getElementById('profPhone').value = prof.phone;
+          if (prof.email) document.getElementById('profEmail').value = prof.email;
+          if (prof.bio) document.getElementById('profBio').value = prof.bio;
+        } catch (e) {
+          console.error(e);
+        }
       }
-    }
+    });
 
     function handleSaveProfile(e) {
       e.preventDefault();
-      const saveBtn = document.getElementById('btnSaveProfile');
-      saveBtn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Saving...';
-      saveBtn.disabled = true;
+      const name = document.getElementById('profName').value.trim();
+      const agency = document.getElementById('profAgency').value.trim();
+      const phone = document.getElementById('profPhone').value.trim();
+      const email = document.getElementById('profEmail').value.trim();
+      const bio = document.getElementById('profBio').value.trim();
 
-      const name = document.getElementById('profileName').value;
-      const email = document.getElementById('profileEmail').value;
-      let phone = document.getElementById('profilePhone').value;
-      if (!phone.startsWith('0')) phone = '0' + phone;
-      const agency = document.getElementById('profileAgency').value;
-      const avatarSrc = document.getElementById('profilePicturePreview').src;
+      const profileData = { name, agency, phone, email, bio };
+      localStorage.setItem('cynic_agent_profile', JSON.stringify(profileData));
 
-      const newPass = document.getElementById('newPassword').value;
-      const confirmPass = document.getElementById('confirmPassword').value;
+      // Update in DOM
+      document.querySelectorAll('.agent-name-display').forEach(el => el.textContent = name);
+      document.querySelectorAll('.agent-agency-display').forEach(el => el.textContent = agency);
 
-      if (newPass && newPass !== confirmPass) {
-        showToast('New passwords do not match!', 'warning');
-        saveBtn.innerHTML = '<i class="ri-check-line"></i> <span>Save Changes</span>';
-        saveBtn.disabled = false;
-        return;
-      }
-
-      const raw = localStorage.getItem('cynic_agent');
-      const agent = raw ? JSON.parse(raw) : CYNIC_DATA.agent;
-
-      agent.name = name;
-      agent.email = email;
-      agent.phone = phone;
-      agent.agency = agency;
-      agent.avatar = avatarSrc;
-
-      localStorage.setItem('cynic_agent', JSON.stringify(agent));
-
-      setTimeout(() => {
-        showToast('Profile and agency credentials updated successfully!');
-        syncAgentProfileUI();
-        saveBtn.innerHTML = '<i class="ri-check-line"></i> <span>Saved!</span>';
-        setTimeout(() => {
-          saveBtn.innerHTML = '<i class="ri-check-line"></i> <span>Save Changes</span>';
-          saveBtn.disabled = false;
-        }, 1500);
-      }, 500);
+      showToastNotification("Agent profile details saved successfully!", "success");
     }
+
+    function openPublicPreviewModal() {
+      const name = document.getElementById('profName').value;
+      const agency = document.getElementById('profAgency').value;
+      const bio = document.getElementById('profBio').value;
+      const listings = getStoredListings();
+
+      document.getElementById('modalPreviewName').textContent = name;
+      document.getElementById('modalPreviewAgency').textContent = agency;
+      document.getElementById('modalPreviewBio').textContent = bio;
+      document.getElementById('modalPreviewListings').textContent = listings.length;
+
+      document.getElementById('publicProfileModal').classList.add('active');
+    }
+
+    function closePublicProfileModal() {
+      document.getElementById('publicProfileModal').classList.remove('active');
+    }
+
+    document.getElementById('publicProfileModal').addEventListener('click', (e) => {
+      if (e.target.id === 'publicProfileModal') closePublicProfileModal();
+    });
   </script>
 </body>
 </html>

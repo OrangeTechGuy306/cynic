@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Occupied Listings - Cynic Agent Portal</title>
+  <meta name="description" content="View and manage occupied student accommodations, tenancy statuses, and mark units as vacant upon lease expiry.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Cynic Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <div class="app-shell">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- App Sidebar Component -->
+    <aside class="app-sidebar" id="appSidebar">
+      <div class="sidebar-header">
+        <a href="dashboard.html" class="brand-logo">
+          <div class="logo-icon">
+            <i class="ri-home-wifi-fill"></i>
+          </div>
+          <div class="brand-name">
+            <span>CYNIC</span>
+            <span class="brand-tag">Agent Portal</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <div class="nav-section-title">Main Navigation</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="dashboard.html">
+              <i class="ri-dashboard-3-line"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="listings.html">
+              <i class="ri-hotel-line"></i>
+              <span>Listings</span>
+              <span class="nav-badge" id="sidebarListingsBadge">12</span>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a href="occupied-listings.html">
+              <i class="ri-lock-line"></i>
+              <span>Occupied Listings</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="add-listing.html">
+              <i class="ri-add-circle-line"></i>
+              <span>Add New Listing</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="interests.html">
+              <i class="ri-user-heart-line"></i>
+              <span>Student Interests</span>
+              <span class="nav-badge badge-green">34</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="messages.html">
+              <i class="ri-message-3-line"></i>
+              <span>Messages</span>
+              <span class="nav-badge badge-green">8</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="notifications.html">
+              <i class="ri-notification-3-line"></i>
+              <span>Notifications</span>
+              <span class="nav-badge badge-amber" id="sidebarReportsBadge">4</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="nav-section-title" style="margin-top: var(--space-4);">Account Settings</div>
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="profile.html">
+              <i class="ri-user-settings-line"></i>
+              <span>Agent Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="index.html">
+              <i class="ri-global-line"></i>
+              <span>View Public Website</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="agent-mini-card">
+          <div class="agent-avatar">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80" alt="Agent Avatar" class="agent-avatar-img">
+            <span class="online-dot"></span>
+          </div>
+          <div class="agent-meta">
+            <div class="agent-name agent-name-display">Tunde Balogun</div>
+            <div class="agent-role agent-agency-display">Prime Campus Properties</div>
+          </div>
+          <button type="button" class="btn-sidebar-logout" onclick="handleAgentLogout()" title="Logout">
+            <i class="ri-logout-box-r-line"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="main-content-wrapper">
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <button type="button" class="mobile-menu-btn" id="sidebarToggleBtn" aria-label="Open Sidebar Menu">
+            <i class="ri-menu-2-line"></i>
+          </button>
+          <div class="page-title-group">
+            <h1>Occupied Accommodations</h1>
+            <div class="page-breadcrumb">
+              <span>Cynic</span> <i class="ri-arrow-right-s-line"></i> <span>Leased Properties Portfolio</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="topbar-actions" style="margin-right: 12px;">
+            <a href="messages.html" class="icon-btn" title="Messages">
+              <i class="ri-message-3-line"></i>
+              <span class="badge-dot"></span>
+            </a>
+            <a href="notifications.html" class="icon-btn" title="Notifications">
+              <i class="ri-notification-3-line"></i>
+              <span class="badge-dot" style="background-color: var(--status-warning);"></span>
+            </a>
+          </div>
+
+          <a href="listings.html" class="btn btn-secondary">
+            <i class="ri-arrow-left-line"></i> All Listings
+          </a>
+          
+          <a href="profile.html" class="agent-profile-pill">
+            <div class="pill-avatar">TB</div>
+            <span class="pill-name agent-name-display">Tunde Balogun</span>
+          </a>
+        </div>
+      </header>
+
+      <main class="page-body">
+        
+        <!-- Header Banner -->
+        <div class="card" style="padding: var(--space-6); margin-bottom: var(--space-6); background: linear-gradient(135deg, rgba(30, 41, 59, 0.05) 0%, rgba(0, 168, 90, 0.05) 100%); border-color: #cbd5e1;">
+          <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 16px;">
+            <div>
+              <div style="display: inline-flex; align-items: center; gap: 6px; background: #e2e8f0; color: var(--dark-slate); padding: 3px 10px; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 700; margin-bottom: 8px;">
+                <i class="ri-lock-2-line"></i> TENANTED HOUSING UNITS
+              </div>
+              <h2 style="font-size: 1.4rem;">Occupied Listings Portfolio</h2>
+              <p style="margin-top: 4px; font-size: 0.92rem; color: var(--slate-500);">
+                These accommodations are currently leased to students. When a lease terminates or students graduate, mark the property as vacant to relist publicly.
+              </p>
+            </div>
+            <div class="flex items-center gap-3">
+              <div style="background: white; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px 18px; text-align: center;">
+                <div style="font-size: 0.75rem; color: #64748b; font-weight: 600;">ACTIVE OCCUPANCY</div>
+                <div style="font-size: 1.3rem; font-weight: 800; color: var(--primary-green);" id="occupiedCountDisplay">1 Units</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="card" style="padding: var(--space-4) var(--space-6); margin-bottom: var(--space-6);">
+          <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 16px;">
+            <div style="font-weight: 600; color: var(--dark-slate);">
+              <i class="ri-filter-3-line" style="color: var(--primary-green);"></i> Showing Occupied Properties Only
+            </div>
+            <div style="position: relative; width: 320px;">
+              <i class="ri-search-line" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--slate-400);"></i>
+              <input type="text" id="occupiedSearchInput" class="form-input" style="padding-left: 36px; padding-top: 8px; padding-bottom: 8px;" placeholder="Search occupied property..." oninput="handleSearch(this.value)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Occupied Listings Grid -->
+        <div class="listings-grid" id="occupiedListingsContainer">
+          <!-- Rendered dynamically -->
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Shared Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/listings.js"></script>
+  <script>
+    let currentSearch = '';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderOccupiedGrid();
+    });
+
+    function renderOccupiedGrid() {
+      const container = document.getElementById('occupiedListingsContainer');
+      const countEl = document.getElementById('occupiedCountDisplay');
+      const listings = getStoredListings();
+      
+      let occupied = listings.filter(item => item.status === 'Occupied');
+      if (countEl) countEl.textContent = `${occupied.length} Unit(s)`;
+
+      if (currentSearch.trim() !== '') {
+        const q = currentSearch.toLowerCase();
+        occupied = occupied.filter(item => 
+          item.title.toLowerCase().includes(q) ||
+          item.town.toLowerCase().includes(q) ||
+          item.schoolArea.toLowerCase().includes(q)
+        );
+      }
+
+      if (occupied.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 48px; background: #fff; border-radius: 12px; border: 1px dashed var(--light-gray);">
+            <i class="ri-door-open-line" style="font-size: 3rem; color: var(--primary-green);"></i>
+            <h3 style="margin-top: 12px; color: var(--dark-slate);">No Occupied Units Currently</h3>
+            <p style="color: var(--slate-500); font-size: 0.9rem; max-width: 480px; margin: 6px auto 16px;">All your listings are currently vacant and available for students to apply.</p>
+            <a href="listings.html" class="btn btn-primary">
+              <i class="ri-hotel-line"></i> View Available Listings
+            </a>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = occupied.map(item => {
+        const firstImage = (item.images && item.images.length > 0) 
+          ? item.images[0] 
+          : 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=800&q=80';
+
+        const commentCount = (item.comments && item.comments.length) || 0;
+
+        return `
+          <div class="listing-card" id="card-${item.id}">
+            <div class="listing-media">
+              <img src="${firstImage}" alt="${item.title}" class="listing-thumbnail" loading="lazy" />
+              <span class="listing-status-badge status-occupied">
+                <i class="ri-lock-2-fill"></i> Occupied
+              </span>
+            </div>
+            <div class="listing-content">
+              <div class="listing-location-tag">
+                <i class="ri-map-pin-2-fill"></i>
+                <span>${item.town} &bull; ${item.schoolArea.split('(')[0]}</span>
+              </div>
+              <h3 class="listing-title">${item.title}</h3>
+              
+              <div class="listing-meta-row">
+                <span><i class="ri-building-line"></i> ${item.apartmentType}</span>
+                <span><i class="ri-restaurant-line"></i> ${item.kitchenType}</span>
+                <span><i class="ri-drop-line"></i> ${item.toiletBathType.split('/')[0]}</span>
+              </div>
+
+              <div class="listing-pricing">
+                <div class="price-total">${formatNaira(item.totalPackage)} <span style="font-size: 0.8rem; font-weight: 500; color: var(--slate-500);">/ total package</span></div>
+                <div class="price-sub">Annual: ${formatNaira(item.annualCharge)}</div>
+              </div>
+
+              ${item.isRoommateShared && item.currentRoommates ? `
+                <div style="background: #f8fafc; border-radius: 8px; padding: 10px; margin: 8px 0; border: 1px solid #e2e8f0;">
+                  <div style="font-size: 0.75rem; font-weight: 700; color: #64748b; margin-bottom: 4px;">CURRENT OCCUPANTS</div>
+                  <div style="font-size: 0.82rem; color: var(--dark-slate); font-weight: 600;">
+                    ${item.currentRoommates.map(r => r.name).join(', ')}
+                  </div>
+                </div>
+              ` : ''}
+
+              <div class="flex items-center justify-between" style="margin: 8px 0 12px;">
+                <span style="font-size: 0.8rem; color: #64748b;">
+                  <i class="ri-calendar-check-line" style="color: var(--primary-green);"></i> Occupied Since: ${item.occupiedDate || 'Active Season'}
+                </span>
+                <button type="button" onclick="openListingCommentsModal('${item.id}')" class="listing-comment-pill" title="View & Reply to Comments">
+                  <i class="ri-chat-3-line"></i>
+                  <span>Comments</span>
+                  <span class="comment-count-badge">${commentCount}</span>
+                </button>
+              </div>
+
+              <div class="listing-actions-row" style="margin-top: auto; gap: 8px;">
+                <button type="button" onclick="handleMarkAsVacant('${item.id}')" class="btn btn-outline-green btn-sm" style="flex: 1.2;">
+                  <i class="ri-door-open-line"></i> Mark as Vacant
+                </button>
+                <a href="edit-listing.html?id=${item.id}" class="btn btn-secondary btn-sm" style="flex: 0.8;">
+                  <i class="ri-edit-line"></i> Edit
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function handleSearch(val) {
+      currentSearch = val;
+      renderOccupiedGrid();
+    }
+
+    function handleMarkAsVacant(listingId) {
+      if (confirm("Are you sure you want to mark this listing as Vacant? It will immediately return to your available listings and be visible to students.")) {
+        const result = toggleListingOccupied(listingId);
+        if (result) {
+          showToastNotification("Property marked as Vacant and relisted!", "success");
+          renderOccupiedGrid();
+        }
+      }
+    }
+  </script>
+</body>
+</html>

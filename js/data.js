@@ -77,6 +77,7 @@ const CYNIC_DATA = {
       annualCharge: 200000,
       cleaningFee: 20000,
       status: "Available",
+      verificationStatus: "Verified",
       interestsCount: 12,
       isFeatured: true,
       hasVideo: true,
@@ -94,7 +95,27 @@ const CYNIC_DATA = {
       roommatesNeeded: 1,
       roommateSharePrice: 150000,
       currentRoommates: [
-        { name: "Mojeed", gender: "Male", religion: "Muslim", faculty: "Science", tags: ["Male", "Muslim", "Quiet", "Studious"] }
+        { name: "Mojeed", gender: "Male", religion: "Muslim", faculty: "Science", level: "200L", tags: ["Male", "Muslim", "Quiet", "Studious"] }
+      ],
+      comments: [
+        {
+          id: "comm-101-1",
+          author: "Segun Adebayo",
+          avatar: "SA",
+          date: "2 hours ago",
+          text: "Is the generator running for 24 hours during semester exams?",
+          reply: "Yes, the compound generator operates on an extended schedule during exam periods.",
+          replyDate: "1 hour ago"
+        },
+        {
+          id: "comm-101-2",
+          author: "Fadekemi Alabi",
+          avatar: "FA",
+          date: "Yesterday",
+          text: "Can two female students apply for the roommate slot together?",
+          reply: null,
+          replyDate: null
+        }
       ]
     },
     {
@@ -116,6 +137,7 @@ const CYNIC_DATA = {
       annualCharge: 500000,
       cleaningFee: 25000,
       status: "Available",
+      verificationStatus: "Verified",
       interestsCount: 15,
       isFeatured: true,
       hasVideo: true,
@@ -130,7 +152,18 @@ const CYNIC_DATA = {
       roommatesGotten: 0,
       roommatesNeeded: 0,
       roommateSharePrice: 0,
-      currentRoommates: []
+      currentRoommates: [],
+      comments: [
+        {
+          id: "comm-102-1",
+          author: "Chidinma Eze",
+          avatar: "CE",
+          date: "3 hours ago",
+          text: "How far is this hostel from the campus second gate by walking?",
+          reply: "It is approximately a 5 to 7 minutes stroll directly through Awolowo Way gate.",
+          replyDate: "2 hours ago"
+        }
+      ]
     },
     {
       id: "cyn-103",
@@ -150,7 +183,9 @@ const CYNIC_DATA = {
       totalPackage: 950000,
       annualCharge: 750000,
       cleaningFee: 30000,
-      status: "Available",
+      status: "Occupied",
+      verificationStatus: "Verified",
+      occupiedDate: "2026-08-15",
       interestsCount: 18,
       isFeatured: true,
       hasVideo: true,
@@ -159,13 +194,24 @@ const CYNIC_DATA = {
         "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80",
         "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
       ],
-      description: "Walking distance to UNILAG second gate. Brand new fittings, dedicated transformer, pop ceiling, clean borehole water. Ideal for serious undergraduates.",
+      description: "Walking distance to UNILAG second gate. Brand new fittings, dedicated transformer, pop ceiling, clean borehole water. Currently occupied by returning students.",
       amenities: ["Prepaid Meter", "Running Water", "Pop Ceiling", "WiFi Ready", "Gated Security"],
       isRoommateShared: false,
       roommatesGotten: 0,
       roommatesNeeded: 0,
       roommateSharePrice: 0,
-      currentRoommates: []
+      currentRoommates: [],
+      comments: [
+        {
+          id: "comm-103-1",
+          author: "Boluwatife Ojo",
+          avatar: "BO",
+          date: "1 week ago",
+          text: "When will this mini flat be vacant again next session?",
+          reply: "Current lease expires next July. You can submit early interest to be waitlisted.",
+          replyDate: "6 days ago"
+        }
+      ]
     },
     {
       id: "cyn-104",
@@ -186,6 +232,7 @@ const CYNIC_DATA = {
       annualCharge: 600000,
       cleaningFee: 20000,
       status: "Available",
+      verificationStatus: "Unverified",
       interestsCount: 8,
       isFeatured: true,
       hasVideo: true,
@@ -193,14 +240,23 @@ const CYNIC_DATA = {
       images: [
         "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=800&q=80"
       ],
-      description: "Cozy serviced studio with generator backup in Yaba tech corridor. Fiber-optic ready, gated security, uninterrupted water supply.",
+      description: "Cozy serviced studio with generator backup in Yaba tech corridor. Fiber-optic ready, gated security, uninterrupted water supply. Currently queued for Cynic Admin verification review.",
       amenities: ["Generator Backup", "Prepaid Meter", "Running Water", "Gated Security"],
-      isRoommateShared: true,
-      roommatesGotten: 1,
-      roommatesNeeded: 1,
-      roommateSharePrice: 400000,
-      currentRoommates: [
-        { name: "Emeka", gender: "Male", religion: "Christian", faculty: "Engineering", tags: ["Male", "Christian", "Techie", "Early Riser"] }
+      isRoommateShared: false,
+      roommatesGotten: 0,
+      roommatesNeeded: 0,
+      roommateSharePrice: 0,
+      currentRoommates: [],
+      comments: [
+        {
+          id: "comm-104-1",
+          author: "Damilola Ade",
+          avatar: "DA",
+          date: "Yesterday",
+          text: "Is parking space available for student cars?",
+          reply: null,
+          replyDate: null
+        }
       ]
     },
     {
@@ -212,7 +268,7 @@ const CYNIC_DATA = {
       buildingType: "Single Room",
       apartmentType: "Single Room",
       availableUnits: 3,
-      maxOccupants: 2,
+      maxOccupants: 3,
       minOccupants: 1,
       toiletBathType: "Shared",
       kitchenType: "Shared",
@@ -222,6 +278,7 @@ const CYNIC_DATA = {
       annualCharge: 160000,
       cleaningFee: 15000,
       status: "Available",
+      verificationStatus: "Verified",
       interestsCount: 9,
       isFeatured: true,
       hasVideo: false,
@@ -231,12 +288,59 @@ const CYNIC_DATA = {
       description: "Affordable accommodation 5 minutes from LASUED Epe main gate. Serene environment, study-friendly with treated borehole.",
       amenities: ["Running Water", "Prepaid Meter", "Gated Security"],
       isRoommateShared: true,
-      roommatesGotten: 1,
+      roommatesGotten: 2,
       roommatesNeeded: 1,
-      roommateSharePrice: 110000,
+      roommateSharePrice: 80000,
       currentRoommates: [
-        { name: "Glory", gender: "Female", religion: "Christian", faculty: "Education", tags: ["Female", "Christian", "Neat", "Quiet"] }
+        { name: "Glory", gender: "Female", religion: "Christian", faculty: "Education", level: "200L", tags: ["Female", "Christian", "Neat", "Quiet"] },
+        { name: "Blessing", gender: "Female", religion: "Christian", faculty: "Languages", level: "100L", tags: ["Female", "Fresher", "Early Riser"] }
+      ],
+      comments: [
+        {
+          id: "comm-105-1",
+          author: "Kafayat Shittu",
+          avatar: "KS",
+          date: "2 days ago",
+          text: "Can I inspect the room this Saturday afternoon?",
+          reply: "Yes, inspection is available on Saturday from 12pm.",
+          replyDate: "Yesterday"
+        }
       ]
+    },
+    {
+      id: "cyn-106",
+      title: "Executive En-suite Room near FUTA Junction",
+      address: "12 South Gate Road, Obanla Axis",
+      town: "Akure",
+      schoolArea: "FUTA Akure Axis",
+      buildingType: "Self-Contain",
+      apartmentType: "Self-Contain",
+      availableUnits: 1,
+      maxOccupants: 2,
+      minOccupants: 1,
+      toiletBathType: "En-suite / Private",
+      kitchenType: "Personal",
+      initialCharge: 320000,
+      subsequentCharge: 240000,
+      totalPackage: 320000,
+      annualCharge: 240000,
+      cleaningFee: 15000,
+      status: "Available",
+      verificationStatus: "Unverified",
+      interestsCount: 4,
+      isFeatured: false,
+      hasVideo: false,
+      images: [
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80"
+      ],
+      description: "Brand new modern room with personal bath, clean borehole water, and paved access road. Recently uploaded and undergoing compliance verification.",
+      amenities: ["Prepaid Meter", "Running Water", "Gated Security", "Tiled Floor"],
+      isRoommateShared: false,
+      roommatesGotten: 0,
+      roommatesNeeded: 0,
+      roommateSharePrice: 0,
+      currentRoommates: [],
+      comments: []
     }
   ],
 
@@ -357,7 +461,67 @@ const CYNIC_DATA = {
     }
   ],
 
-  // Reports
+  // Notifications (Replaces Reports)
+  notifications: [
+    {
+      id: "notif-01",
+      type: "comment",
+      title: "New Student Comment",
+      message: "Segun Adebayo commented on 'Executive Boys Quarters with Personal Kitchen': \"Is the generator running for 24 hours during semester exams?\"",
+      listingId: "cyn-101",
+      listingTitle: "Executive Boys Quarters with Personal Kitchen",
+      date: "10 mins ago",
+      read: false,
+      author: "Segun Adebayo",
+      authorAvatar: "SA"
+    },
+    {
+      id: "notif-02",
+      type: "admin",
+      title: "Listing Verification Approved",
+      message: "Cynic Compliance Admin verified your listing 'Executive Boys Quarters with Personal Kitchen' (cyn-101). Roommate Matching is now unlocked.",
+      listingId: "cyn-101",
+      listingTitle: "Executive Boys Quarters with Personal Kitchen",
+      date: "1 hour ago",
+      read: false
+    },
+    {
+      id: "notif-03",
+      type: "comment",
+      title: "New Student Comment",
+      message: "Chidinma Eze asked on 'Self-Contain at Ikeja': \"How far is this hostel from the campus second gate by walking?\"",
+      listingId: "cyn-102",
+      listingTitle: "Self-Contain at Ikeja LASUCOM Campus",
+      date: "3 hours ago",
+      read: false,
+      author: "Chidinma Eze",
+      authorAvatar: "CE"
+    },
+    {
+      id: "notif-04",
+      type: "roommate",
+      title: "Roommate Match Application",
+      message: "Babatunde applied to fill an open roommate slot on 'Lasued-Epe Budget Student Room'.",
+      listingId: "cyn-105",
+      listingTitle: "Lasued-Epe Budget Student Room",
+      date: "Yesterday",
+      read: true,
+      author: "Babatunde",
+      authorAvatar: "BA"
+    },
+    {
+      id: "notif-05",
+      type: "admin",
+      title: "Listing Pending Admin Review",
+      message: "Your newly submitted listing 'Serviced Studio Apartment at Yaba Tech Axis' (cyn-104) is currently queued for physical and document verification.",
+      listingId: "cyn-104",
+      listingTitle: "Serviced Studio Apartment at Yaba Tech Axis",
+      date: "2 days ago",
+      read: true
+    }
+  ],
+
+  // Legacy Reports preserved for reference
   reports: [
     {
       id: "rep-01",
@@ -366,28 +530,8 @@ const CYNIC_DATA = {
       user: "John Doe",
       reason: "Bathroom leaking from the shower pipe connection",
       date: "2026-09-03",
-      status: "Pending",
+      status: "Resolved",
       urgency: "Medium"
-    },
-    {
-      id: "rep-02",
-      listingId: "cyn-103",
-      listingTitle: "Modern Mini-Flat near UNILAG Gate",
-      user: "Babatunde Adeleke",
-      reason: "Borehole pumping machine tripped breaker in flat 3",
-      date: "2026-09-01",
-      status: "Pending",
-      urgency: "High"
-    },
-    {
-      id: "rep-03",
-      listingId: "cyn-104",
-      listingTitle: "Serviced Studio Apartment at Yaba Tech Axis",
-      user: "Chioma Nwosu",
-      reason: "Security gate padlock replaced without notifying occupants",
-      date: "2026-08-28",
-      status: "Pending",
-      urgency: "Low"
     }
   ]
 };
@@ -395,6 +539,97 @@ const CYNIC_DATA = {
 // Utility to format Nigerian Naira
 function formatNaira(amount) {
   return "₦" + Number(amount || 0).toLocaleString('en-NG');
+}
+
+// Retrieve Stored Notifications
+function getStoredNotifications() {
+  const stored = localStorage.getItem('cynic_notifications');
+  if (stored) {
+    try {
+      return JSON.parse(stored);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+  return CYNIC_DATA.notifications;
+}
+
+function saveStoredNotifications(notifs) {
+  localStorage.setItem('cynic_notifications', JSON.stringify(notifs));
+}
+
+function markNotificationRead(notifId) {
+  const notifs = getStoredNotifications();
+  const index = notifs.findIndex(n => n.id === notifId);
+  if (index !== -1) {
+    notifs[index].read = true;
+    saveStoredNotifications(notifs);
+  }
+}
+
+function markAllNotificationsRead() {
+  const notifs = getStoredNotifications();
+  notifs.forEach(n => n.read = true);
+  saveStoredNotifications(notifs);
+}
+
+// Reply to Listing Comment
+function replyToListingComment(listingId, commentId, replyText) {
+  const rawListings = localStorage.getItem('cynic_listings');
+  let listings = rawListings ? JSON.parse(rawListings) : CYNIC_DATA.listings;
+  const listingIndex = listings.findIndex(l => l.id === listingId);
+  if (listingIndex === -1) return false;
+
+  if (!listings[listingIndex].comments) {
+    listings[listingIndex].comments = [];
+  }
+
+  const comment = listings[listingIndex].comments.find(c => c.id === commentId);
+  if (comment) {
+    comment.reply = replyText;
+    comment.replyDate = "Just now";
+  } else {
+    // If replying as a new response to author
+    listings[listingIndex].comments.push({
+      id: "comm-" + Date.now(),
+      author: "Prospective Student",
+      avatar: "ST",
+      date: "Just now",
+      text: "Inquiry about room utilities",
+      reply: replyText,
+      replyDate: "Just now"
+    });
+  }
+
+  localStorage.setItem('cynic_listings', JSON.stringify(listings));
+  return true;
+}
+
+// Toggle Listing Occupied / Available
+function toggleListingOccupied(listingId) {
+  const rawListings = localStorage.getItem('cynic_listings');
+  let listings = rawListings ? JSON.parse(rawListings) : CYNIC_DATA.listings;
+  const listingIndex = listings.findIndex(l => l.id === listingId);
+  if (listingIndex === -1) return null;
+
+  const currentStatus = listings[listingIndex].status || "Available";
+  const newStatus = currentStatus === "Occupied" ? "Available" : "Occupied";
+  listings[listingIndex].status = newStatus;
+  if (newStatus === "Occupied") {
+    listings[listingIndex].occupiedDate = new Date().toISOString().split('T')[0];
+  }
+
+  localStorage.setItem('cynic_listings', JSON.stringify(listings));
+  return newStatus;
+}
+
+// Delete Listing
+function deleteListing(listingId) {
+  const rawListings = localStorage.getItem('cynic_listings');
+  let listings = rawListings ? JSON.parse(rawListings) : CYNIC_DATA.listings;
+  listings = listings.filter(l => l.id !== listingId);
+  localStorage.setItem('cynic_listings', JSON.stringify(listings));
+  return true;
 }
 
 // Submit Student Interest from Public Website
@@ -432,6 +667,22 @@ function submitStudentInterest(interestData) {
     localStorage.setItem('cynic_listings', JSON.stringify(listings));
   }
 
+  // Create corresponding notification for agent
+  const notifs = getStoredNotifications();
+  notifs.unshift({
+    id: "notif-" + Date.now(),
+    type: interestData.matchStatus && interestData.matchStatus.includes('other') ? "roommate" : "comment",
+    title: interestData.matchStatus && interestData.matchStatus.includes('other') ? "Roommate Application" : "New Student Interest",
+    message: `${interestData.name} expressed interest in '${interestData.listingTitle}'. Preferred contact: WhatsApp.`,
+    listingId: interestData.listingId,
+    listingTitle: interestData.listingTitle,
+    date: "Just now",
+    read: false,
+    author: interestData.name,
+    authorAvatar: newInterest.avatar
+  });
+  saveStoredNotifications(notifs);
+
   return newInterest;
 }
 
@@ -444,12 +695,16 @@ function registerNewAgent(agentData) {
     agency: agentData.agency,
     avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=250&q=80",
     verified: true,
-    totalListings: 0,
-    activeInterests: 0,
-    activeChats: 0,
-    pendingReports: 0,
-    cacNumber: agentData.cacNumber || "RC-000000",
-    coverageAreas: agentData.coverageAreas || ["UNILAG-Akoka"]
+    totalListings: 12,
+    successionRate: 94,
+    avgResponseTime: "< 15 Mins",
+    studentsHoused: 48,
+    activeInterests: 34,
+    activeChats: 8,
+    pendingNotifications: 4,
+    cacNumber: agentData.cacNumber || "RC-293841",
+    lasreraNumber: "LASRERA/AGT/2024/098",
+    coverageAreas: agentData.coverageAreas || ["UNILAG-Akoka", "LASU-Ojo", "YABATECH", "Lasued-Epe"]
   };
 
   localStorage.setItem('cynic_agent', JSON.stringify(newAgent));
@@ -467,25 +722,44 @@ function registerNewAgent(agentData) {
       let updated = false;
       listings = listings.map(item => {
         const defaultItem = CYNIC_DATA.listings.find(l => l.id === item.id);
-        if (defaultItem && (item.isRoommateShared === undefined || item.currentRoommates === undefined)) {
-          updated = true;
-          return {
-            ...item,
-            isRoommateShared: defaultItem.isRoommateShared || false,
-            roommatesGotten: defaultItem.roommatesGotten !== undefined ? defaultItem.roommatesGotten : 0,
-            roommatesNeeded: defaultItem.roommatesNeeded !== undefined ? defaultItem.roommatesNeeded : 0,
-            roommateSharePrice: defaultItem.roommateSharePrice || 0,
-            currentRoommates: defaultItem.currentRoommates || []
-          };
+        if (defaultItem) {
+          if (item.verificationStatus === undefined || item.comments === undefined) {
+            updated = true;
+            return {
+              ...item,
+              verificationStatus: defaultItem.verificationStatus || "Verified",
+              status: item.status || defaultItem.status || "Available",
+              comments: defaultItem.comments || [],
+              currentRoommates: item.currentRoommates || defaultItem.currentRoommates || [],
+              isRoommateShared: item.isRoommateShared !== undefined ? item.isRoommateShared : defaultItem.isRoommateShared,
+              roommatesGotten: item.roommatesGotten !== undefined ? item.roommatesGotten : defaultItem.roommatesGotten,
+              roommatesNeeded: item.roommatesNeeded !== undefined ? item.roommatesNeeded : defaultItem.roommatesNeeded,
+              roommateSharePrice: item.roommateSharePrice || defaultItem.roommateSharePrice
+            };
+          }
         }
         return item;
       });
+
+      // Ensure cyn-106 (pending listing) is added if missing
+      if (!listings.find(l => l.id === 'cyn-106')) {
+        const cyn106 = CYNIC_DATA.listings.find(l => l.id === 'cyn-106');
+        if (cyn106) {
+          listings.push(cyn106);
+          updated = true;
+        }
+      }
+
       if (updated) {
         localStorage.setItem('cynic_listings', JSON.stringify(listings));
       }
     } catch(e) {
       localStorage.setItem('cynic_listings', JSON.stringify(CYNIC_DATA.listings));
     }
+  }
+
+  if (!localStorage.getItem('cynic_notifications')) {
+    localStorage.setItem('cynic_notifications', JSON.stringify(CYNIC_DATA.notifications));
   }
   if (!localStorage.getItem('cynic_agent')) {
     localStorage.setItem('cynic_agent', JSON.stringify(CYNIC_DATA.agent));
