@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="css/components.css">
   <link rel="stylesheet" href="css/responsive.css">
 </head>
-<body>
+<body class="messages-page">
 
   <div class="app-shell">
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
@@ -153,7 +153,7 @@
         </div>
       </header>
 
-      <main class="page-body" style="padding-bottom: var(--space-4);">
+      <main class="page-body chat-page-body">
         
         <!-- Wireframe 4.6: Messages (Chat System) Container -->
         <div class="chat-app-container">
@@ -228,11 +228,11 @@
               </div>
 
               <form id="chatSendForm" class="chat-input-form">
-                <button type="button" class="icon-btn" title="Attach Inspection Video / Documents" onclick="showToast('File upload attached to message thread', 'info')" style="flex-shrink: 0;">
+                <button type="button" class="icon-btn chat-attach-btn" title="Attach Inspection Video / Documents" onclick="showToast('File upload attached to message thread', 'info')">
                   <i class="ri-attachment-line"></i>
                 </button>
                 <input type="text" id="chatMessageInput" class="chat-text-input" placeholder="Type message here..." autocomplete="off" required>
-                <button type="submit" class="btn btn-primary" style="border-radius: var(--radius-full); padding: 10px 22px; flex-shrink: 0;">
+                <button type="submit" class="btn btn-primary chat-send-btn">
                   <span>Send</span>
                   <i class="ri-send-plane-fill"></i>
                 </button>

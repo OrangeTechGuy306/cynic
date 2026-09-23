@@ -31,10 +31,14 @@ function initChatSystem() {
 
   if (targetChatId) {
     activeChatId = targetChatId;
+    const appContainer = document.querySelector('.chat-app-container');
+    if (appContainer) appContainer.classList.add('in-conversation');
   } else if (targetUser) {
     const found = chats.find(c => c.user.toLowerCase() === targetUser.toLowerCase());
     if (found) {
       activeChatId = found.id;
+      const appContainer = document.querySelector('.chat-app-container');
+      if (appContainer) appContainer.classList.add('in-conversation');
     }
   }
 
