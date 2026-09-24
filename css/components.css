@@ -1,11 +1,6 @@
-/* ==========================================================================
-   CYNIC AGENT PORTAL - UI COMPONENTS
-   Modular components adhering to Cynic branding guidelines
-   ========================================================================== */
-
-/* --------------------------------------------------------------------------
-   1. SIDEBAR NAVIGATION
-   -------------------------------------------------------------------------- */
+/* 
+  SIDEBAR NAVIGATION
+    */
 .app-sidebar {
   position: fixed;
   top: 0;
@@ -228,9 +223,9 @@
   background: rgba(239, 68, 68, 0.1);
 }
 
-/* --------------------------------------------------------------------------
-   2. TOPBAR COMPONENT
-   -------------------------------------------------------------------------- */
+/* 
+TOPBAR COMPONENT
+    */
 .app-topbar {
   height: var(--topbar-height);
   background-color: var(--white);
@@ -383,9 +378,9 @@
   color: var(--dark-slate);
 }
 
-/* --------------------------------------------------------------------------
+/* 
    3. BUTTONS & ACTIONS
-   -------------------------------------------------------------------------- */
+    */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -479,9 +474,9 @@
   color: var(--white);
 }
 
-/* --------------------------------------------------------------------------
+/* 
    4. STATS CARDS (Agent Dashboard)
-   -------------------------------------------------------------------------- */
+    */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -553,9 +548,17 @@
   font-weight: 600;
 }
 
-.trend-up { color: var(--emerald-600); }
-.trend-down { color: var(--status-danger); }
-.trend-neutral { color: var(--slate-400); }
+.trend-up {
+  color: var(--emerald-600);
+}
+
+.trend-down {
+  color: var(--status-danger);
+}
+
+.trend-neutral {
+  color: var(--slate-400);
+}
 
 .stat-icon-wrapper {
   width: 50px;
@@ -587,9 +590,9 @@
   color: #d97706;
 }
 
-/* --------------------------------------------------------------------------
+/* 
    5. QUICK ACTIONS PANEL
-   -------------------------------------------------------------------------- */
+    */
 .quick-actions-bar {
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   border-radius: var(--radius-xl);
@@ -636,9 +639,9 @@
   z-index: 2;
 }
 
-/* --------------------------------------------------------------------------
+/* 
    6. LISTING CARDS & GRID (Listings Management)
-   -------------------------------------------------------------------------- */
+    */
 .listings-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
@@ -815,9 +818,9 @@
   flex: 1;
 }
 
-/* --------------------------------------------------------------------------
+/* 
    7. INTEREST CARDS (Interests Page)
-   -------------------------------------------------------------------------- */
+    */
 .interests-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -963,9 +966,9 @@
   flex: 1;
 }
 
-/* --------------------------------------------------------------------------
+/* 
    8. REPORT CARDS (Reports Page)
-   -------------------------------------------------------------------------- */
+    */
 .reports-list {
   display: flex;
   flex-direction: column;
@@ -1057,9 +1060,9 @@
   gap: var(--space-3);
 }
 
-/* --------------------------------------------------------------------------
+/* 
    9. CHAT SYSTEM COMPONENTS (Messages Page)
-   -------------------------------------------------------------------------- */
+    */
 .chat-app-container {
   display: flex;
   height: calc(100vh - var(--topbar-height) - 48px);
@@ -1380,9 +1383,9 @@
   white-space: nowrap;
 }
 
-/* --------------------------------------------------------------------------
+/* 
    10. FORMS & MEDIA UPLOADS
-   -------------------------------------------------------------------------- */
+    */
 .form-card {
   background: var(--white);
   border-radius: var(--radius-xl);
@@ -1418,7 +1421,9 @@
   margin-left: 2px;
 }
 
-.form-input, .form-select, .form-textarea {
+.form-input,
+.form-select,
+.form-textarea {
   width: 100%;
   padding: 10px 14px;
   border-radius: var(--radius-md);
@@ -1428,7 +1433,9 @@
   transition: all var(--transition-fast);
 }
 
-.form-input:focus, .form-select:focus, .form-textarea:focus {
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
   border-color: var(--emerald-500);
   box-shadow: 0 0 0 3px rgba(0, 168, 90, 0.12);
   outline: none;
@@ -1508,7 +1515,8 @@
   position: relative;
 }
 
-.upload-dropzone:hover, .upload-dropzone.dragover {
+.upload-dropzone:hover,
+.upload-dropzone.dragover {
   border-color: var(--emerald-500);
   background-color: rgba(0, 168, 90, 0.04);
 }
@@ -1546,7 +1554,8 @@
   border: 1px solid var(--light-gray);
 }
 
-.preview-item img, .preview-item video {
+.preview-item img,
+.preview-item video {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1574,9 +1583,9 @@
   background: var(--status-danger);
 }
 
-/* --------------------------------------------------------------------------
+/* 
    11. AUTH / LOGIN HERO (Agent Login)
-   -------------------------------------------------------------------------- */
+    */
 .auth-page-wrapper {
   min-height: 100vh;
   display: flex;
@@ -1598,7 +1607,10 @@
 .auth-brand-side::before {
   content: '';
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.15) 0%, transparent 60%);
   pointer-events: none;
 }
@@ -1654,8 +1666,15 @@
 }
 
 @keyframes slideInToast {
-  from { transform: translateX(100%); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 /* ==========================================================================
@@ -1701,7 +1720,8 @@
   text-decoration: none;
 }
 
-.public-nav-link:hover, .public-nav-link.active {
+.public-nav-link:hover,
+.public-nav-link.active {
   color: var(--emerald-600);
 }
 
@@ -2123,7 +2143,8 @@
   transition: all var(--transition-fast);
 }
 
-.heart-fav-btn:hover, .heart-fav-btn.active {
+.heart-fav-btn:hover,
+.heart-fav-btn.active {
   color: #ef4444;
   background: var(--white);
 }
@@ -2687,20 +2708,20 @@
   background-color: white;
   transition: 0.3s;
   border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.roommate-toggle-switch input:checked + .roommate-toggle-slider {
+.roommate-toggle-switch input:checked+.roommate-toggle-slider {
   background-color: #00A85A;
 }
 
-.roommate-toggle-switch input:checked + .roommate-toggle-slider:before {
+.roommate-toggle-switch input:checked+.roommate-toggle-slider:before {
   transform: translateX(22px);
 }
 
-/* ==========================================================================
+/* 
    LISTINGS COMMENTS MODAL & REPLIES
-   ========================================================================== */
+    */
 .listing-comment-pill {
   display: inline-flex;
   align-items: center;
@@ -2904,6 +2925,8 @@
 
 .comment-reply-input {
   flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid #cbd5e1;
@@ -2917,9 +2940,9 @@
   box-shadow: 0 0 0 2px rgba(0, 168, 90, 0.15);
 }
 
-/* ==========================================================================
+/* 
    MULTI-ROOMMATE DYNAMIC REPEATER
-   ========================================================================== */
+    */
 .multi-roommate-card {
   background: #ffffff;
   border: 1px solid #e2e8f0;
@@ -3015,9 +3038,9 @@
   line-height: 1.45;
 }
 
-/* ==========================================================================
+/* 
    OCCUPANCY & MANAGEMENT ACTION BUTTONS
-   ========================================================================== */
+    */
 .btn-mark-occupied {
   background: #f1f5f9;
   color: #334155;
@@ -3078,9 +3101,9 @@
   color: white;
 }
 
-/* ==========================================================================
+/* 
    NOTIFICATIONS PAGE COMPONENTS
-   ========================================================================== */
+    */
 .notification-card {
   background: var(--white);
   border: 1px solid var(--light-gray);
@@ -3088,10 +3111,12 @@
   padding: 16px 20px;
   margin-bottom: 12px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
   gap: 16px;
   transition: all 0.2s ease;
   position: relative;
+  box-sizing: border-box;
 }
 
 .notification-card:hover {
@@ -3102,6 +3127,14 @@
 .notification-card.unread {
   background: #f8fffa;
   border-left: 4px solid var(--primary-green);
+}
+
+.notification-card-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
 }
 
 .notification-icon-wrap {
@@ -3132,6 +3165,7 @@
 
 .notification-content {
   flex: 1;
+  min-width: 0;
 }
 
 .notification-title {
@@ -3142,6 +3176,19 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.notification-title-text {
+  color: var(--dark-slate);
+}
+
+.notification-time {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--slate-400);
+  white-space: nowrap;
 }
 
 .notification-msg {
@@ -3149,14 +3196,39 @@
   color: #475569;
   line-height: 1.5;
   margin-bottom: 8px;
+  word-break: break-word;
 }
 
 .notification-meta {
   display: flex;
   align-items: center;
-  gap: 14px;
+  flex-wrap: wrap;
+  gap: 12px;
   font-size: 0.78rem;
   color: #94a3b8;
+}
+
+.notif-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.notif-badge-new {
+  color: var(--primary-green);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.notification-action {
+  flex-shrink: 0;
+  align-self: center;
+}
+
+.notification-action .btn {
+  white-space: nowrap;
 }
 
 .notification-filter-tabs {
@@ -3166,6 +3238,12 @@
   padding-bottom: 12px;
   margin-bottom: 20px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.notification-filter-tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .filter-tab-btn {
@@ -3179,6 +3257,7 @@
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.2s;
+  flex-shrink: 0;
 }
 
 .filter-tab-btn:hover {
@@ -3192,9 +3271,9 @@
   color: white;
 }
 
-/* ==========================================================================
+/* 
    AGENT PROFILE REVAMP & ANALYTICS
-   ========================================================================== */
+*/
 .profile-hero-card {
   background: linear-gradient(135deg, var(--dark-slate) 0%, #1e293b 100%);
   border-radius: 16px;
@@ -3233,7 +3312,7 @@
   border-radius: 50%;
   border: 3px solid var(--primary-green);
   object-fit: cover;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 .profile-badge-pill {
@@ -3289,7 +3368,3 @@
   color: var(--emerald-600);
   font-weight: 600;
 }
-
-
-
-

@@ -177,7 +177,7 @@ function ensureCommentModalExists() {
         <button type="button" class="btn btn-secondary" onclick="closeCommentModal()">Close</button>
       </div>
     </div>
-  `;
+  // `
   document.body.appendChild(modalDiv);
 
   modalDiv.addEventListener('click', (e) => {

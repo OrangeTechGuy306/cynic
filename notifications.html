@@ -163,7 +163,7 @@
       <main class="page-body">
         
         <!-- Header Banner & Action bar -->
-        <div class="card" style="padding: var(--space-6); margin-bottom: var(--space-6); background: linear-gradient(135deg, rgba(0, 168, 90, 0.08) 0%, rgba(30, 41, 59, 0.02) 100%); border-color: rgba(0, 168, 90, 0.2);">
+        <div class="card notification-hero-banner" style="padding: var(--space-6); margin-bottom: var(--space-6); background: linear-gradient(135deg, rgba(0, 168, 90, 0.08) 0%, rgba(30, 41, 59, 0.02) 100%); border-color: rgba(0, 168, 90, 0.2);">
           <div class="flex items-center justify-between" style="flex-wrap: wrap; gap: 16px;">
             <div>
               <div style="display: inline-flex; align-items: center; gap: 6px; background: var(--status-success-bg); color: var(--emerald-700); padding: 3px 10px; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 700; margin-bottom: 8px;">
@@ -284,6 +284,9 @@
           typeClass = 'admin';
         }
 
+        const timeStr = item.date || item.time || '';
+        const propTitle = item.listingTitle || item.propertyTitle || '';
+
         let actionBtnHtml = '';
         if (item.type === 'comment' && item.listingId) {
           actionBtnHtml = `
@@ -301,24 +304,24 @@
 
         return `
           <div class="notification-card ${item.read ? '' : 'unread'}" id="notif-card-${item.id}">
-            <div class="notification-icon-wrap ${typeClass}">
-              <i class="${iconClass}"></i>
-            </div>
-            <div class="notification-content">
-              <div class="notification-title">
-                <span>${item.title}</span>
-                <span style="font-size: 0.78rem; font-weight: normal; color: var(--slate-400);">${item.time}</span>
+            <div class="notification-card-main">
+              <div class="notification-icon-wrap ${typeClass}">
+                <i class="${iconClass}"></i>
               </div>
-              <div class="notification-msg">${item.message}</div>
-              <div class="notification-meta">
-                ${item.propertyTitle ? `<span><i class="ri-hotel-line"></i> ${item.propertyTitle}</span>` : ''}
-                ${item.author ? `<span><i class="ri-user-line"></i> By ${item.author}</span>` : ''}
-                ${!item.read ? `<span style="color: var(--primary-green); font-weight: 600;"><i class="ri-record-circle-line"></i> New</span>` : ''}
+              <div class="notification-content">
+                <div class="notification-title">
+                  <span class="notification-title-text">${item.title}</span>
+                  ${timeStr ? `<span class="notification-time">${timeStr}</span>` : ''}
+                </div>
+                <div class="notification-msg">${item.message}</div>
+                <div class="notification-meta">
+                  ${propTitle ? `<span class="notif-meta-item"><i class="ri-hotel-line"></i> ${propTitle}</span>` : ''}
+                  ${item.author ? `<span class="notif-meta-item"><i class="ri-user-line"></i> By ${item.author}</span>` : ''}
+                  ${!item.read ? `<span class="notif-badge-new"><i class="ri-record-circle-line"></i> New</span>` : ''}
+                </div>
               </div>
             </div>
-            <div style="align-self: center; flex-shrink: 0;">
-              ${actionBtnHtml}
-            </div>
+            ${actionBtnHtml ? `<div class="notification-action">${actionBtnHtml}</div>` : ''}
           </div>
         `;
       }).join('');

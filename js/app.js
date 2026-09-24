@@ -1,7 +1,4 @@
-/**
- * CYNIC AGENT PORTAL - GLOBAL APP CONTROLLER
- * Sidebar, Topbar, Modals, Toast Alerts, and Common UI Handlers
- */
+
 
 document.addEventListener('DOMContentLoaded', () => {
   initSidebar();

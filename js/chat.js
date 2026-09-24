@@ -1,7 +1,4 @@
-/**
- * CYNIC AGENT PORTAL - REAL-TIME CHAT SYSTEM CONTROLLER
- * Handles chat threads, active messaging, simulated student responses, and quick replies
- */
+
 
 let activeChatId = 'chat-01';
 

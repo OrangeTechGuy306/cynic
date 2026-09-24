@@ -1,7 +1,3 @@
-/**
- * CYNIC AGENT PORTAL & PUBLIC DIRECTORY - CENTRAL MOCK DATABASE & STATE
- * Context: Nigerian Student Accommodation Platform (Lagos/Ikeja/Akoka/Yaba/Ojo/Epe/Ibadan)
- */
 
 const CYNIC_DATA = {
   agent: {
